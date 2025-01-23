@@ -1,0 +1,7 @@
+name: GHArmazem
+main: me.gharmazem.Main
+version: 1.0.0
+
+commands:
+  armazem:
+    aliases: [storage]

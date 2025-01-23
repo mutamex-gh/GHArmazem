@@ -1,0 +1,155 @@
+##############################################
+#                 PERMISSÕES                 #
+##############################################
+#
+# gharmazem.usecommand - /armazem e /armazem help
+# gharmazem.sellall - /armazem sell
+# gharmazem.store - /armazem store
+# gharmazem.admin - ver informações adicionais no /armazem help e permissão ao comando /armazem reload
+#
+# github.com/GH-GusttavoHenrique/
+# Discord: mutamex
+#
+
+# MENSAGENS E MENUS
+Messages:
+  only-players: "&cEste comando pode ser executado apenas por jogadores!"
+  no-permission: "&cVocê não tem permissão para executar esse comando!"
+  no-itens-stored: "&cVocê não tem itens armazenados!"
+  no-itens-to-sell: "&cVocê não tem itens para vender!"
+  no-itens-to-recover: "&cVocê não tem itens para recolher!"
+  no-itens-to-store: "&cVocê não tem itens válidos para armazenar!"
+  no-space-inventory: "&cVocê não tem espaço no inventario para recolher os drops!"
+  store-itens: "&aForam armazenados {itens} em seu armazém!"
+  recovery-itens: "&aVocê recolheu {itens} itens do seu armazém!"
+  sell-itens: "&aVocê vendeu {itens} itens por {rendimento} coins!"
+
+Inventory:
+  inventory-name: "Seu armazém pessoal"
+  inventory-size: 27
+
+StorageInventory:
+  inventory-name: "Baú do armazém"
+  inventory-size: 36
+
+##############################################
+#                   ITENS                    #
+##############################################
+
+PessoalArmazemItem:
+  title: "&a{player}"
+  slot: 11
+  lore:
+    - "&7Suas informações:"
+    - ""
+    - "  &fSeu money: &a{money}"
+    - "  &fItens armazenados: &e{storageitens}"
+    - ""
+
+StorageItem:
+  material: "CHEST"
+  slot: 14
+  title: "&aArmazém pessoal"
+  lore:
+    - "&7Clique para acessar"
+    - ""
+    - "  &fClique para acessar o"
+    - "  &fseu armazém pessoal"
+    - ""
+
+SellAllItem:
+  material: "STORAGE_MINECART"
+  slot: 15
+  title: "&aVender Tudo"
+  lore:
+    - "&7Venda tudo com um clique"
+    - ""
+    - " &fAo clicar, você irá vender todos"
+    - " &fos seus itens armazenados!"
+    - ""
+
+##############################################
+#                  CRIAÇÃO                   #
+##############################################
+
+Materiais: #Coloque na lista a baixo todos os itens que vao ser adicionados para armazenar
+  - WHEAT
+  - APPLE
+  - CACTUS
+  - MELON
+
+Prices: #Coloque na lista a baixo todos os preços dos itens que vao ser adicionados para armazenar
+  WHEAT: 50
+  APPLE: 70
+  CACTUS: 120
+  MELON: 200
+
+# CRIAÇÃO DE ITENS PARA GUARDAR NO ARMAZEM <<INFINITOS>>
+items:
+  trigo:
+    material: WHEAT
+    name: "&eTrigo"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&7Vender por &250 Coins &7cada"
+      - ""
+      - "&7Botão esquerdo: &aVender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 50 # preço de venda (por item)
+    slot: 14
+
+  apple:
+    material: APPLE
+    name: "&cMaças"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&7Vender por &270 Coins &7cada"
+      - ""
+      - "&7Botão esquerdo: &aVender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 70 # preço de venda (por item)
+    slot: 15
+
+  cactus:
+    material: CACTUS
+    name: "&2Cacto"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&7Vender por &2120 Coins &7cada"
+      - ""
+      - "&7Botão esquerdo: &aVender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 120 # preço de venda (por item)
+    slot: 16
+
+  melon:
+    material: MELON
+    name: "&aMelão"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&7Vender por &2200 Coins &7cada"
+      - ""
+      - "&7Botão esquerdo: &aVender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 200 # preço de venda (por item)
+    slot: 23

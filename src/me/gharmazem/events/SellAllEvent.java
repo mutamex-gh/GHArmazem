@@ -21,20 +21,20 @@ public class SellAllEvent implements Listener {
     @EventHandler
     public boolean sellAllItems(InventoryClickEvent event) {
         if (event.getInventory().equals(ArmazemInventory.getInventory())) {
+            FileConfiguration config = Main.getInstance().getConfig();
 
             String materialName = Main.getInstance().getConfig().getString("SellAllItem.material");
-            Material sellAllMaterial = Material.getMaterial(materialName);
-
-            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
-            ItemStack clickedItem = event.getCurrentItem();
-            if (clickedItem == null || clickedItem.getType() != sellAllMaterial) return false;
-
-            FileConfiguration config = Main.getInstance().getConfig();
             String sellItens = config.getString("Messages.sell-itens");
             String noItensToSell = config.getString("Messages.no-itens-to-sell");
 
-            Player player = (Player) event.getWhoClicked();
+            Material sellAllMaterial = Material.getMaterial(materialName);
 
+            Player player = (Player) event.getWhoClicked();
+            ItemStack clickedItem = event.getCurrentItem();
+
+            if (clickedItem == null || clickedItem.getType() != sellAllMaterial) return false;
+
+            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
             int totalQuantia = BaseManager.getTotalQuantity(player);
             if (totalQuantia > 0) {
                 double totalRendimento = BaseManager.getTotalValue(player);

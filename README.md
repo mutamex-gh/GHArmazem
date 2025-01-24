@@ -1,3 +1,5 @@
-# Updates
-23/01/2025
-- Plugin lançado; 
+# GHArmazem
+
+Dependencias e download:
+- Dependencias: Vault
+- Download: [download](or)

@@ -3,8 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/GHArmazem</output-path>
     <root id="archive" name="GHArmazem.jar">
       <element id="module-output" name="GHArmazem" />
-      <element id="library" level="project" name="spigot-1.8" />
-      <element id="library" level="project" name="Vault" />
     </root>
   </artifact>
 </component>

@@ -7,10 +7,11 @@ Dependencias e download:
 # Permissões
 Todas as permissões do plugin abaixo:
 
-| Permissão            | Uso                                                           |
-|----------------------|---------------------------------------------------------------|
-| gharmazem.usecommand | Comando /armazem e /armazem help                              |
-| gharmazem.sellall    | Comando /armazem sell                                         |
-| gharmazem.store      | Comando /armazem store                                        |
-| gharmazem.admin      | Comando /armazem reload (reload <br/>na config e na database. |
+| Permissão            | Uso             | Descrição                                       |
+|----------------------|-----------------|-------------------------------------------------|
+| gharmazem.usecommand | /armazem        | abre o menu do armazém                          |  
+| gharmazem.usecommand | /armazem help   | ver todos os comandos                           |  
+| gharmazem.sellall    | /armazem sell   | vender todos os itens do armazem por comando    |
+| gharmazem.store      | /armazem store  | guarda todos os itens do inventario por comando |
+| gharmazem.admin      | /armazem reload | da reload na config.yml e na dbase.yml          |
 

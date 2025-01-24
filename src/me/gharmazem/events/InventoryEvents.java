@@ -63,7 +63,7 @@ public class InventoryEvents implements Listener {
                     if (totalAmount > 0) {
                         hasStoredItems = true;
                         ItemStack storedItem = new ItemStack(material, totalAmount);
-                        BaseManager.adicionarItemAoArmazem(player, storedItem);
+                        BaseManager.saveItem(player, storedItem);
 
                         player.sendMessage(ColorUtils.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
                         UtilClass.sendSound(player, Sound.LEVEL_UP);

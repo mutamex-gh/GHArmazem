@@ -48,7 +48,7 @@ public class SellRecoverEvent implements Listener {
 
             ItemStack itemFinal = new ItemStack(material, quantity);
 
-            int quantia = BaseManager.getQuantity(player, button.getItemStack());
+            int quantia = BaseManager.getStored(player, button.getItemStack());
             double rendimento = button.getPrice() * quantia;
 
             if (event.getClick().isLeftClick()) {
@@ -61,7 +61,7 @@ public class SellRecoverEvent implements Listener {
                     player.closeInventory();
 
                     Main.getEconomy().depositPlayer(player, rendimento);
-                    BaseManager.sellItem(player, itemFinal);
+                    BaseManager.sell(player, itemFinal);
                     return true;
                 }else {
                     player.sendMessage(ColorUtils.colored(noitenstosell));
@@ -84,7 +84,7 @@ public class SellRecoverEvent implements Listener {
                     player.sendMessage(ColorUtils.colored(itensrecuperados)
                             .replace("{itens}", String.valueOf(itemsToCollect)));
 
-                    BaseManager.recuperarItemEspecificoDoArmazem(player, itemFinal, itemsToCollect);
+                    BaseManager.getSpecificItem(player, itemFinal, itemsToCollect);
                     player.closeInventory();
                 } else {
                     player.sendMessage(ColorUtils.colored(nospaceinventory));

@@ -21,7 +21,7 @@ public class BaseManager {
 
     static FileConfiguration config = Main.getInstance().getConfig();
 
-    public static void adicionarItemAoArmazem(Player player, ItemStack item) {
+    public static void saveItem(Player player, ItemStack item) {
         String playerUUID = player.getUniqueId().toString();
         String itemType = item.getType().toString();
         int itemAmount = item.getAmount();
@@ -34,7 +34,7 @@ public class BaseManager {
         Main.getInstance().saveDatabaseConfig();
     }
 
-    public static void recuperarItemEspecificoDoArmazem(Player player, ItemStack itemType, int quantidade) {
+    public static void getSpecificItem(Player player, ItemStack itemType, int quantidade) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
 
@@ -72,7 +72,7 @@ public class BaseManager {
     }
 
 
-    public static void sellItem(Player player, ItemStack itemType) {
+    public static void sell(Player player, ItemStack itemType) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
 
@@ -85,7 +85,7 @@ public class BaseManager {
         }
     }
 
-    public static void sellAllItems(Player player) {
+    public static void sellAll(Player player) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
 
@@ -128,7 +128,7 @@ public class BaseManager {
         return totalValue;
     }
 
-    public static int getQuantity(Player player, ItemStack itemStack) {
+    public static int getStored(Player player, ItemStack itemStack) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
         String itemTypeName = itemStack.getType().name();
@@ -140,7 +140,7 @@ public class BaseManager {
         return itemAmount;
     }
 
-    public static int getTotalQuantity(Player player) {
+    public static int getAllStored(Player player) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
         int totalQuantity = 0;
@@ -156,7 +156,7 @@ public class BaseManager {
         return totalQuantity;
     }
 
-    public static List<String> itensGuardados(Player player) {
+    public static List<String> storedItens(Player player) {
         FileConfiguration config = Main.getInstance().getConfig();
 
         String noitens = config.getString("Messages.no-itens-stored");
@@ -176,7 +176,7 @@ public class BaseManager {
         return itensArmazenados;
     }
 
-    public static void abrirArmazem(Player player) {
+    public static void openStorage(Player player) {
         int slot = config.getInt("StorageItem.slot");
 
         Inventory armazem = ArmazemInventory.getInventory();

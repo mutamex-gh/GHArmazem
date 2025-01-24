@@ -25,13 +25,13 @@ public class ArmazemItens {
         int slot = config.getInt("PessoalArmazemItem.slot");
 
         double balance = Main.getEconomy().getBalance(player);
-        String playerTotalQuantity = String.valueOf(BaseManager.getTotalQuantity(player));
+        int allStored = BaseManager.getAllStored(player);
 
         List<String> lore = new ArrayList<>();
         for (String line : playerinfolore) {
             String updatedLine = ColorUtils.colored(line)
                             .replace("{money}", df.format(balance)
-                            .replace("{storageitens}", playerTotalQuantity));
+                            .replace("{storageitens}", String.valueOf(allStored)));
             lore.add(updatedLine);
         }
 
@@ -95,7 +95,7 @@ public class ArmazemItens {
 
     public static ItemStack savedItens(Player player) {
 
-        List<String> itensArmazenados = BaseManager.itensGuardados(player);
+        List<String> itensArmazenados = BaseManager.storedItens(player);
 
         List<String> lore = new ArrayList<>();
         lore.add(ColorUtils.colored("&7Veja seus itens armazenados"));

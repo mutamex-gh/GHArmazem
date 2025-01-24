@@ -45,7 +45,7 @@ public class Commands implements CommandExecutor {
                 ArmazemItens.sellAllItem();
 
                 UtilClass.sendSound(player, Sound.CLICK);
-                BaseManager.abrirArmazem(player);
+                BaseManager.openStorage(player);
                 return true;
             }
         }else { player.sendMessage(ColorUtils.colored(nopermission)); }
@@ -88,12 +88,12 @@ public class Commands implements CommandExecutor {
             if(subCommand.equalsIgnoreCase("sell")) {
 
                 DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
-                int totalQuantia = BaseManager.getTotalQuantity(player);
+                int totalQuantia = BaseManager.getAllStored(player);
                 if (totalQuantia > 0) {
                     double totalRendimento = BaseManager.getTotalValue(player);
                     Main.getEconomy().depositPlayer(player, totalRendimento);
 
-                    BaseManager.sellAllItems(player);
+                    BaseManager.sellAll(player);
 
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
                     player.sendMessage(ColorUtils.colored(sellitens)
@@ -123,7 +123,7 @@ public class Commands implements CommandExecutor {
                         if (totalAmount > 0) {
                             hasStoredItems = true;
                             ItemStack storedItem = new ItemStack(material, totalAmount);
-                            BaseManager.adicionarItemAoArmazem(player, storedItem);
+                            BaseManager.saveItem(player, storedItem);
 
                             player.sendMessage(ColorUtils.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
                         }

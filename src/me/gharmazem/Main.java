@@ -43,7 +43,7 @@ public class Main extends JavaPlugin {
         loadListener();
         loadCommands();
 
-        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] Carregado comandos e eventos!"));
+        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] &7Carregado comandos e eventos!"));
         Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] iniciado com sucesso!"));
     }
 

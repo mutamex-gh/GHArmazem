@@ -14,6 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.DecimalFormat;
+
 public class SellAllEvent implements Listener {
 
     @EventHandler
@@ -23,6 +25,7 @@ public class SellAllEvent implements Listener {
             String materialName = Main.getInstance().getConfig().getString("SellAllItem.material");
             Material sellAllMaterial = Material.getMaterial(materialName);
 
+            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
             ItemStack clickedItem = event.getCurrentItem();
             if (clickedItem == null || clickedItem.getType() != sellAllMaterial) return false;
 
@@ -40,7 +43,7 @@ public class SellAllEvent implements Listener {
                 BaseManager.sellAllItems(player);
 
                 player.sendMessage(ColorUtils.colored(sellItens)
-                        .replace("{rendimento}", String.valueOf(totalRendimento))
+                        .replace("{rendimento}", df.format(totalRendimento))
                         .replace("{itens}", String.valueOf(totalQuantia)));
 
                 UtilClass.sendSound(player, Sound.LEVEL_UP);

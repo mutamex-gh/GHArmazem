@@ -9,6 +9,7 @@ import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,6 +36,7 @@ public class InventoryEvents implements Listener {
 
             if(event.getCurrentItem().getType().equals(Material.getMaterial(materialmenu))) {
                 player.openInventory(ArmazemSection.getArmazemInventory());
+
                 ArmazemSection.inventory.setItem(11, ArmazemItens.savedItens(player));
                 return false;
             }
@@ -44,7 +46,8 @@ public class InventoryEvents implements Listener {
             event.setCancelled(true);
 
             List<Material> allowed = Main.getInstance().getAllowedItems();
-            if (event.getCurrentItem().getType() == Material.SKULL_ITEM) {
+            //if (event.getCurrentItem().getType() == Material.SKULL_ITEM) {
+            if (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.ARROW_DAMAGE)) {
 
                 boolean hasStoredItems = false;
                 for (Material material : allowed) {

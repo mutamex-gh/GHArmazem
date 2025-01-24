@@ -68,6 +68,10 @@ SellAllItem:
     - " &fos seus itens armazenados!"
     - ""
 
+ArrowBack: # flecha dentro do menu do armazem para voltar ao menu principal
+  enable: true
+  slot: 27
+
 ##############################################
 #                  CRIAÇÃO                   #
 ##############################################

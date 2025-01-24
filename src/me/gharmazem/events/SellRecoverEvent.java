@@ -16,6 +16,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.DecimalFormat;
+
 public class SellRecoverEvent implements Listener {
 
     @EventHandler
@@ -31,6 +33,7 @@ public class SellRecoverEvent implements Listener {
 
             Player player = (Player) event.getWhoClicked();
             ItemStack item = event.getCurrentItem();
+            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
 
             if (item == null) item = event.getCursor();
             if (item == null || item.getType() == Material.AIR) return false;
@@ -52,7 +55,7 @@ public class SellRecoverEvent implements Listener {
                 if(quantia > 0) {
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
                     player.sendMessage(ColorUtils.colored(sellitens)
-                            .replace("{rendimento}", String.valueOf(rendimento))
+                            .replace("{rendimento}", df.format(rendimento))
                             .replace("{itens}", String.valueOf(quantia)));
 
                     player.closeInventory();

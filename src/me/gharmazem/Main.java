@@ -1,6 +1,7 @@
 package me.gharmazem;
 
 import me.gharmazem.commands.Commands;
+import me.gharmazem.events.BackMenu;
 import me.gharmazem.events.InventoryEvents;
 import me.gharmazem.events.SellAllEvent;
 import me.gharmazem.events.SellRecoverEvent;
@@ -139,6 +140,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new InventoryEvents(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellRecoverEvent(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellAllEvent(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new BackMenu(), Main.this);
     }
 
     public void loadCommands() {

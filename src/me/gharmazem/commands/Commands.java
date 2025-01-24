@@ -13,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Commands implements CommandExecutor {
@@ -54,10 +55,10 @@ public class Commands implements CommandExecutor {
         // necessita da permissao gharmazem.usecommand (/armazem help)
         if(subCommand.equalsIgnoreCase("help")) {
             player.sendMessage(ColorUtils.colored("&4Comandos Armazém:"));
-            player.sendMessage(ColorUtils.colored("  &e/armazem &f> &7Abrir armazém"));
-            player.sendMessage(ColorUtils.colored("  &e/armazem help &f> &7Comandos para jogador"));
-            player.sendMessage(ColorUtils.colored("  &e/armazem sell &f> &7Venda todos os itens de seu armazem"));
-            player.sendMessage(ColorUtils.colored("  &e/armazem store &f> &7Armazene todos os itens de seu inventário"));
+            player.sendMessage(ColorUtils.colored("  &f/armazem &f> &7Abrir armazém"));
+            player.sendMessage(ColorUtils.colored("  &f/armazem help &f> &7Comandos para jogador"));
+            player.sendMessage(ColorUtils.colored("  &f/armazem sell &f> &7Venda todos os itens de seu armazem"));
+            player.sendMessage(ColorUtils.colored("  &f/armazem store &f> &7Armazene todos os itens de seu inventário"));
             if(sender.hasPermission("gharmazem.admin")) { // caso o jogador tiver a permissão gharmazem.admin, mostra os comandos de adm
                 player.sendMessage(ColorUtils.colored("  &c/armazem reload &f> &7Recarrega a config.yml e a database dbase.yml"));
                 return true;
@@ -86,6 +87,7 @@ public class Commands implements CommandExecutor {
         if(sender.hasPermission("gharmazem.sellall")) {
             if(subCommand.equalsIgnoreCase("sell")) {
 
+                DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
                 int totalQuantia = BaseManager.getTotalQuantity(player);
                 if (totalQuantia > 0) {
                     double totalRendimento = BaseManager.getTotalValue(player);
@@ -95,7 +97,7 @@ public class Commands implements CommandExecutor {
 
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
                     player.sendMessage(ColorUtils.colored(sellitens)
-                            .replace("{rendimento}", String.valueOf(totalRendimento))
+                            .replace("{rendimento}", df.format(totalRendimento))
                             .replace("{itens}", String.valueOf(totalQuantia)));
 
                     return true;

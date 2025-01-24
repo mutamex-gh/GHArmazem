@@ -8,6 +8,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Iterator;
@@ -24,6 +26,8 @@ public class ArmazemSection {
         FileConfiguration config = Main.getInstance().getConfig();
         String invname = config.getString("StorageInventory.inventory-name");
         int invslot = config.getInt("StorageInventory.inventory-size");
+        int arrowslot = config.getInt("ArrowBack.slot");
+        boolean arrowenable = config.getBoolean("ArrowBack.enable");
 
         inventory = Bukkit.createInventory(null, invslot, ColorUtils.colored(invname));
         ConfigurationSection itemSection = Main.getInstance().getConfig().getConfigurationSection("items");
@@ -45,6 +49,9 @@ public class ArmazemSection {
             inventoryButtons.put(key, new InventoryButton(key, item.wrap(), slot, price));
         }
 
+        if(arrowenable) {
+            inventory.setItem(arrowslot, ArmazemItens.arrowBack());
+        }
         inventory.setItem(10, ArmazemItens.storageDropsItem());
         inventoryButtons.forEach((k, button) -> inventory.setItem(button.getSlot(), button.getItemStack()));
     }

@@ -33,12 +33,8 @@ public class Commands implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        if(args.length > 1) {
-            player.chat("/armazem help");
-            return false;
-        }
 
-        // comando para abrir /armazem (/armazem)
+        // comando para abrir o armazem (/armazem)
         if(sender.hasPermission("gharmazem.usecommand")) {
             if (cmd.getName().equalsIgnoreCase("armazem") && args.length == 0) {
                 ArmazemItens.pessoalArmazemInfoItem(player);

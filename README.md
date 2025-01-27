@@ -5,7 +5,7 @@ Dependencias e download:
 - Download: [clique aqui](https://github.com/GH-GusttavoHenrique/GHArmazem/releases/download/minecraft/GHArmazem.jar)
 
 Descrição:
-- Plugin com opção de criação infinita de itens para armazenamento, em breve novas atts e suporte para plotsquared;
+- Plugin com opção de criação infinita de itens para armazenamento, em breve novas atts e suporte com plotsquared;
 
 # Permissões
 Todas as permissões do plugin abaixo:
@@ -18,7 +18,7 @@ Todas as permissões do plugin abaixo:
 | gharmazem.store      | /armazem store  | guardar todos os itens do inventario por comando |
 | gharmazem.admin      | /armazem reload | reload na config.yml e na dbase.yml          |
 
-# Fotos do plugin abaixo:
+# Fotos
 
 ![image](https://github.com/user-attachments/assets/3d588298-3091-4185-9510-fad2a8a9b85b)
 ![image](https://github.com/user-attachments/assets/32dcac5b-71dd-4cf5-aefe-4fa9b4cd8887)

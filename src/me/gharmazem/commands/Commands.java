@@ -35,16 +35,19 @@ public class Commands implements CommandExecutor {
         Player player = (Player) sender;
 
         // comando para abrir o armazem (/armazem)
-        if (cmd.getName().equalsIgnoreCase("armazem") && args.length == 0) {
-            if (sender.hasPermission("gharmazem.usecommand")) {
-                ArmazemItens.pessoalArmazemInfoItem(player);
-                ArmazemItens.sellAllItem();
+        if (cmd.getName().equalsIgnoreCase("armazem")) {
+            if(args.length == 0) {
+                if (sender.hasPermission("gharmazem.usecommand")) {
+                    ArmazemItens.pessoalArmazemInfoItem(player);
+                    ArmazemItens.sellAllItem();
 
-                UtilClass.sendSound(player, Sound.CLICK);
-                BaseManager.openStorage(player);
-                return true;
-            } else {
-                player.sendMessage(ColorUtils.colored(nopermission));
+                    UtilClass.sendSound(player, Sound.CLICK);
+                    BaseManager.openStorage(player);
+                    return true;
+                } else {
+                    player.sendMessage(ColorUtils.colored(nopermission));
+                    return true;
+                }
             }
         }
 
@@ -80,6 +83,7 @@ public class Commands implements CommandExecutor {
                 }
             } else {
                 player.sendMessage(ColorUtils.colored(nopermission));
+                return true;
             }
         }
 
@@ -103,9 +107,11 @@ public class Commands implements CommandExecutor {
                     return true;
                 } else {
                     player.sendMessage(ColorUtils.colored(noitenstosell));
+                    return true;
                 }
             } else {
                 player.sendMessage(ColorUtils.colored(nopermission));
+                return true;
             }
         }
 
@@ -134,10 +140,12 @@ public class Commands implements CommandExecutor {
                 }
                 if (!hasStoredItems) {
                     player.sendMessage(ColorUtils.colored(noitenstostore));
+                    return true;
                 }
                 player.closeInventory();
             } else {
                 player.sendMessage(ColorUtils.colored(nopermission));
+                return true;
             }
         }
         return false;

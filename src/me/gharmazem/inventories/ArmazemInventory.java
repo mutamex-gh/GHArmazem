@@ -1,5 +1,6 @@
 package me.gharmazem.inventories;
 
+import lombok.Getter;
 import me.gharmazem.Main;
 import me.gharmazem.utils.some.ColorUtil;
 import org.bukkit.Bukkit;
@@ -7,6 +8,7 @@ import org.bukkit.inventory.Inventory;
 
 public class ArmazemInventory {
 
+    @Getter
     public static final Inventory inventory;
 
     static {
@@ -16,7 +18,4 @@ public class ArmazemInventory {
         inventory = Bukkit.createInventory(null, invsize, ColorUtil.colored(invname));
     }
 
-    public static Inventory getInventory() {
-        return inventory;
-    }
 }

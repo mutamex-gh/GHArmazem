@@ -1,6 +1,10 @@
 name: GHArmazem
 main: me.gharmazem.Main
-version: 1.0.0
+version: 1.1.0
+author: mutamex-gh
+softdepend:
+  - PlotSquared
+  - Vault
 
 commands:
   armazem:

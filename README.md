@@ -1,11 +1,11 @@
 # GHArmazem
 
 Dependencias e download:
-- Dependencias: Vault
-- Download: [clique aqui](https://github.com/GH-GusttavoHenrique/GHArmazem/releases/download/minecraft/GHArmazem.jar)
+- Dependencias: Vault, PlotSquared
+- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/plugin/GHArmazem.jar)
 
 Descrição:
-- Plugin com opção de criação infinita de itens para armazenamento, em breve novas atts e suporte com plotsquared;
+- Plugin possui suporte com PlotSquared, criação de itens armazenaveis etc...
 
 # Permissões
 Todas as permissões do plugin abaixo:

@@ -1,11 +1,9 @@
 package me.gharmazem;
 
 import me.gharmazem.commands.Commands;
-import me.gharmazem.events.BackMenu;
-import me.gharmazem.events.InventoryEvents;
-import me.gharmazem.events.SellAllEvent;
-import me.gharmazem.events.SellRecoverEvent;
-import me.gharmazem.utils.ColorUtils;
+import me.gharmazem.listener.*;
+import me.gharmazem.manager.mapper.BlockDropMapper;
+import me.gharmazem.utils.some.ColorUtil;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -30,21 +28,21 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        loadAllowedItems();
         loadItemPrices();
-        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] &7Itens e precos carregados com sucesso!"));
+        loadAllowedItems();
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Itens e precos carregados com sucesso!"));
         saveDefaultConfig();
-        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] &7Config carregada com sucesso!"));
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Config carregada com sucesso!"));
         setupDatabaseFile();
-        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] &7DataBase carregada com sucesso!"));
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7DataBase carregada com sucesso!"));
         setupEconomy();
-        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] &7Economia carregada com sucesso!"));
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Economia carregada com sucesso!"));
 
         loadListener();
         loadCommands();
 
-        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] &7Carregado comandos e eventos!"));
-        Bukkit.getConsoleSender().sendMessage(ColorUtils.colored("&a[GHArmazem] iniciado com sucesso!"));
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Carregado comandos e eventos!"));
+        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] iniciado com sucesso!"));
     }
 
     @Override
@@ -114,9 +112,12 @@ public class Main extends JavaPlugin {
             try {
                 Material material = Material.valueOf(itemName.toUpperCase());
                 allowedItems.add(material);
-            } catch (IllegalArgumentException e) {
-                getLogger().warning("Material inválido no config.yml: " + itemName);
-            }
+
+                Material blockType = BlockDropMapper.getDrop(material);
+                if (blockType != null) {
+                    allowedItems.add(blockType);
+                }
+            } catch (Exception ignore) {}
         }
     }
 
@@ -130,6 +131,11 @@ public class Main extends JavaPlugin {
                 if (material != null) {
                     double price = config.getDouble("Prices." + materialName);
                     itemPrices.put(material, price);
+
+                    Material blockType = BlockDropMapper.getDrop(material);
+                    if (blockType != null) {
+                        itemPrices.put(blockType, price);
+                    }
                 }
             }
         }
@@ -141,6 +147,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SellRecoverEvent(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellAllEvent(), Main.this);
         Bukkit.getPluginManager().registerEvents(new BackMenu(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new PSBlockBreak(), Main.this);
     }
 
     public void loadCommands() {

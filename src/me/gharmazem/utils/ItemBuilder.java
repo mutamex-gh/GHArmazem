@@ -4,6 +4,8 @@ import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+
+import me.gharmazem.utils.some.ColorUtil;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -44,11 +46,11 @@ public class ItemBuilder {
     }
 
     public ItemBuilder name(String name) {
-        return changeItemMeta(it -> it.setDisplayName(ColorUtils.colored(name)));
+        return changeItemMeta(it -> it.setDisplayName(ColorUtil.colored(name)));
     }
 
     public ItemBuilder setLore(String... lore) {
-        return changeItemMeta(it -> it.setLore(Arrays.asList(ColorUtils.colored(lore))));
+        return changeItemMeta(it -> it.setLore(Arrays.asList(ColorUtil.colored(lore))));
     }
 
     public ItemBuilder setLore(List<String> lore) {

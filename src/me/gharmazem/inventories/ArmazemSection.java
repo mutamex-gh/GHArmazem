@@ -1,7 +1,7 @@
 package me.gharmazem.inventories;
 
 import me.gharmazem.Main;
-import me.gharmazem.utils.ColorUtils;
+import me.gharmazem.utils.some.ColorUtil;
 import me.gharmazem.manager.InventoryButton;
 import me.gharmazem.utils.ItemBuilder;
 import org.bukkit.Bukkit;
@@ -27,7 +27,7 @@ public class ArmazemSection {
         int arrowslot = config.getInt("ArrowBack.slot");
         boolean arrowenable = config.getBoolean("ArrowBack.enable");
 
-        inventory = Bukkit.createInventory(null, invslot, ColorUtils.colored(invname));
+        inventory = Bukkit.createInventory(null, invslot, ColorUtil.colored(invname));
         ConfigurationSection itemSection = Main.getInstance().getConfig().getConfigurationSection("items");
 
         for (Iterator<String> iterator = itemSection.getKeys(false).iterator(); iterator.hasNext(); ) {
@@ -40,8 +40,8 @@ public class ArmazemSection {
             int slot = itemSection.getInt(key + ".slot");
 
             ItemBuilder item = (new ItemBuilder(material)).changeItemMeta(itemMeta -> {
-                itemMeta.setDisplayName(ColorUtils.colored(name));
-                itemMeta.setLore(ColorUtils.colored(lore));
+                itemMeta.setDisplayName(ColorUtil.colored(name));
+                itemMeta.setLore(ColorUtil.colored(lore));
             }).setNBTTag("itemsnbt", key);
 
             inventoryButtons.put(key, new InventoryButton(key, item.wrap(), slot, price));

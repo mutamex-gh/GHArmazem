@@ -1,11 +1,11 @@
-package me.gharmazem.events;
+package me.gharmazem.listener;
 
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.inventories.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.utils.ColorUtils;
-import me.gharmazem.utils.UtilClass;
+import me.gharmazem.utils.some.ColorUtil;
+import me.gharmazem.utils.some.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -45,8 +45,12 @@ public class InventoryEvents implements Listener {
         if(event.getInventory().getTitle().equals(armazeminvname)) {
             event.setCancelled(true);
 
+            ItemStack currentItem = event.getCurrentItem();
+
+            if (currentItem == null || currentItem.getType() == Material.AIR) return true;
+            if (event.getClickedInventory() == null) return true;
+
             List<Material> allowed = Main.getInstance().getAllowedItems();
-            //if (event.getCurrentItem().getType() == Material.SKULL_ITEM) {
             if (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.ARROW_DAMAGE)) {
 
                 boolean hasStoredItems = false;
@@ -65,16 +69,16 @@ public class InventoryEvents implements Listener {
                         ItemStack storedItem = new ItemStack(material, totalAmount);
                         BaseManager.saveItem(player, storedItem);
 
-                        player.sendMessage(ColorUtils.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
+                        player.sendMessage(ColorUtil.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
                         UtilClass.sendSound(player, Sound.LEVEL_UP);
                     }
                 }
                 if (!hasStoredItems) {
-                    player.sendMessage(ColorUtils.colored(noitenstostore));
+                    player.sendMessage(ColorUtil.colored(noitenstostore));
                 }
 
                 player.closeInventory();
-            }
+            }else if(event.getCurrentItem().getItemMeta() == null) return false;
         }
         return false;
     }

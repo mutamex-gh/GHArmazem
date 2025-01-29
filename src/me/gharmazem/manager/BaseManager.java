@@ -3,7 +3,7 @@ package me.gharmazem.manager;
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.inventories.ArmazemItens;
-import me.gharmazem.utils.ColorUtils;
+import me.gharmazem.utils.some.ColorUtil;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -94,7 +94,7 @@ public class BaseManager {
 
             Main.getInstance().saveDatabaseConfig();
         } else {
-            player.sendMessage(ColorUtils.colored("&cNão há itens no seu armazém para remover."));
+            player.sendMessage(ColorUtil.colored("&cNão há itens no seu armazém para remover."));
         }
     }
 
@@ -156,7 +156,7 @@ public class BaseManager {
         return totalQuantity;
     }
 
-    public static List<String> storedItens(Player player) {
+    public static List<String> storeItens(Player player) {
         FileConfiguration config = Main.getInstance().getConfig();
 
         String noitens = config.getString("Messages.no-itens-stored");
@@ -168,12 +168,27 @@ public class BaseManager {
         if (db.contains("armazem." + playerUUID)) {
             db.getConfigurationSection("armazem." + playerUUID).getKeys(false).forEach(itemType -> {
                 int itemAmount = db.getInt("armazem." + playerUUID + "." + itemType);
-                itensArmazenados.add(ColorUtils.colored(itemType + " " + itemAmount));
+                itensArmazenados.add(ColorUtil.colored(itemType + " " + itemAmount));
             });
         } else {
-            itensArmazenados.add(ColorUtils.colored(noitens));
+            itensArmazenados.add(ColorUtil.colored(noitens));
         }
         return itensArmazenados;
+    }
+
+    public static void storeSpecifyItem(Player player, Material material, int quantity) {
+        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        String playerUUID = player.getUniqueId().toString();
+
+        String basePath = "armazem." + playerUUID + "." + material.name();
+
+        if (db.contains(basePath)) {
+            int currentAmount = db.getInt(basePath);
+            db.set(basePath, currentAmount + quantity);
+        } else {
+            db.set(basePath, quantity);
+        }
+        Main.getInstance().saveDatabaseConfig();
     }
 
     public static void openStorage(Player player) {

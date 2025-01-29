@@ -20,6 +20,7 @@ Messages:
   no-itens-to-recover: "&cVocê não tem itens para recolher!"
   no-itens-to-store: "&cVocê não tem itens válidos para armazenar!"
   no-space-inventory: "&cVocê não tem espaço no inventario para recolher os drops!"
+  actionbar-store: "&aVocê armazenou {quantia} item(s)!"
   store-itens: "&aForam armazenados {itens} em seu armazém!"
   recovery-itens: "&aVocê recolheu {itens} itens do seu armazém!"
   sell-itens: "&aVocê vendeu {itens} itens por {rendimento} coins!"
@@ -76,20 +77,23 @@ ArrowBack: # flecha dentro do menu do armazem para voltar ao menu principal
 #                  CRIAÇÃO                   #
 ##############################################
 
-Materiais: #Coloque na lista a baixo todos os itens que vao ser adicionados para armazenar
+# Se ativo, os blocos da lista "MATERIAIS" vão diretamente ao armazém ao ser quebrados
+# dentro de uma plot (do jogador)
+PlotSquaredSupport:
+  enable: true
+  multiplier: 1.0
+
+Materiais: #ITENS PARA ARMAZENAR // QUEBRAR -> ARMAZEM
   - WHEAT
-  - APPLE
+  - NETHER_WARTS
   - CACTUS
-  - MELON
 
-Prices: #Coloque na lista a baixo todos os preços dos itens que vao ser adicionados para armazenar
+Prices: #ITENS PARA VENDER // ARMAZEM -> VENDER (preço por item)
   WHEAT: 50
-  APPLE: 70
+  NETHER_WARTS: 70
   CACTUS: 120
-  MELON: 200
 
-# CRIAÇÃO DE ITENS PARA GUARDAR NO ARMAZEM <<INFINITOS>>
-items:
+items: #CRIAÇÃO DE ITENS PARA ARMAZENAR
   trigo:
     material: WHEAT
     name: "&eTrigo"
@@ -107,9 +111,9 @@ items:
     price: 50 # preço de venda (por item)
     slot: 14
 
-  apple:
-    material: APPLE
-    name: "&cMaças"
+  netherwart:
+    material: NETHER_STALK
+    name: "&4Nether Wart"
     lore:
       - "&7Gerencie seu armazem"
       - ""
@@ -140,20 +144,3 @@ items:
       - ""
     price: 120 # preço de venda (por item)
     slot: 16
-
-  melon:
-    material: MELON
-    name: "&aMelão"
-    lore:
-      - "&7Gerencie seu armazem"
-      - ""
-      - "  &fAqui você pode vender ou"
-      - "  &frecolher os itens!"
-      - ""
-      - "&7Vender por &2200 Coins &7cada"
-      - ""
-      - "&7Botão esquerdo: &aVender"
-      - "&7Botão direito: &eRecolher"
-      - ""
-    price: 200 # preço de venda (por item)
-    slot: 23

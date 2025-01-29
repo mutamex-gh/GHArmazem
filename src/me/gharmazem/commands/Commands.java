@@ -3,8 +3,8 @@ package me.gharmazem.commands;
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.utils.ColorUtils;
-import me.gharmazem.utils.UtilClass;
+import me.gharmazem.utils.some.ColorUtil;
+import me.gharmazem.utils.some.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -28,7 +28,7 @@ public class Commands implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String arg, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ColorUtils.colored(onlyplayers));
+            sender.sendMessage(ColorUtil.colored(onlyplayers));
             return true;
         }
 
@@ -45,7 +45,7 @@ public class Commands implements CommandExecutor {
                     BaseManager.openStorage(player);
                     return true;
                 } else {
-                    player.sendMessage(ColorUtils.colored(nopermission));
+                    player.sendMessage(ColorUtil.colored(nopermission));
                     return true;
                 }
             }
@@ -55,13 +55,13 @@ public class Commands implements CommandExecutor {
 
         // necessita da permissao gharmazem.usecommand (/armazem help)
         if (subCommand.equalsIgnoreCase("help")) {
-            player.sendMessage(ColorUtils.colored("&4Comandos Armazém:"));
-            player.sendMessage(ColorUtils.colored("  &f/armazem &f> &7Abrir armazém"));
-            player.sendMessage(ColorUtils.colored("  &f/armazem help &f> &7Comandos para jogador"));
-            player.sendMessage(ColorUtils.colored("  &f/armazem sell &f> &7Venda todos os itens de seu armazem"));
-            player.sendMessage(ColorUtils.colored("  &f/armazem store &f> &7Armazene todos os itens de seu inventário"));
+            player.sendMessage(ColorUtil.colored("&4Comandos Armazém:"));
+            player.sendMessage(ColorUtil.colored("  &f/armazem &f> &7Abrir armazém"));
+            player.sendMessage(ColorUtil.colored("  &f/armazem help &f> &7Comandos para jogador"));
+            player.sendMessage(ColorUtil.colored("  &f/armazem sell &f> &7Venda todos os itens de seu armazem"));
+            player.sendMessage(ColorUtil.colored("  &f/armazem store &f> &7Armazene todos os itens de seu inventário"));
             if (sender.hasPermission("gharmazem.admin")) { // caso o jogador tiver a permissão gharmazem.admin, mostra os comandos de adm
-                player.sendMessage(ColorUtils.colored("  &c/armazem reload &f> &7Recarrega a config.yml e a database dbase.yml"));
+                player.sendMessage(ColorUtil.colored("  &c/armazem reload &f> &7Recarrega a config.yml e a database dbase.yml"));
                 return true;
             }
             return true;
@@ -77,12 +77,12 @@ public class Commands implements CommandExecutor {
                     //dbase.yml
                     Main.getInstance().reloadDatabaseFile();
 
-                    sender.sendMessage(ColorUtils.colored("&aconfig.yml e dbase.yml recarregada com sucesso!"));
+                    sender.sendMessage(ColorUtil.colored("&aconfig.yml e dbase.yml recarregada com sucesso!"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
-                player.sendMessage(ColorUtils.colored(nopermission));
+                player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
         }
@@ -100,17 +100,17 @@ public class Commands implements CommandExecutor {
                     BaseManager.sellAll(player);
 
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
-                    player.sendMessage(ColorUtils.colored(sellitens)
+                    player.sendMessage(ColorUtil.colored(sellitens)
                             .replace("{rendimento}", df.format(totalRendimento))
                             .replace("{itens}", String.valueOf(totalQuantia)));
 
                     return true;
                 } else {
-                    player.sendMessage(ColorUtils.colored(noitenstosell));
+                    player.sendMessage(ColorUtil.colored(noitenstosell));
                     return true;
                 }
             } else {
-                player.sendMessage(ColorUtils.colored(nopermission));
+                player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
         }
@@ -135,16 +135,16 @@ public class Commands implements CommandExecutor {
                         ItemStack storedItem = new ItemStack(material, totalAmount);
                         BaseManager.saveItem(player, storedItem);
 
-                        player.sendMessage(ColorUtils.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
+                        player.sendMessage(ColorUtil.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
                     }
                 }
                 if (!hasStoredItems) {
-                    player.sendMessage(ColorUtils.colored(noitenstostore));
+                    player.sendMessage(ColorUtil.colored(noitenstostore));
                     return true;
                 }
                 player.closeInventory();
             } else {
-                player.sendMessage(ColorUtils.colored(nopermission));
+                player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
         }

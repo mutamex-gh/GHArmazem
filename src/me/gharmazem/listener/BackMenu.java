@@ -1,4 +1,4 @@
-package me.gharmazem.events;
+package me.gharmazem.listener;
 
 import me.gharmazem.inventories.ArmazemInventory;
 import org.bukkit.Material;

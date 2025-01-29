@@ -1,10 +1,10 @@
-package me.gharmazem.events;
+package me.gharmazem.listener;
 
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.utils.ColorUtils;
-import me.gharmazem.utils.UtilClass;
+import me.gharmazem.utils.some.ColorUtil;
+import me.gharmazem.utils.some.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -42,13 +42,13 @@ public class SellAllEvent implements Listener {
 
                 BaseManager.sellAll(player);
 
-                player.sendMessage(ColorUtils.colored(sellItens)
+                player.sendMessage(ColorUtil.colored(sellItens)
                         .replace("{rendimento}", df.format(rendimento))
                         .replace("{itens}", String.valueOf(totalQuantia)));
 
                 UtilClass.sendSound(player, Sound.LEVEL_UP);
             }else {
-                player.sendMessage(ColorUtils.colored(noItensToSell));
+                player.sendMessage(ColorUtil.colored(noItensToSell));
             }
             player.closeInventory();
             return true;

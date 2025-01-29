@@ -2,7 +2,7 @@ package me.gharmazem.inventories;
 
 import me.gharmazem.Main;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.utils.ColorUtils;
+import me.gharmazem.utils.some.ColorUtil;
 import me.gharmazem.utils.ItemBuilderGB;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -29,15 +29,15 @@ public class ArmazemItens {
 
         List<String> lore = new ArrayList<>();
         for (String line : playerinfolore) {
-            String updatedLine = ColorUtils.colored(line)
+            String updatedLine = ColorUtil.colored(line)
                             .replace("{money}", df.format(balance)
                             .replace("{storageitens}", String.valueOf(allStored)));
             lore.add(updatedLine);
         }
 
         ItemStack PessoalArmazemInfo = new ItemBuilderGB(Material.SKULL_ITEM)
-                .name(ColorUtils.colored(title).replace("{player}", player.getName()))
-                .lore(ColorUtils.colored(lore))
+                .name(ColorUtil.colored(title).replace("{player}", player.getName()))
+                .lore(ColorUtil.colored(lore))
                 .durability((short)3)
                 .skullOwner(player.getName())
                 .build();
@@ -55,8 +55,8 @@ public class ArmazemItens {
         String title = config.getString("StorageItem.title");
 
         ItemStack armazemChest = new ItemBuilderGB(Material.getMaterial(material))
-                .name(ColorUtils.colored(title))
-                .lore(ColorUtils.colored(lore))
+                .name(ColorUtil.colored(title))
+                .lore(ColorUtil.colored(lore))
                 .build();
 
         return armazemChest;
@@ -64,8 +64,8 @@ public class ArmazemItens {
 
     public static ItemStack storageDropsItem() {
         ItemStack storageDrop = new ItemBuilderGB(Material.SKULL_ITEM)
-                .name(ColorUtils.colored("&aGuardar Drops"))
-                .lore(ColorUtils.colored(
+                .name(ColorUtil.colored("&aGuardar Drops"))
+                .lore(ColorUtil.colored(
                         "&7Clique para guardar os drops",
                         "",
                         " &fAo clicar, você irá armazenar",
@@ -83,8 +83,8 @@ public class ArmazemItens {
 
     public static ItemStack arrowBack() {
         ItemStack arrowBack = new ItemBuilderGB(Material.ARROW)
-                .name(ColorUtils.colored("&aVoltar&7(Clique)"))
-                .lore(ColorUtils.colored(
+                .name(ColorUtil.colored("&aVoltar&7(Clique)"))
+                .lore(ColorUtil.colored(
                         "",
                         " &fClique para voltar ao menu principal"
                 ))
@@ -95,19 +95,19 @@ public class ArmazemItens {
 
     public static ItemStack savedItens(Player player) {
 
-        List<String> itensArmazenados = BaseManager.storedItens(player);
+        List<String> itensArmazenados = BaseManager.storeItens(player);
 
         List<String> lore = new ArrayList<>();
-        lore.add(ColorUtils.colored("&7Veja seus itens armazenados"));
+        lore.add(ColorUtil.colored("&7Veja seus itens armazenados"));
         lore.add(" ");
 
         for (String item : itensArmazenados) {
-            lore.add(ColorUtils.colored("  &f" + item)); // adiciona cada item como uma nova linha
+            lore.add(ColorUtil.colored("  &f" + item)); // adiciona cada item como uma nova linha
         }
 
         ItemStack savedItens = new ItemBuilderGB(Material.HOPPER)
-                .name(ColorUtils.colored("&aItens Armazenados"))
-                .lore(ColorUtils.colored(lore))
+                .name(ColorUtil.colored("&aItens Armazenados"))
+                .lore(ColorUtil.colored(lore))
                 .build();
 
         return savedItens;
@@ -122,8 +122,8 @@ public class ArmazemItens {
         List<String> lore = config.getStringList("SellAllItem.lore");
 
         ItemStack sellAllItemBuilder = new ItemBuilderGB(Material.getMaterial(material))
-                .name(ColorUtils.colored(title))
-                .lore(ColorUtils.colored(lore))
+                .name(ColorUtil.colored(title))
+                .lore(ColorUtil.colored(lore))
                 .build();
 
         ArmazemInventory.getInventory().setItem(slot, sellAllItemBuilder);

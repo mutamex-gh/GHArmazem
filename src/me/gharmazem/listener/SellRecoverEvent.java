@@ -1,10 +1,10 @@
-package me.gharmazem.events;
+package me.gharmazem.listener;
 
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.utils.UtilClass;
-import me.gharmazem.utils.ColorUtils;
+import me.gharmazem.utils.some.UtilClass;
+import me.gharmazem.utils.some.ColorUtil;
 import me.gharmazem.manager.InventoryButton;
 import me.gharmazem.utils.ItemBuilder;
 import org.bukkit.Material;
@@ -54,7 +54,7 @@ public class SellRecoverEvent implements Listener {
             if (event.getClick().isLeftClick()) {
                 if(quantia > 0) {
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
-                    player.sendMessage(ColorUtils.colored(sellitens)
+                    player.sendMessage(ColorUtil.colored(sellitens)
                             .replace("{rendimento}", df.format(rendimento))
                             .replace("{itens}", String.valueOf(quantia)));
 
@@ -64,7 +64,7 @@ public class SellRecoverEvent implements Listener {
                     BaseManager.sell(player, itemFinal);
                     return true;
                 }else {
-                    player.sendMessage(ColorUtils.colored(noitenstosell));
+                    player.sendMessage(ColorUtil.colored(noitenstosell));
                 }
             }else if (event.getClick().isRightClick() && quantia > 0) {
                 UtilClass.sendSound(player, Sound.CLICK);
@@ -81,16 +81,16 @@ public class SellRecoverEvent implements Listener {
                 if (maxItems > 0) {
                     int itemsToCollect = Math.min(quantia, maxItems);
 
-                    player.sendMessage(ColorUtils.colored(itensrecuperados)
+                    player.sendMessage(ColorUtil.colored(itensrecuperados)
                             .replace("{itens}", String.valueOf(itemsToCollect)));
 
                     BaseManager.getSpecificItem(player, itemFinal, itemsToCollect);
                     player.closeInventory();
                 } else {
-                    player.sendMessage(ColorUtils.colored(nospaceinventory));
+                    player.sendMessage(ColorUtil.colored(nospaceinventory));
                 }
             } else {
-                player.sendMessage(ColorUtils.colored(noitenstorecover));
+                player.sendMessage(ColorUtil.colored(noitenstorecover));
             }
 
         }

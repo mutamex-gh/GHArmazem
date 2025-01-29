@@ -8,14 +8,16 @@ import org.bukkit.Material;
  */
 
 public enum BlockDropMapper {
-         //QUEBRAVEL IG       //PARA OG
+          //IN-GAME       //IN-CONFIG (OG)
     WHEAT(Material.CROPS, Material.WHEAT),
     CROPS(Material.WHEAT, Material.CROPS),
     NETHER_WARTS(Material.NETHER_WARTS, Material.NETHER_STALK),
     SUGAR_CANE(Material.SUGAR_CANE_BLOCK, Material.SUGAR_CANE),
     CARROT(Material.CARROT, Material.CARROT_ITEM),
     POTATO(Material.POTATO, Material.POTATO_ITEM),
-    MELON(Material.MELON_BLOCK, Material.MELON); // MELON_BLOCK quebrado = Melancia individual (sem ser bloco)
+    CACTUS(Material.CACTUS, Material.CACTUS), // Adicionado apenas para entrar na list
+    COCOA(Material.COCOA, Material.COCOA), // Adicionado apenas para entrar na list
+    MELON(Material.MELON_BLOCK, Material.MELON); // MELON_BLOCK quebrado = volta Melancia normal
 
     private final Material blockType;
     private final Material dropType;

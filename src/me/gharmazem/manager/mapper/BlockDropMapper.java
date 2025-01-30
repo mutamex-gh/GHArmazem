@@ -6,9 +6,13 @@ import org.bukkit.Material;
 /**
  * @author Gustavo Henrique
  * @github mutamex-gh
+ *
+ * @use Converter as plantações quebradas
+ *      no mesmo itens usado em inventario
  */
 
 public enum BlockDropMapper {
+
           //IN-GAME       //IN-CONFIG (OG)
     WHEAT(Material.CROPS, Material.WHEAT),
     CROPS(Material.WHEAT, Material.CROPS),
@@ -16,9 +20,9 @@ public enum BlockDropMapper {
     SUGAR_CANE(Material.SUGAR_CANE_BLOCK, Material.SUGAR_CANE),
     CARROT(Material.CARROT, Material.CARROT_ITEM),
     POTATO(Material.POTATO, Material.POTATO_ITEM),
-    CACTUS(Material.CACTUS, Material.CACTUS), // Adicionado apenas para entrar na list
-    COCOA(Material.COCOA, Material.COCOA), // Adicionado apenas para entrar na list
-    MELON(Material.MELON_BLOCK, Material.MELON); // MELON_BLOCK quebrado = volta Melancia normal
+    //CACTUS(Material.CACTUS, Material.CACTUS),
+    // COCOA(Material.COCOA, Material.COCOA),
+    MELON(Material.MELON_BLOCK, Material.MELON); // retorna melancia
 
     @Getter private final Material blockType;
     @Getter private final Material dropType;

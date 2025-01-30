@@ -31,23 +31,38 @@ public class PSBlockBreak implements Listener {
         boolean replantEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.replant");
         double multiplier = Main.getInstance().getConfig().getDouble("PlotSquaredSupport.multiplier");
 
-        if (Main.getInstance().getAllowedItems().contains(block.getType()) && isEnable) {
+        if (isEnable && Main.getInstance().getAllowedItems().contains(block.getType())) {
 
             Material blockMapperType = BlockDropMapper.getDrop(block.getType());
             boolean isFullyGrown = UtilClass.isFullyGrown(block);
-            double dropsMultiplier = isFullyGrown ?
-                    Math.floor(block.getDrops().size() * UtilClass.getFortune(player) * multiplier + 1) : 1;
+            double dropsMultiplier = isFullyGrown
+                    ? Math.floor(block.getDrops().size() + UtilClass.getFortune(player) * multiplier)
+                    : 1;
 
             if (blockMapperType != null) {
                 int dropsAmount = (int) dropsMultiplier;
-
                 if (block.getType() == Material.NETHER_WARTS || block.getType() == Material.COCOA) {
                     int baseDrops = (block.getType() == Material.NETHER_WARTS) ? 1 : 2;
-                    int fortuneMultiplier = (int) multiplier;
-                    int fortuneLevel = UtilClass.getFortune(player);
-
-                    dropsAmount = isFullyGrown ? (baseDrops + (fortuneLevel * fortuneMultiplier)) : 1;
+                    dropsAmount = isFullyGrown ? (baseDrops + (UtilClass.getFortune(player) * (int)multiplier)) : 1;
                 }
+                event.setCancelled(true);
+
+                if (replantEnable) {
+                    block.setType(block.getType());
+
+                    if(!isFullyGrown) {
+                        dropsAmount = 0;
+                    }
+                    BaseManager.storeSpecifyItem(player, blockMapperType, dropsAmount);
+                    ActionBarUtils.sendActionBar(
+                            player,
+                            ColorUtil.colored(actionBarStore)
+                                    .replace("{quantia}", String.valueOf(dropsAmount))
+                    );
+                    return;
+                }
+
+                block.setType(Material.AIR);
                 BaseManager.storeSpecifyItem(player, blockMapperType, dropsAmount);
 
                 ActionBarUtils.sendActionBar(
@@ -55,13 +70,6 @@ public class PSBlockBreak implements Listener {
                         ColorUtil.colored(actionBarStore)
                                 .replace("{quantia}", String.valueOf(dropsAmount))
                 );
-                event.setCancelled(true);
-
-                if(replantEnable) {
-                    block.setType(block.getType());
-                    return;
-                }
-                block.setType(Material.AIR);
             }
         }
     }

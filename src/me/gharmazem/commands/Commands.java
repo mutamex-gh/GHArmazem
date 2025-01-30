@@ -35,17 +35,17 @@ public class Commands implements CommandExecutor {
         Player player = (Player) sender;
 
         // (/armazem)
-        if (cmd.getName().equalsIgnoreCase("armazem")) {
-            if (sender.hasPermission("gharmazem.usecommand")) {
-                ArmazemItens.pessoalArmazemInfoItem(player);
-                ArmazemItens.sellAllItem();
-
-                UtilClass.sendSound(player, Sound.CLICK);
-                BaseManager.openStorage(player);
-            } else {
+        if (args.length == 0 && cmd.getName().equalsIgnoreCase("armazem")) {
+            if (!sender.hasPermission("gharmazem.usecommand")) {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
+
+            ArmazemItens.pessoalArmazemInfoItem(player);
+            ArmazemItens.sellAllItem();
+
+            UtilClass.sendSound(player, Sound.CLICK);
+            BaseManager.openStorage(player);
             return true;
         }
 
@@ -58,8 +58,8 @@ public class Commands implements CommandExecutor {
             player.sendMessage(ColorUtil.colored("  &f/armazem help &f> &7Comandos para jogador"));
             player.sendMessage(ColorUtil.colored("  &f/armazem sell &f> &7Venda todos os itens de seu armazem"));
             player.sendMessage(ColorUtil.colored("  &f/armazem store &f> &7Armazene todos os itens de seu inventário"));
-            if (sender.hasPermission("gharmazem.admin")) { // caso o jogador tiver a permissão gharmazem.admin, mostra os comandos de adm
-                player.sendMessage(ColorUtil.colored("  &c/armazem reload &f> &7Recarrega a config.yml e a database dbase.yml"));
+            if (sender.hasPermission("gharmazem.admin")) {
+                player.sendMessage(ColorUtil.colored("  &c/armazem reload &f> &7Recarrega a config.yml do plugin!"));
                 return true;
             }
             return true;
@@ -67,79 +67,78 @@ public class Commands implements CommandExecutor {
 
         // (/armazem reload)
         if (subCommand.equalsIgnoreCase("reload")) {
-            if (sender.hasPermission("gharmazem.admin")) {
-                try {
-                    Main.getInstance().reloadConfig();
-                    sender.sendMessage(ColorUtil.colored("&aConfig recarregada com sucesso!"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
+            if (!sender.hasPermission("gharmazem.admin")) {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
+            }
+
+            try {
+                Main.getInstance().reloadConfig();
+                sender.sendMessage(ColorUtil.colored("&aConfig recarregada com sucesso!"));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
         // (/armazem sell)
         if (subCommand.equalsIgnoreCase("sell")) {
-            if (sender.hasPermission("gharmazem.sellall")) {
-
-                DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
-                int totalQuantia = BaseManager.getAllStored(player);
-                if (totalQuantia > 0) {
-                    double totalRendimento = BaseManager.getTotalValue(player);
-                    Main.getEconomy().depositPlayer(player, totalRendimento);
-
-                    BaseManager.sellAll(player);
-
-                    UtilClass.sendSound(player, Sound.LEVEL_UP);
-                    player.sendMessage(ColorUtil.colored(sellitens)
-                            .replace("{rendimento}", df.format(totalRendimento))
-                            .replace("{itens}", String.valueOf(totalQuantia)));
-
-                    return true;
-                } else {
-                    player.sendMessage(ColorUtil.colored(noitenstosell));
-                    return true;
-                }
-            } else {
+            if (!sender.hasPermission("gharmazem.sellall")) {
                 player.sendMessage(ColorUtil.colored(nopermission));
+                return true;
+            }
+
+            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
+            int totalQuantia = BaseManager.getAllStored(player);
+            if (totalQuantia > 0) {
+                double totalRendimento = BaseManager.getTotalValue(player);
+                Main.getEconomy().depositPlayer(player, totalRendimento);
+
+                BaseManager.sellAll(player);
+
+                UtilClass.sendSound(player, Sound.LEVEL_UP);
+                player.sendMessage(ColorUtil.colored(sellitens)
+                        .replace("{rendimento}", df.format(totalRendimento))
+                        .replace("{itens}", String.valueOf(totalQuantia)));
+
+                return true;
+            } else {
+                player.sendMessage(ColorUtil.colored(noitenstosell));
                 return true;
             }
         }
 
         // (/armazem store)
         if (subCommand.equalsIgnoreCase("store")) {
-            if (sender.hasPermission("gharmazem.store")) {
-                List<Material> allowed = Main.getInstance().getAllowedItems();
-
-                boolean hasStoredItems = false;
-                for (Material material : allowed) {
-                    int totalAmount = 0;
-
-                    for (ItemStack item : player.getInventory().getContents()) {
-                        if (item != null && item.getType() == material) {
-                            totalAmount += item.getAmount();
-                            player.getInventory().remove(item);
-                        }
-                    }
-                    if (totalAmount > 0) {
-                        hasStoredItems = true;
-                        ItemStack storedItem = new ItemStack(material, totalAmount);
-                        BaseManager.saveItem(player, storedItem);
-
-                        player.sendMessage(ColorUtil.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
-                    }
-                }
-                if (!hasStoredItems) {
-                    player.sendMessage(ColorUtil.colored(noitenstostore));
-                    return true;
-                }
-                player.closeInventory();
-            } else {
+            if (!sender.hasPermission("gharmazem.store")) {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
+
+            List<Material> allowed = Main.getInstance().getAllowedItems();
+
+            boolean hasStoredItems = false;
+            for (Material material : allowed) {
+                int totalAmount = 0;
+
+                for (ItemStack item : player.getInventory().getContents()) {
+                    if (item != null && item.getType() == material) {
+                        totalAmount += item.getAmount();
+                        player.getInventory().remove(item);
+                    }
+                }
+                if (totalAmount > 0) {
+                    hasStoredItems = true;
+                    ItemStack storedItem = new ItemStack(material, totalAmount);
+                    BaseManager.saveItem(player, storedItem);
+
+                    player.sendMessage(ColorUtil.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
+                }
+            }
+            if (!hasStoredItems) {
+                player.sendMessage(ColorUtil.colored(noitenstostore));
+                return true;
+            }
+            player.closeInventory();
         }
         return false;
     }

@@ -3,7 +3,7 @@ package me.gharmazem.manager;
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.inventories.ArmazemItens;
-import me.gharmazem.utils.some.ColorUtil;
+import me.gharmazem.utils.ColorUtil;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

@@ -2,12 +2,7 @@
 #                 PERMISSÕES                 #
 ##############################################
 #
-# gharmazem.usecommand - /armazem e /armazem help
-# gharmazem.sellall - /armazem sell
-# gharmazem.store - /armazem store
-# gharmazem.admin - ver informações adicionais no /armazem help e permissão ao comando /armazem reload
-#
-# github.com/GH-GusttavoHenrique/
+# github.com/mutamex-gh/
 # Discord: mutamex
 #
 
@@ -31,7 +26,7 @@ Inventory:
 
 StorageInventory:
   inventory-name: "Baú do armazém"
-  inventory-size: 36
+  inventory-size: 27
 
 ##############################################
 #                   ITENS                    #
@@ -69,10 +64,6 @@ SellAllItem:
     - " &fos seus itens armazenados!"
     - ""
 
-ArrowBack: # flecha dentro do menu do armazem para voltar ao menu principal
-  enable: true
-  slot: 27
-
 ##############################################
 #                  CRIAÇÃO                   #
 ##############################################
@@ -81,6 +72,7 @@ ArrowBack: # flecha dentro do menu do armazem para voltar ao menu principal
 # dentro de uma plot (do jogador)
 PlotSquaredSupport:
   enable: true
+  replant: false
   multiplier: 1.0
 
 Materiais: #ITENS PARA ARMAZENAR // QUEBRAR -> ARMAZEM

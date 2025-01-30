@@ -1,4 +1,4 @@
-package me.gharmazem.utils.some;
+package me.gharmazem.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

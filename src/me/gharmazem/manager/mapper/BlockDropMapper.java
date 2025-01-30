@@ -1,5 +1,6 @@
 package me.gharmazem.manager.mapper;
 
+import lombok.Getter;
 import org.bukkit.Material;
 
 /**
@@ -19,20 +20,12 @@ public enum BlockDropMapper {
     COCOA(Material.COCOA, Material.COCOA), // Adicionado apenas para entrar na list
     MELON(Material.MELON_BLOCK, Material.MELON); // MELON_BLOCK quebrado = volta Melancia normal
 
-    private final Material blockType;
-    private final Material dropType;
+    @Getter private final Material blockType;
+    @Getter private final Material dropType;
 
     BlockDropMapper(Material blockType, Material dropType) {
         this.blockType = blockType;
         this.dropType = dropType;
-    }
-
-    public Material getBlockType() {
-        return blockType;
-    }
-
-    public Material getDropType() {
-        return dropType;
     }
 
     public static Material getDrop(Material blockType) {

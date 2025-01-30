@@ -1,9 +1,12 @@
 package me.gharmazem;
 
+import com.google.common.base.Stopwatch;
+import lombok.Getter;
+import lombok.val;
 import me.gharmazem.commands.Commands;
 import me.gharmazem.listener.*;
+import me.gharmazem.listener.PlotSquared.PSBlockBreak;
 import me.gharmazem.manager.mapper.BlockDropMapper;
-import me.gharmazem.utils.some.ColorUtil;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -18,36 +21,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class Main extends JavaPlugin {
 
+    @Getter private List<Material> allowedItems;
     private File dbaseFile;
     private FileConfiguration dbaseConfig;
-    private List<Material> allowedItems;
     public static Economy econ = null;
 
     @Override
     public void onEnable() {
-        loadItemPrices();
-        loadAllowedItems();
-        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Itens e precos carregados com sucesso!"));
-        saveDefaultConfig();
-        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Config carregada com sucesso!"));
-        setupDatabaseFile();
-        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7DataBase carregada com sucesso!"));
-        setupEconomy();
-        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Economia carregada com sucesso!"));
+        try {
+            val loadTime = Stopwatch.createStarted();
+            saveDefaultConfig();
+            setupDatabaseFile();
 
-        loadListener();
-        loadCommands();
+            setupEconomy();
+            loadItemPrices();
+            loadAllowedItems();
 
-        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] &7Carregado comandos e eventos!"));
-        Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&a[GHArmazem] iniciado com sucesso!"));
-    }
+            loadListener();
+            loadCommands();
 
-    @Override
-    public void onDisable() {
-        saveDatabaseConfig();
+            loadTime.stop();
+            getLogger().log(Level.INFO, "Plugin inicializado com sucesso ({0})", loadTime);
+        }catch(Throwable t) {
+            t.printStackTrace();
+            getLogger().severe("GHArmazem não foi inicializado devido um erro!");
+        }
     }
 
     public void setupDatabaseFile() {
@@ -65,14 +67,6 @@ public class Main extends JavaPlugin {
             }
         }
         dbaseConfig = YamlConfiguration.loadConfiguration(dbaseFile);
-    }
-
-    public void reloadDatabaseFile() {
-        try{
-            dbaseConfig = YamlConfiguration.loadConfiguration(dbaseFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public FileConfiguration getDatabaseConfig() {
@@ -117,7 +111,8 @@ public class Main extends JavaPlugin {
                 if (blockType != null) {
                     allowedItems.add(blockType);
                 }
-            } catch (Exception ignore) {}
+            } catch (Exception ignore) {
+            }
         }
     }
 
@@ -146,7 +141,6 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new InventoryEvents(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellRecoverEvent(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellAllEvent(), Main.this);
-        Bukkit.getPluginManager().registerEvents(new BackMenu(), Main.this);
         Bukkit.getPluginManager().registerEvents(new PSBlockBreak(), Main.this);
     }
 
@@ -158,12 +152,7 @@ public class Main extends JavaPlugin {
         return econ;
     }
 
-    public List<Material> getAllowedItems() {
-        return allowedItems;
-    }
-
     public static Main getInstance() {
         return getPlugin(Main.class);
     }
-
 }

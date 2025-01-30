@@ -1,4 +1,5 @@
 # GHArmazem
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1e3f3bba341b495c9ce58eae7b0b6261)](https://app.codacy.com/gh/mutamex-gh/GHArmazem/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 Dependencias e download:
 - Dependencias: Vault, PlotSquared

@@ -3,8 +3,8 @@ package me.gharmazem.commands;
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.utils.some.ColorUtil;
-import me.gharmazem.utils.some.UtilClass;
+import me.gharmazem.utils.ColorUtil;
+import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -34,26 +34,24 @@ public class Commands implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        // comando para abrir o armazem (/armazem)
+        // (/armazem)
         if (cmd.getName().equalsIgnoreCase("armazem")) {
-            if(args.length == 0) {
-                if (sender.hasPermission("gharmazem.usecommand")) {
-                    ArmazemItens.pessoalArmazemInfoItem(player);
-                    ArmazemItens.sellAllItem();
+            if (sender.hasPermission("gharmazem.usecommand")) {
+                ArmazemItens.pessoalArmazemInfoItem(player);
+                ArmazemItens.sellAllItem();
 
-                    UtilClass.sendSound(player, Sound.CLICK);
-                    BaseManager.openStorage(player);
-                    return true;
-                } else {
-                    player.sendMessage(ColorUtil.colored(nopermission));
-                    return true;
-                }
+                UtilClass.sendSound(player, Sound.CLICK);
+                BaseManager.openStorage(player);
+            } else {
+                player.sendMessage(ColorUtil.colored(nopermission));
+                return true;
             }
+            return true;
         }
 
         String subCommand = args[0];
 
-        // necessita da permissao gharmazem.usecommand (/armazem help)
+        // (/armazem help)
         if (subCommand.equalsIgnoreCase("help")) {
             player.sendMessage(ColorUtil.colored("&4Comandos Armazém:"));
             player.sendMessage(ColorUtil.colored("  &f/armazem &f> &7Abrir armazém"));
@@ -67,17 +65,12 @@ public class Commands implements CommandExecutor {
             return true;
         }
 
-        // comando de reload (/armazem reload)
+        // (/armazem reload)
         if (subCommand.equalsIgnoreCase("reload")) {
             if (sender.hasPermission("gharmazem.admin")) {
                 try {
-                    //config.yml
                     Main.getInstance().reloadConfig();
-
-                    //dbase.yml
-                    Main.getInstance().reloadDatabaseFile();
-
-                    sender.sendMessage(ColorUtil.colored("&aconfig.yml e dbase.yml recarregada com sucesso!"));
+                    sender.sendMessage(ColorUtil.colored("&aConfig recarregada com sucesso!"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -87,7 +80,7 @@ public class Commands implements CommandExecutor {
             }
         }
 
-        // vende todos os itens armazenados no armazem (/armazem sell)
+        // (/armazem sell)
         if (subCommand.equalsIgnoreCase("sell")) {
             if (sender.hasPermission("gharmazem.sellall")) {
 
@@ -115,7 +108,7 @@ public class Commands implements CommandExecutor {
             }
         }
 
-        // guarda todos os itens do inventario do player (/armazem store)
+        // (/armazem store)
         if (subCommand.equalsIgnoreCase("store")) {
             if (sender.hasPermission("gharmazem.store")) {
                 List<Material> allowed = Main.getInstance().getAllowedItems();

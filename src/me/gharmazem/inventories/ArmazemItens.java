@@ -2,7 +2,7 @@ package me.gharmazem.inventories;
 
 import me.gharmazem.Main;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.utils.some.ColorUtil;
+import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.ItemBuilderGB;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -79,18 +79,6 @@ public class ArmazemItens {
                 .build();
 
         return storageDrop;
-    }
-
-    public static ItemStack arrowBack() {
-        ItemStack arrowBack = new ItemBuilderGB(Material.ARROW)
-                .name(ColorUtil.colored("&aVoltar&7(Clique)"))
-                .lore(ColorUtil.colored(
-                        "",
-                        " &fClique para voltar ao menu principal"
-                ))
-                .build();
-
-        return arrowBack;
     }
 
     public static ItemStack savedItens(Player player) {

@@ -1,4 +1,4 @@
-package me.gharmazem.utils.some;
+package me.gharmazem.utils;
 
 import java.util.List;
 import java.util.stream.Collectors;

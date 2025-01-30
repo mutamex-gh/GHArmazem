@@ -2,7 +2,7 @@ package me.gharmazem.inventories;
 
 import lombok.Getter;
 import me.gharmazem.Main;
-import me.gharmazem.utils.some.ColorUtil;
+import me.gharmazem.utils.ColorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 

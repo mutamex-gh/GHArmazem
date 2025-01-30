@@ -43,7 +43,9 @@ public class PSBlockBreak implements Listener {
                 int dropsAmount = (int) dropsMultiplier;
                 if (block.getType() == Material.NETHER_WARTS || block.getType() == Material.COCOA) {
                     int baseDrops = (block.getType() == Material.NETHER_WARTS) ? 1 : 2;
-                    dropsAmount = isFullyGrown ? (baseDrops + (UtilClass.getFortune(player) * (int)multiplier)) : 1;
+                    dropsAmount = isFullyGrown
+                            ? (baseDrops + (UtilClass.getFortune(player)
+                            * (int)multiplier)) : 1;
                 }
                 event.setCancelled(true);
 

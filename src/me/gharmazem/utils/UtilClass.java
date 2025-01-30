@@ -30,7 +30,7 @@ public class UtilClass {
 
     public static boolean isFullyGrown(Block block) {
         Material type = block.getType();
-        MaterialData data = block.getState().getData(); // Obtém os dados do bloco
+        MaterialData data = block.getState().getData();
 
         if (data instanceof Crops) {
             Crops crops = (Crops) data;

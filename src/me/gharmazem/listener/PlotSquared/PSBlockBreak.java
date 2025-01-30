@@ -3,7 +3,7 @@ package me.gharmazem.listener.PlotSquared;
 import com.intellectualcrafters.plot.api.PlotAPI;
 import me.gharmazem.Main;
 import me.gharmazem.manager.BaseManager;
-import me.gharmazem.manager.mapper.BlockDropMapper;
+import me.gharmazem.manager.enums.BlockDropMapper;
 import me.gharmazem.utils.ActionBarUtils;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;

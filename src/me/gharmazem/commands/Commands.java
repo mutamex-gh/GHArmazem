@@ -58,26 +58,7 @@ public class Commands implements CommandExecutor {
             player.sendMessage(ColorUtil.colored("  &f/armazem help &f> &7Comandos para jogador"));
             player.sendMessage(ColorUtil.colored("  &f/armazem sell &f> &7Venda todos os itens de seu armazem"));
             player.sendMessage(ColorUtil.colored("  &f/armazem store &f> &7Armazene todos os itens de seu inventário"));
-            if (sender.hasPermission("gharmazem.admin")) {
-                player.sendMessage(ColorUtil.colored("  &c/armazem reload &f> &7Recarrega a config.yml do plugin!"));
-                return true;
-            }
             return true;
-        }
-
-        // (/armazem reload)
-        if (subCommand.equalsIgnoreCase("reload")) {
-            if (!sender.hasPermission("gharmazem.admin")) {
-                player.sendMessage(ColorUtil.colored(nopermission));
-                return true;
-            }
-
-            try {
-                Main.getInstance().reloadConfig();
-                sender.sendMessage(ColorUtil.colored("&aConfig recarregada com sucesso!"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
 
         // (/armazem sell)

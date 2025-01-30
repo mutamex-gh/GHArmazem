@@ -1,12 +1,14 @@
 ##############################################
-#                 PERMISSÕES                 #
+#                GHArmazem                   #
+#              version: 1.1.3                #
 ##############################################
 #
 # github.com/mutamex-gh/
 # Discord: mutamex
 #
-
-# MENSAGENS E MENUS
+##############################################
+#             MENSAGENS E MENUS              #
+##############################################
 Messages:
   only-players: "&cEste comando pode ser executado apenas por jogadores!"
   no-permission: "&cVocê não tem permissão para executar esse comando!"
@@ -15,7 +17,7 @@ Messages:
   no-itens-to-recover: "&cVocê não tem itens para recolher!"
   no-itens-to-store: "&cVocê não tem itens válidos para armazenar!"
   no-space-inventory: "&cVocê não tem espaço no inventario para recolher os drops!"
-  actionbar-store: "&aVocê armazenou {quantia} item(s)!"
+  actionbar-store: "&aForam armazenados {quantia} item(s)!"
   store-itens: "&aForam armazenados {itens} em seu armazém!"
   recovery-itens: "&aVocê recolheu {itens} itens do seu armazém!"
   sell-itens: "&aVocê vendeu {itens} itens por {rendimento} coins!"
@@ -67,26 +69,33 @@ SellAllItem:
 ##############################################
 #                  CRIAÇÃO                   #
 ##############################################
-
-#Se ativo, os blocos da lista "MATERIAIS" vão diretamente ao armazém ao ser quebrado
+#
+# Lembre-se sempre que ao criar os itens na seção "items", você terá que por
+# na lista "Materiais" e na "Prices" para ele funcionar, além de que, se
+# o Suporte com plotSquared estiver ativo, os mesmos itens da lista dita
+# a cima, irá diretamente para o armazém ao serem quebrados.
+#
+# Se ativo, os blocos da lista "MATERIAIS" vão diretamente ao armazém ao ser quebrado
 PlotSquaredSupport:
-  enable: true
-  replant: false #replanta após quebrar o drop
-  multiplier: 1.0 #drops multiplier
+  enable: true          # Habilita o suporte com PlotSquared
+  enable-cactus: true   # Ativa os cactos plantados (farm) irem direto ao armazém
+  replant: false        # Replanta após quebrar o item plantado
+  multiplier: 1.0       # Drops multiplier (Conta -> base(1) + fortuna * multiplier)
 
-#ITENS PARA ARMAZENAR // QUEBRAR -> ARMAZEM
 Materiais:
   - WHEAT
   - NETHER_WARTS
   - CACTUS
 
-#ITENS PARA VENDER // ARMAZEM -> VENDER (preço por item)
 Prices:
   WHEAT: 50
   NETHER_WARTS: 70
   CACTUS: 120
 
-#CRIAÇÃO DE ITENS PARA ARMAZENAR
+# Crie os itens no menu (lembre-se que, nem sempre os nomes do
+# "material" serão igual os do jogo, sempre confira se der erros.
+#
+# Lembre-se que o preço de venda é por item.
 items:
   trigo:
     material: WHEAT
@@ -102,7 +111,7 @@ items:
       - "&7Botão esquerdo: &aVender"
       - "&7Botão direito: &eRecolher"
       - ""
-    price: 50 # preço de venda (por item)
+    price: 50
     slot: 14
 
   netherwart:
@@ -119,7 +128,7 @@ items:
       - "&7Botão esquerdo: &aVender"
       - "&7Botão direito: &eRecolher"
       - ""
-    price: 70 # preço de venda (por item)
+    price: 70
     slot: 15
 
   cactus:
@@ -136,5 +145,5 @@ items:
       - "&7Botão esquerdo: &aVender"
       - "&7Botão direito: &eRecolher"
       - ""
-    price: 120 # preço de venda (por item)
+    price: 120
     slot: 16

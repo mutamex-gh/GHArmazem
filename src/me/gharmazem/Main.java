@@ -46,7 +46,7 @@ public class Main extends JavaPlugin {
 
             loadTime.stop();
             getLogger().log(Level.INFO, "Plugin inicializado com sucesso ({0})", loadTime);
-        }catch(Throwable t) {
+        }catch (Throwable t) {
             t.printStackTrace();
             getLogger().severe("GHArmazem não foi inicializado devido um erro!");
         }
@@ -62,7 +62,7 @@ public class Main extends JavaPlugin {
                 if (dbaseFile.createNewFile()) {
                     getLogger().info("Arquivo dbase.yml criado com sucesso!");
                 }
-            } catch (IOException e) {
+            }catch (IOException e) {
                 e.printStackTrace();
             }
         }

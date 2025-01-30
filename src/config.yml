@@ -40,8 +40,8 @@ PessoalArmazemItem:
   lore:
     - "&7Suas informações:"
     - ""
-    - "  &fSeu money: &a{money}"
-    - "  &fItens armazenados: &e{storageitens}"
+    - "  &fSeus coins: &a{coins}"
+    - "  &fItens armazenados: &e{amount}"
     - ""
 
 StorageItem:

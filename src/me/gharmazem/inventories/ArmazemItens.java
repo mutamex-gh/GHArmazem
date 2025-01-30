@@ -16,22 +16,22 @@ import java.util.List;
 
 public class ArmazemItens {
 
-    public static ItemStack pessoalArmazemInfoItem(Player player) {
+    public static void pessoalArmazemInfoItem(Player player) {
         DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
         FileConfiguration config = Main.getInstance().getConfig();
 
         String title = config.getString("PessoalArmazemItem.title");
-        List<String> playerinfolore = config.getStringList("PessoalArmazemItem.lore");
+        List<String> playerInfoLore = config.getStringList("PessoalArmazemItem.lore");
         int slot = config.getInt("PessoalArmazemItem.slot");
 
         double balance = Main.getEconomy().getBalance(player);
         int allStored = BaseManager.getAllStored(player);
 
         List<String> lore = new ArrayList<>();
-        for (String line : playerinfolore) {
+        for (String line : playerInfoLore) {
             String updatedLine = ColorUtil.colored(line)
-                            .replace("{money}", df.format(balance)
-                            .replace("{storageitens}", String.valueOf(allStored)));
+                            .replace("{coins}", df.format(balance))
+                            .replace("{amount}", df.format(allStored));
             lore.add(updatedLine);
         }
 
@@ -43,8 +43,6 @@ public class ArmazemItens {
                 .build();
 
         ArmazemInventory.getInventory().setItem(slot, PessoalArmazemInfo);
-
-        return PessoalArmazemInfo;
     }
 
     public static ItemStack armazemItem() {

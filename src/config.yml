@@ -68,24 +68,26 @@ SellAllItem:
 #                  CRIAÇÃO                   #
 ##############################################
 
-# Se ativo, os blocos da lista "MATERIAIS" vão diretamente ao armazém ao ser quebrados
-# dentro de uma plot (do jogador)
+#Se ativo, os blocos da lista "MATERIAIS" vão diretamente ao armazém ao ser quebrado
 PlotSquaredSupport:
   enable: true
-  replant: false
-  multiplier: 1.0
+  replant: false #replanta após quebrar o drop
+  multiplier: 1.0 #drops multiplier
 
-Materiais: #ITENS PARA ARMAZENAR // QUEBRAR -> ARMAZEM
+#ITENS PARA ARMAZENAR // QUEBRAR -> ARMAZEM
+Materiais:
   - WHEAT
   - NETHER_WARTS
   - CACTUS
 
-Prices: #ITENS PARA VENDER // ARMAZEM -> VENDER (preço por item)
+#ITENS PARA VENDER // ARMAZEM -> VENDER (preço por item)
+Prices:
   WHEAT: 50
   NETHER_WARTS: 70
   CACTUS: 120
 
-items: #CRIAÇÃO DE ITENS PARA ARMAZENAR
+#CRIAÇÃO DE ITENS PARA ARMAZENAR
+items:
   trigo:
     material: WHEAT
     name: "&eTrigo"

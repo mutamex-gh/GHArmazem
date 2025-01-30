@@ -13,7 +13,7 @@ import org.bukkit.Material;
 
 public enum BlockDropMapper {
 
-          //IN-GAME       //IN-CONFIG (OG)
+          //IN-GAME       //IN-CONFIG
     WHEAT(Material.CROPS, Material.WHEAT),
     CROPS(Material.WHEAT, Material.CROPS),
     NETHER_WARTS(Material.NETHER_WARTS, Material.NETHER_STALK),
@@ -21,7 +21,7 @@ public enum BlockDropMapper {
     CARROT(Material.CARROT, Material.CARROT_ITEM),
     POTATO(Material.POTATO, Material.POTATO_ITEM),
     //CACTUS(Material.CACTUS, Material.CACTUS),
-    // COCOA(Material.COCOA, Material.COCOA),
+    //COCOA(Material.COCOA, Material.COCOA),
     MELON(Material.MELON_BLOCK, Material.MELON); // retorna melancia
 
     @Getter private final Material blockType;

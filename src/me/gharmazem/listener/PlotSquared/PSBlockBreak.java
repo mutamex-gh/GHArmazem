@@ -28,6 +28,7 @@ public class PSBlockBreak implements Listener {
 
         String actionBarStore = Main.getInstance().getConfig().getString("Messages.actionbar-store");
         boolean isEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.enable");
+        boolean replantEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.replant");
         double multiplier = Main.getInstance().getConfig().getDouble("PlotSquaredSupport.multiplier");
 
         if (Main.getInstance().getAllowedItems().contains(block.getType()) && isEnable) {
@@ -54,8 +55,12 @@ public class PSBlockBreak implements Listener {
                         ColorUtil.colored(actionBarStore)
                                 .replace("{quantia}", String.valueOf(dropsAmount))
                 );
-
                 event.setCancelled(true);
+
+                if(replantEnable) {
+                    block.setType(block.getType());
+                    return;
+                }
                 block.setType(Material.AIR);
             }
         }

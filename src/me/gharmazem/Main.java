@@ -6,7 +6,8 @@ import lombok.val;
 import me.gharmazem.commands.Commands;
 import me.gharmazem.listener.*;
 import me.gharmazem.listener.PlotSquared.PSBlockBreak;
-import me.gharmazem.manager.mapper.BlockDropMapper;
+import me.gharmazem.listener.PlotSquared.PSItemSpawn;
+import me.gharmazem.manager.enums.BlockDropMapper;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -45,6 +46,9 @@ public class Main extends JavaPlugin {
             loadCommands();
 
             loadTime.stop();
+            getLogger().info("@Discord: mutamex");
+            getLogger().info("@Author: mutamex-gh");
+            getLogger().info("@Github: github.com/mutamex-gh/GHArmazem");
             getLogger().log(Level.INFO, "Plugin inicializado com sucesso ({0})", loadTime);
         }catch (Throwable t) {
             t.printStackTrace();
@@ -142,6 +146,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SellRecoverEvent(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellAllEvent(), Main.this);
         Bukkit.getPluginManager().registerEvents(new PSBlockBreak(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new PSItemSpawn(), Main.this);
     }
 
     public void loadCommands() {

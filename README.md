@@ -6,7 +6,7 @@ Dependencias e download:
 - Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/plugin/GHArmazem.jar)
 
 Descrição:
-- Plugin possui suporte com PlotSquared, criação de itens armazenaveis etc...
+- Plugin possui suporte com o PlotSquared, então quando quebrado os itens configurados na config (dentro da plot), armazena automaticamente no armazem do jogador, tendo suporte para farm de cacto tambem, armazenando diretamente no armazem do jogador.
 
 # Permissões
 Todas as permissões do plugin abaixo:
@@ -16,7 +16,6 @@ Todas as permissões do plugin abaixo:
 | gharmazem.usecommand | /armazem        | abre o menu do armazém                           |  
 | gharmazem.sellall    | /armazem sell   | vender todos os itens do armazem por comando     |
 | gharmazem.store      | /armazem store  | guardar todos os itens do inventario por comando |
-| gharmazem.admin      | /armazem reload | reload na config.yml e na dbase.yml              |
 | sem permissão        | /armazem help   | apresenta todos os comandos do plugin            |
 
 # Fotos

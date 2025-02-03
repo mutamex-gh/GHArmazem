@@ -156,7 +156,7 @@ public class BaseManager {
         return totalQuantity;
     }
 
-    public static List<String> storeItens(Player player) {
+    public static List<String> storedItens(Player player) {
         FileConfiguration config = Main.getInstance().getConfig();
 
         String noitens = config.getString("Messages.no-itens-stored");

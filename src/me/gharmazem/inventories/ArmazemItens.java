@@ -81,7 +81,7 @@ public class ArmazemItens {
 
     public static ItemStack savedItens(Player player) {
 
-        List<String> itensArmazenados = BaseManager.storeItens(player);
+        List<String> itensArmazenados = BaseManager.storedItens(player);
 
         List<String> lore = new ArrayList<>();
         lore.add(ColorUtil.colored("&7Veja seus itens armazenados"));

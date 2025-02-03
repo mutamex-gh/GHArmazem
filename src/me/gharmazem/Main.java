@@ -35,6 +35,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         try {
             val loadTime = Stopwatch.createStarted();
+
             saveDefaultConfig();
             setupDatabaseFile();
 
@@ -51,8 +52,8 @@ public class Main extends JavaPlugin {
             getLogger().info("@Github: github.com/mutamex-gh/GHArmazem");
             getLogger().log(Level.INFO, "Plugin inicializado com sucesso ({0})", loadTime);
         }catch (Throwable t) {
+            getLogger().severe("Plugin nao inicializado devido a um erro!");
             t.printStackTrace();
-            getLogger().severe("GHArmazem não foi inicializado devido um erro!");
         }
     }
 
@@ -67,6 +68,7 @@ public class Main extends JavaPlugin {
                     getLogger().info("Arquivo dbase.yml criado com sucesso!");
                 }
             }catch (IOException e) {
+                getLogger().severe("Parece que ocorreu um erro não foi criado a dbase.yml!");
                 e.printStackTrace();
             }
         }
@@ -88,6 +90,7 @@ public class Main extends JavaPlugin {
         try {
             dbaseConfig.save(dbaseFile);
         } catch (IOException e) {
+            getLogger().severe("Parece que ocorreu um erro ao salvar a dbase.yml!");
             e.printStackTrace();
         }
     }

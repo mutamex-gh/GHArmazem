@@ -77,14 +77,14 @@ SellAllItem:
 #
 # Se ativo, os blocos da lista "MATERIAIS" vão diretamente ao armazém ao ser quebrado
 PlotSquaredSupport:
-  enable: true                    # Habilita o suporte com PlotSquared <se false todas as opções abaixo serão desativadas
+  enable: true                    # Habilita o suporte com PlotSquared <se false todas as opções abaixo serão desativadas>
   tool-to-break:                  # <O jogador só pode quebrar com essas ferramentas!>
     - "DIAMOND_HOE"
     - "WOODEN_HOE"
    #- "AIR" <Permite quebrar com a mão>
   enable-cactus: true             # Ativa os cactos plantados (farm) irem direto ao armazém
-  replant: true                   # Replanta após quebrar o item ser quebrado
-  bonus:                          # Crie quantos quiser seguindo formato abaixo (permissão:multiplicador)
+  replant: true                   # Replanta após a plantação ser quebrada
+  bonus:                          # Crie quantos quiser seguindo formato (permissão:multiplicador)
     gharmazem.default: 1.0
     gharmazem.vip: 2.0
     gharmazem.mvp: 3.0

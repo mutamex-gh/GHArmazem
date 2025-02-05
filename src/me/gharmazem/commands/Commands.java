@@ -13,7 +13,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class Commands implements CommandExecutor {
@@ -68,7 +67,6 @@ public class Commands implements CommandExecutor {
                 return true;
             }
 
-            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
             int totalQuantia = BaseManager.getAllStored(player);
             if (totalQuantia > 0) {
                 double totalRendimento = BaseManager.getTotalValue(player);
@@ -78,8 +76,8 @@ public class Commands implements CommandExecutor {
 
                 UtilClass.sendSound(player, Sound.LEVEL_UP);
                 player.sendMessage(ColorUtil.colored(sellitens)
-                        .replace("{rendimento}", df.format(totalRendimento))
-                        .replace("{itens}", String.valueOf(totalQuantia)));
+                        .replace("{rendimento}", UtilClass.formatNumber(totalRendimento))
+                        .replace("{itens}", UtilClass.formatNumber(totalQuantia)));
 
                 return true;
             } else {
@@ -112,7 +110,9 @@ public class Commands implements CommandExecutor {
                     ItemStack storedItem = new ItemStack(material, totalAmount);
                     BaseManager.saveItem(player, storedItem);
 
-                    player.sendMessage(ColorUtil.colored(storeitens).replace("{itens}", totalAmount + " " + material.name()));
+                    player.sendMessage(ColorUtil.colored(storeitens)
+                            .replace("{amount}", totalAmount + "")
+                            .replace("{item}", material.name()));
                 }
             }
             if (!hasStoredItems) {

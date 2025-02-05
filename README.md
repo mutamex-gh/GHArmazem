@@ -12,13 +12,8 @@ Atenção:
 
 updates in coming..
 
-# Dependencias e download:
-- Dependencias: Vault, PlotSquared
-- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/plugin/GHArmazem.jar)
-
-
 # Permissões
-Todas as permissões do plugin abaixo:
+Confira as permissões do plugin abaixo:
 
 | Permissão            | Uso             | Descrição                                        |
 |----------------------|-----------------|--------------------------------------------------|
@@ -26,6 +21,10 @@ Todas as permissões do plugin abaixo:
 | gharmazem.sellall    | /armazem sell   | vender todos os itens do armazem por comando     |
 | gharmazem.store      | /armazem store  | guardar todos os itens do inventario por comando |
 | sem permissão        | /armazem help   | apresenta todos os comandos do plugin            |
+
+# Dependencias e download:
+- Dependencias: Vault, PlotSquared
+- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/plugin/GHArmazem.jar)
 
 # Fotos
 

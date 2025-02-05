@@ -33,7 +33,6 @@ public class SellRecoverEvent implements Listener {
 
             Player player = (Player) event.getWhoClicked();
             ItemStack item = event.getCurrentItem();
-            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
 
             if (item == null) item = event.getCursor();
             if (item == null || item.getType() == Material.AIR) return false;
@@ -55,8 +54,8 @@ public class SellRecoverEvent implements Listener {
                 if(quantia > 0) {
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
                     player.sendMessage(ColorUtil.colored(sellitens)
-                            .replace("{rendimento}", df.format(rendimento))
-                            .replace("{itens}", String.valueOf(quantia)));
+                            .replace("{rendimento}", UtilClass.formatNumber(rendimento))
+                            .replace("{itens}", UtilClass.formatNumber(quantia)));
 
                     player.closeInventory();
 

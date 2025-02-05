@@ -1,6 +1,9 @@
 package me.gharmazem.manager;
 
 import me.gharmazem.Main;
+import me.gharmazem.configuration.ConfigDBase;
+import me.gharmazem.configuration.ConfigValues;
+import me.gharmazem.economy.EconomyHook;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.utils.ColorUtil;
@@ -16,8 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static me.gharmazem.Main.loadItemPrices;
-
 public class BaseManager {
 
     static FileConfiguration config = Main.getInstance().getConfig();
@@ -27,19 +28,19 @@ public class BaseManager {
         String itemType = item.getType().toString();
         int itemAmount = item.getAmount();
 
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
 
         String path = "armazem." + playerUUID + "." + itemType;
         db.set(path, db.getInt(path, 0) + itemAmount);
 
-        Main.getInstance().saveDatabaseConfig();
+        ConfigDBase.saveDatabaseConfig();
     }
 
     public static void store(Player player) {
         String storeitens = config.getString("Messages.store-itens");
         String noitenstostore = config.getString("Messages.no-itens-to-store");
 
-        List<Material> allowed = Main.getInstance().getAllowedItems();
+        List<Material> allowed = ConfigValues.getAllowedItems();
 
         boolean hasStoredItems = false;
         for (Material material : allowed) {
@@ -70,20 +71,20 @@ public class BaseManager {
 
     public static void sell(Player player, ItemStack itemType) {
         String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
 
         Material material = itemType.getType();
         String itemTypeName = material.name();
 
         if (db.contains("armazem." + playerUUID + "." + itemTypeName)) {
             db.set("armazem." + playerUUID + "." + itemTypeName, null);
-            Main.getInstance().saveDatabaseConfig();
+            ConfigDBase.saveDatabaseConfig();
         }
     }
 
     public static void sellAll(Player player) {
         String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
 
         String sellItens = config.getString("Messages.sell-itens");
         String noItensToSell = config.getString("Messages.no-itens-to-sell");
@@ -94,8 +95,8 @@ public class BaseManager {
         if (db.contains("armazem." + playerUUID)) {
             db.set("armazem." + playerUUID, null);
 
-            Main.getEconomy().depositPlayer(player, totalValue);
-            Main.getInstance().saveDatabaseConfig();
+            EconomyHook.getEconomy().depositPlayer(player, totalValue);
+            ConfigDBase.saveDatabaseConfig();
 
             player.sendMessage(ColorUtil.colored(sellItens)
                     .replace("{rendimento}", UtilClass.formatNumber(totalValue))
@@ -106,7 +107,7 @@ public class BaseManager {
     }
 
     public static void storeSpecificItem(Player player, Material material, int quantity) {
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
         String playerUUID = player.getUniqueId().toString();
 
         String basePath = "armazem." + playerUUID + "." + material.name();
@@ -117,7 +118,7 @@ public class BaseManager {
         } else {
             db.set(basePath, quantity);
         }
-        Main.getInstance().saveDatabaseConfig();
+        ConfigDBase.saveDatabaseConfig();
     }
 
     public static List<String> storedItens(Player player) {
@@ -126,7 +127,7 @@ public class BaseManager {
         String noitens = config.getString("Messages.no-itens-stored");
 
         String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
         List<String> itensArmazenados = new ArrayList<>();
 
         if (db.contains("armazem." + playerUUID)) {
@@ -142,9 +143,9 @@ public class BaseManager {
 
     public static double getTotalValue(Player player) {
         String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
 
-        Map<Material, Double> itemPrices = loadItemPrices();
+        Map<Material, Double> itemPrices = ConfigValues.loadItemPrices();
 
         double totalValue = 0.0;
         if (db.contains("armazem." + playerUUID)) {
@@ -170,7 +171,7 @@ public class BaseManager {
 
     public static void getSpecificItem(Player player, ItemStack itemType, int quantidade) {
         String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
 
         Material material = itemType.getType();
         String itemTypeName = material.name();
@@ -193,13 +194,13 @@ public class BaseManager {
             } else {
                 db.set("armazem." + playerUUID + "." + itemTypeName, null);
             }
-            Main.getInstance().saveDatabaseConfig();
+            ConfigDBase.saveDatabaseConfig();
         }
     }
 
     public static int getStored(Player player, ItemStack itemStack) {
         String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
         String itemTypeName = itemStack.getType().name();
 
         int itemAmount = 0;
@@ -211,7 +212,7 @@ public class BaseManager {
 
     public static int getAllStored(Player player) {
         String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = Main.getInstance().getDatabaseConfig();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
 
         String basePath = "armazem." + playerUUID;
 

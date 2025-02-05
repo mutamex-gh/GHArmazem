@@ -1,6 +1,7 @@
 package me.gharmazem.listener;
 
 import me.gharmazem.Main;
+import me.gharmazem.economy.EconomyHook;
 import me.gharmazem.inventories.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.UtilClass;
@@ -15,8 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.text.DecimalFormat;
 
 public class SellRecoverEvent implements Listener {
 
@@ -60,7 +59,7 @@ public class SellRecoverEvent implements Listener {
 
                     player.closeInventory();
 
-                    Main.getEconomy().depositPlayer(player, rendimento);
+                    EconomyHook.getEconomy().depositPlayer(player, rendimento);
                     BaseManager.sell(player, itemFinal);
                     return true;
                 }else {

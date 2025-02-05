@@ -1,4 +1,4 @@
-package me.gharmazem.listener.PlotSquared;
+package me.gharmazem.listener.plotsquared;
 
 import com.intellectualcrafters.plot.api.PlotAPI;
 import com.intellectualcrafters.plot.object.Plot;

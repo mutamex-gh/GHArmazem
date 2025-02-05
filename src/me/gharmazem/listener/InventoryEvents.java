@@ -1,6 +1,7 @@
 package me.gharmazem.listener;
 
 import me.gharmazem.Main;
+import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.inventories.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
@@ -50,7 +51,7 @@ public class InventoryEvents implements Listener {
             if (currentItem == null || currentItem.getType() == Material.AIR) return true;
             if (event.getClickedInventory() == null) return true;
 
-            List<Material> allowed = Main.getInstance().getAllowedItems();
+            List<Material> allowed = ConfigValues.getAllowedItems();
             if (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.ARROW_DAMAGE)) {
 
                 boolean hasStoredItems = false;

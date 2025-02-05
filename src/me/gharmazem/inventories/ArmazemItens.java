@@ -1,6 +1,7 @@
 package me.gharmazem.inventories;
 
 import me.gharmazem.Main;
+import me.gharmazem.economy.EconomyHook;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.ItemBuilderGB;
@@ -23,7 +24,7 @@ public class ArmazemItens {
         List<String> playerInfoLore = config.getStringList("PessoalArmazemItem.lore");
         int slot = config.getInt("PessoalArmazemItem.slot");
 
-        double balance = Main.getEconomy().getBalance(player);
+        double balance = EconomyHook.getEconomy().getBalance(player);
         int allStored = BaseManager.getAllStored(player);
 
         List<String> lore = new ArrayList<>();

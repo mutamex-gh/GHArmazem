@@ -1,7 +1,8 @@
-package me.gharmazem.listener.PlotSquared;
+package me.gharmazem.listener.plotsquared;
 
 import com.intellectualcrafters.plot.api.PlotAPI;
 import me.gharmazem.Main;
+import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.manager.BonusManager;
 import me.gharmazem.manager.enums.BlockDropMapper;
 import me.gharmazem.utils.UtilClass;
@@ -33,7 +34,7 @@ public class PSBlockBreak implements Listener {
         if (block.getType() == Material.CACTUS) event.setCancelled(true);
 
         if (toolToBreak.contains(player.getItemInHand().getType().name()) &&
-                Main.getInstance().getAllowedItems().contains(block.getType())) {
+                ConfigValues.getAllowedItems().contains(block.getType())) {
 
             Material blockMapperType = BlockDropMapper.getDrop(block.getType());
             boolean isFullyGrown = UtilClass.isFullyGrown(block);

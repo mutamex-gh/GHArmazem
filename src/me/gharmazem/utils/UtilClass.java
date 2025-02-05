@@ -1,16 +1,15 @@
 package me.gharmazem.utils;
 
-import org.bukkit.CropState;
-import org.bukkit.Material;
-import org.bukkit.NetherWartsState;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.material.Crops;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.NetherWarts;
 
+import java.text.DecimalFormat;
 import java.util.SplittableRandom;
 
 public class UtilClass {
@@ -48,4 +47,21 @@ public class UtilClass {
 
         return false;
     }
+
+    public static String formatNumber(double number) {
+        if (number < 1000) {
+            return String.valueOf(number);
+        }
+
+        String[] suffixes = {"", "k", "m", "b", "t", "q", "qq", "s", "sp"};
+        int magnitude = (int) Math.log10(number);
+        int suffixIndex = magnitude / 3;
+
+        double shortenedNumber = number / Math.pow(1000, suffixIndex);
+
+        DecimalFormat df = new DecimalFormat("#0.##");
+
+        return df.format(shortenedNumber) + suffixes[suffixIndex];
+    }
+
 }

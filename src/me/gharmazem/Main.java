@@ -21,7 +21,6 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         try {
             val loadTime = Stopwatch.createStarted();
-
             saveDefaultConfig();
             setupDatabaseFile();
 

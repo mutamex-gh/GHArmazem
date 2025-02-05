@@ -51,25 +51,22 @@ public class SellRecoverEvent implements Listener {
 
             // vender/recolher por inventario :(
             if (event.getClick().isLeftClick()) {
-                if(quantia > 0) {
+                if (quantia > 0) {
+                    EconomyHook.getEconomy().depositPlayer(player, rendimento);
+                    BaseManager.sell(player, itemFinal);
+
+                    player.closeInventory();
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
                     player.sendMessage(ColorUtil.colored(sellitens)
                             .replace("{rendimento}", UtilClass.formatNumber(rendimento))
                             .replace("{itens}", UtilClass.formatNumber(quantia)));
-
-                    player.closeInventory();
-
-                    EconomyHook.getEconomy().depositPlayer(player, rendimento);
-                    BaseManager.sell(player, itemFinal);
                     return true;
-                }else {
+                } else {
                     player.sendMessage(ColorUtil.colored(noitenstosell));
                 }
-            }
-            else if (event.getClick().isRightClick() && quantia > 0) {
-                UtilClass.sendSound(player, Sound.CLICK);
-                int freeSlots = 0;
+            } else if (event.getClick().isRightClick() && quantia > 0) {
 
+                int freeSlots = 0;
                 for (ItemStack drop : player.getInventory().getContents()) {
                     if (drop == null || drop.getType() == Material.AIR) {
                         freeSlots++;
@@ -77,15 +74,14 @@ public class SellRecoverEvent implements Listener {
                 }
                 int itemsPerSlot = itemFinal.getMaxStackSize();
                 int maxItems = freeSlots * itemsPerSlot;
-
+                int itemsToCollect = Math.min(quantia, maxItems);
                 if (maxItems > 0) {
-                    int itemsToCollect = Math.min(quantia, maxItems);
-
-                    player.sendMessage(ColorUtil.colored(itensrecuperados)
-                            .replace("{itens}", String.valueOf(itemsToCollect)));
-
                     BaseManager.getSpecificItem(player, itemFinal, itemsToCollect);
                     player.closeInventory();
+
+                    UtilClass.sendSound(player, Sound.CLICK);
+                    player.sendMessage(ColorUtil.colored(itensrecuperados)
+                            .replace("{itens}", String.valueOf(itemsToCollect)));
                 } else {
                     player.sendMessage(ColorUtil.colored(nospaceinventory));
                 }

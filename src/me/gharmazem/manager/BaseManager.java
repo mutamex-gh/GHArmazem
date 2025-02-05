@@ -158,11 +158,7 @@ public class BaseManager {
 
                     if (itemPrice != null) {
                         totalValue += itemPrice * itemAmount;
-                    } else {
-                        System.out.println("Preco nao encontrado para: " + itemName);
                     }
-                } else {
-                    System.out.println("Material invalido: " + itemName);
                 }
             }
         }

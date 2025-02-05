@@ -8,14 +8,17 @@ import org.bukkit.inventory.Inventory;
 
 public class ArmazemInventory {
 
-    @Getter
-    public static final Inventory inventory;
+    @Getter public static final Inventory inventory;
 
     static {
         String invname = Main.getInstance().getConfig().getString("Inventory.inventory-name");
         int invsize = Main.getInstance().getConfig().getInt("Inventory.inventory-size");
 
-        inventory = Bukkit.createInventory(null, invsize, ColorUtil.colored(invname));
+        inventory = Bukkit.createInventory(
+                null,
+                invsize,
+                ColorUtil.colored(invname)
+        );
     }
 
 }

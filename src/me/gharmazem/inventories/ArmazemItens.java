@@ -4,6 +4,7 @@ import me.gharmazem.Main;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.ItemBuilderGB;
+import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -30,8 +31,8 @@ public class ArmazemItens {
         List<String> lore = new ArrayList<>();
         for (String line : playerInfoLore) {
             String updatedLine = ColorUtil.colored(line)
-                            .replace("{coins}", df.format(balance))
-                            .replace("{amount}", df.format(allStored));
+                            .replace("{coins}", UtilClass.formatNumber(balance))
+                            .replace("{amount}", UtilClass.formatNumber(allStored));
             lore.add(updatedLine);
         }
 
@@ -80,7 +81,6 @@ public class ArmazemItens {
     }
 
     public static ItemStack savedItens(Player player) {
-
         List<String> itensArmazenados = BaseManager.storedItens(player);
 
         List<String> lore = new ArrayList<>();

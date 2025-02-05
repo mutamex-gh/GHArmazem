@@ -41,37 +41,36 @@ public class PSBlockBreak implements Listener {
             return;
         }
 
-        if (toolToBreak.contains(player.getItemInHand().getType().name())) {
-            if (Main.getInstance().getAllowedItems().contains(block.getType())) {
+        if (toolToBreak.contains(player.getItemInHand().getType().name()) &&
+                Main.getInstance().getAllowedItems().contains(block.getType())) {
 
-                Material blockMapperType = BlockDropMapper.getDrop(block.getType());
-                boolean isFullyGrown = UtilClass.isFullyGrown(block);
-                int dropsMultiplier = isFullyGrown ? block.getDrops().size() + UtilClass.getFortune(player) : 1;
+            Material blockMapperType = BlockDropMapper.getDrop(block.getType());
+            boolean isFullyGrown = UtilClass.isFullyGrown(block);
+            int dropsMultiplier = isFullyGrown ? block.getDrops().size() + UtilClass.getFortune(player) : 1;
 
-                if (blockMapperType != null) {
-                    if (block.getType() == Material.NETHER_WARTS) {
-                        int baseDrops = 1;
-                        dropsMultiplier = isFullyGrown ? baseDrops + UtilClass.getFortune(player) : 1;
-                    }
-                    event.setCancelled(true);
+            if (blockMapperType != null) {
+                if (block.getType() == Material.NETHER_WARTS) {
+                    int baseDrops = 1;
+                    dropsMultiplier = isFullyGrown ? baseDrops + UtilClass.getFortune(player) : 1;
+                }
+                event.setCancelled(true);
 
-                    if (replantEnable) {
-                        block.setType(block.getType());
+                if (replantEnable) {
+                    block.setType(block.getType());
 
-                        if (!isFullyGrown) {
-                            dropsMultiplier = 0;
+                    if (!isFullyGrown) {
+                        dropsMultiplier = 0;
 
-                            boolean isFullyGrowEnable = true;
-                            if (isFullyGrowEnable) {
-                                return;
-                            }
+                        boolean isFullyGrowEnable = true;
+                        if (isFullyGrowEnable) {
+                            return;
                         }
-                        bonusManager.setBonus(player, blockMapperType, dropsMultiplier);
-                        return;
                     }
                     bonusManager.setBonus(player, blockMapperType, dropsMultiplier);
-                    block.setType(Material.AIR);
+                    return;
                 }
+                bonusManager.setBonus(player, blockMapperType, dropsMultiplier);
+                block.setType(Material.AIR);
             }
         }
     }

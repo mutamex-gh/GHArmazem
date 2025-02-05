@@ -29,7 +29,7 @@ public class PSItemSpawn implements Listener {
 
         Item entity = event.getEntity();
 
-        if (!(entity.getItemStack().getType() == Material.CACTUS)) return;
+        if (entity.getItemStack().getType() != Material.CACTUS) return;
 
         if (isPSSupportEnable && isCactusFarmEnable) {
             final Plot plotAPI = new PlotAPI().getPlot(entity.getLocation());

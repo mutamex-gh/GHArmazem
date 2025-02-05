@@ -32,9 +32,6 @@ public class Commands implements CommandExecutor {
                 return true;
             }
 
-            ArmazemItens.pessoalArmazemInfoItem(player); // adiciona a cabeça do player no menu principal
-            ArmazemItens.sellAllItem();                  // adiciona o item de vender tudo no menu principal
-
             UtilClass.sendSound(player, Sound.CLICK);
             BaseManager.openStorage(player);
             return true;

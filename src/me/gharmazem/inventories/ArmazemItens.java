@@ -11,14 +11,12 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArmazemItens {
 
     public static void pessoalArmazemInfoItem(Player player) {
-        DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
         FileConfiguration config = Main.getInstance().getConfig();
 
         String title = config.getString("PessoalArmazemItem.title");

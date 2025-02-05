@@ -16,12 +16,6 @@ import java.util.List;
 
 public class PSBlockBreak implements Listener {
 
-    private final BonusManager bonusManager;
-
-    public PSBlockBreak() {
-        this.bonusManager = new BonusManager(Main.getInstance());
-    }
-
     @EventHandler
     public void onBreakBlocksInPlot(BlockBreakEvent event) {
         Player player = event.getPlayer();
@@ -58,10 +52,10 @@ public class PSBlockBreak implements Listener {
                     if (!isFullyGrown) {
                         return;
                     }
-                    bonusManager.setBonus(player, blockMapperType, dropsMultiplier);
+                    BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
                     return;
                 }
-                bonusManager.setBonus(player, blockMapperType, dropsMultiplier);
+                BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
                 block.setType(Material.AIR);
             }
         }

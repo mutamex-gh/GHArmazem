@@ -4,7 +4,6 @@ import com.google.common.base.Stopwatch;
 import lombok.Getter;
 import lombok.val;
 import me.gharmazem.commands.Commands;
-import me.gharmazem.configuration.ConfigRegistry;
 import me.gharmazem.listener.*;
 import me.gharmazem.listener.PlotSquared.PSBlockBreak;
 import me.gharmazem.listener.PlotSquared.PSItemSpawn;
@@ -43,7 +42,7 @@ public class Main extends JavaPlugin {
             setupDatabaseFile();
             setupEconomy();
 
-            loadBonus();
+            BonusManager.register();
             loadItemPrices();
             loadAllowedItems();
 
@@ -157,11 +156,6 @@ public class Main extends JavaPlugin {
 
     public void loadCommands() {
         getCommand("armazem").setExecutor(new Commands());
-    }
-
-    public void loadBonus() {
-        BonusManager bonusManager = new BonusManager(this);
-        bonusManager.register();
     }
 
     public static Economy getEconomy() {

@@ -3,7 +3,6 @@ package me.gharmazem.listener.PlotSquared;
 import com.intellectualcrafters.plot.api.PlotAPI;
 import com.intellectualcrafters.plot.object.Plot;
 import me.gharmazem.Main;
-import me.gharmazem.manager.BaseManager;
 import me.gharmazem.manager.BonusManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,12 +14,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemSpawnEvent;
 
 public class PSItemSpawn implements Listener {
-
-    private final BonusManager bonusManager;
-
-    public PSItemSpawn() {
-        this.bonusManager = new BonusManager(Main.getInstance());
-    }
 
     @EventHandler
     public void onGrowth(ItemSpawnEvent event) {
@@ -40,7 +33,7 @@ public class PSItemSpawn implements Listener {
             if (!plotAPI.hasOwner()) return;
             if (!plotAPI.isOwner(player.getUniqueId())) return;
 
-            bonusManager.setBonus((Player) player, Material.CACTUS, 1);
+            BonusManager.setBonus((Player) player, Material.CACTUS, 1);
             event.getEntity().remove();
         }
     }

@@ -20,8 +20,6 @@ public enum BlockDropMapper {
     SUGAR_CANE(Material.SUGAR_CANE_BLOCK, Material.SUGAR_CANE),
     CARROT(Material.CARROT, Material.CARROT_ITEM),
     POTATO(Material.POTATO, Material.POTATO_ITEM),
-    //CACTUS(Material.CACTUS, Material.CACTUS),
-    //COCOA(Material.COCOA, Material.COCOA),
     MELON(Material.MELON_BLOCK, Material.MELON); // retorna melancia
 
     @Getter private final Material blockType;

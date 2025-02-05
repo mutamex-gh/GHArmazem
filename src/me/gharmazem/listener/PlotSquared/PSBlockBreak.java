@@ -36,10 +36,7 @@ public class PSBlockBreak implements Listener {
         if (!isEnable) return;
         if (plotAPI.getPlot(block.getLocation()) == null) return;
         if (!plotAPI.getPlot(block.getLocation()).isOwner(player.getUniqueId())) return;
-        if (block.getType() == Material.CACTUS) {
-            event.setCancelled(true);
-            return;
-        }
+        if (block.getType() == Material.CACTUS) event.setCancelled(true);
 
         if (toolToBreak.contains(player.getItemInHand().getType().name()) &&
                 Main.getInstance().getAllowedItems().contains(block.getType())) {
@@ -59,12 +56,7 @@ public class PSBlockBreak implements Listener {
                     block.setType(block.getType());
 
                     if (!isFullyGrown) {
-                        dropsMultiplier = 0;
-
-                        boolean isFullyGrowEnable = true;
-                        if (isFullyGrowEnable) {
-                            return;
-                        }
+                        return;
                     }
                     bonusManager.setBonus(player, blockMapperType, dropsMultiplier);
                     return;

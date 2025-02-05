@@ -38,8 +38,6 @@ public class BaseManager {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
 
-
-
         Material material = itemType.getType();
         String itemTypeName = material.name();
 

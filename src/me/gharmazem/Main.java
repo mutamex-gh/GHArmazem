@@ -4,9 +4,11 @@ import com.google.common.base.Stopwatch;
 import lombok.Getter;
 import lombok.val;
 import me.gharmazem.commands.Commands;
+import me.gharmazem.configuration.ConfigRegistry;
 import me.gharmazem.listener.*;
 import me.gharmazem.listener.PlotSquared.PSBlockBreak;
 import me.gharmazem.listener.PlotSquared.PSItemSpawn;
+import me.gharmazem.manager.BonusManager;
 import me.gharmazem.manager.enums.BlockDropMapper;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -37,9 +39,11 @@ public class Main extends JavaPlugin {
             val loadTime = Stopwatch.createStarted();
 
             saveDefaultConfig();
-            setupDatabaseFile();
 
+            setupDatabaseFile();
             setupEconomy();
+
+            loadBonus();
             loadItemPrices();
             loadAllowedItems();
 
@@ -118,8 +122,7 @@ public class Main extends JavaPlugin {
                 if (blockType != null) {
                     allowedItems.add(blockType);
                 }
-            } catch (Exception ignore) {
-            }
+            } catch (Exception ignore) {}
         }
     }
 
@@ -154,6 +157,11 @@ public class Main extends JavaPlugin {
 
     public void loadCommands() {
         getCommand("armazem").setExecutor(new Commands());
+    }
+
+    public void loadBonus() {
+        BonusManager bonusManager = new BonusManager(this);
+        bonusManager.register();
     }
 
     public static Economy getEconomy() {

@@ -4,6 +4,7 @@ import com.intellectualcrafters.plot.api.PlotAPI;
 import com.intellectualcrafters.plot.object.Plot;
 import me.gharmazem.Main;
 import me.gharmazem.manager.BaseManager;
+import me.gharmazem.manager.BonusManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -15,26 +16,32 @@ import org.bukkit.event.entity.ItemSpawnEvent;
 
 public class PSItemSpawn implements Listener {
 
+    private final BonusManager bonusManager;
+
+    public PSItemSpawn() {
+        this.bonusManager = new BonusManager(Main.getInstance());
+    }
+
     @EventHandler
     public void onGrowth(ItemSpawnEvent event) {
         boolean isPSSupportEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.enable");
-        boolean isEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.enable-cactus");
+        boolean isCactusFarmEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.enable-cactus");
 
         Item entity = event.getEntity();
-        if (isPSSupportEnable) {
-            if (isEnable && entity.getItemStack().getType() == Material.CACTUS) {
 
-                final Plot plotAPI = new PlotAPI().getPlot(entity.getLocation());
-                if (plotAPI == null) return;
-                final OfflinePlayer player = Bukkit.getOfflinePlayer(plotAPI.getOwners().stream().findFirst().get());
+        if (!(entity.getItemStack().getType() == Material.CACTUS)) return;
 
-                if (!player.isOnline()) return;
-                if (!plotAPI.hasOwner()) return;
-                if (!plotAPI.isOwner(player.getUniqueId())) return;
+        if (isPSSupportEnable && isCactusFarmEnable) {
+            final Plot plotAPI = new PlotAPI().getPlot(entity.getLocation());
+            if (plotAPI == null) return;
+            final OfflinePlayer player = Bukkit.getOfflinePlayer(plotAPI.getOwners().stream().findFirst().get());
 
-                BaseManager.storeSpecifyItem((Player) player, Material.CACTUS, 1);
-                event.getEntity().remove();
-            }
+            if (!player.isOnline()) return;
+            if (!plotAPI.hasOwner()) return;
+            if (!plotAPI.isOwner(player.getUniqueId())) return;
+
+            bonusManager.setBonus((Player) player, Material.CACTUS, 1);
+            event.getEntity().remove();
         }
     }
 }

@@ -4,6 +4,7 @@ import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.utils.ColorUtil;
+import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -43,7 +44,6 @@ public class BaseManager {
 
         if (db.contains("armazem." + playerUUID + "." + itemTypeName)) {
             int itemAmount = db.getInt("armazem." + playerUUID + "." + itemTypeName);
-
             int retirar = Math.min(itemAmount, quantidade);
 
             ItemStack itemLimpo = new ItemStack(material, retirar);
@@ -60,15 +60,9 @@ public class BaseManager {
             } else {
                 db.set("armazem." + playerUUID + "." + itemTypeName, null);
             }
-
             Main.getInstance().saveDatabaseConfig();
-
-            if (naoAdicionados > 0) {
-                player.sendMessage("§cNem todos os itens cabem no inventário! Restantes: " + naoAdicionados);
-            }
         }
     }
-
 
     public static void sell(Player player, ItemStack itemType) {
         String playerUUID = player.getUniqueId().toString();
@@ -87,12 +81,23 @@ public class BaseManager {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
 
+        String sellItens = config.getString("Messages.sell-itens");
+        String noItensToSell = config.getString("Messages.no-itens-to-sell");
+
+        double totalValue = getTotalValue(player);
+        int getAllStored = getAllStored(player);
+
         if (db.contains("armazem." + playerUUID)) {
             db.set("armazem." + playerUUID, null);
 
+            Main.getEconomy().depositPlayer(player, totalValue);
             Main.getInstance().saveDatabaseConfig();
+
+            player.sendMessage(ColorUtil.colored(sellItens)
+                    .replace("{rendimento}", UtilClass.formatNumber(totalValue))
+                    .replace("{itens}", UtilClass.formatNumber(getAllStored)));
         } else {
-            player.sendMessage(ColorUtil.colored("&cNão há itens no seu armazém para remover."));
+            player.sendMessage(ColorUtil.colored(noItensToSell));
         }
     }
 
@@ -100,10 +105,10 @@ public class BaseManager {
     public static double getTotalValue(Player player) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
-        double totalValue = 0.0;
 
         Map<Material, Double> itemPrices = loadItemPrices();
 
+        double totalValue = 0.0;
         if (db.contains("armazem." + playerUUID)) {
             for (String itemName : db.getConfigurationSection("armazem." + playerUUID).getKeys(false)) {
                 int itemAmount = db.getInt("armazem." + playerUUID + "." + itemName);
@@ -130,8 +135,8 @@ public class BaseManager {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = Main.getInstance().getDatabaseConfig();
         String itemTypeName = itemStack.getType().name();
-        int itemAmount = 0;
 
+        int itemAmount = 0;
         if (db.contains("armazem." + playerUUID + "." + itemTypeName)) {
             itemAmount = db.getInt("armazem." + playerUUID + "." + itemTypeName);
         }
@@ -152,6 +157,39 @@ public class BaseManager {
         }
 
         return totalQuantity;
+    }
+
+    public static void store(Player player) {
+        String storeitens = config.getString("Messages.store-itens");
+        String noitenstostore = config.getString("Messages.no-itens-to-store");
+
+        List<Material> allowed = Main.getInstance().getAllowedItems();
+
+        boolean hasStoredItems = false;
+        for (Material material : allowed) {
+            int totalAmount = 0;
+
+            for (ItemStack item : player.getInventory().getContents()) {
+                if (item != null && item.getType() == material) {
+                    totalAmount += item.getAmount();
+                    player.getInventory().remove(item);
+                }
+            }
+            if (totalAmount > 0) {
+                hasStoredItems = true;
+                ItemStack storedItem = new ItemStack(material, totalAmount);
+                BaseManager.saveItem(player, storedItem);
+
+                player.sendMessage(ColorUtil.colored(storeitens)
+                        .replace("{amount}", totalAmount + "")
+                        .replace("{item}", material.name()));
+            }
+        }
+        if (!hasStoredItems) {
+            player.sendMessage(ColorUtil.colored(noitenstostore));
+            return;
+        }
+        player.closeInventory();
     }
 
     public static List<String> storedItens(Player player) {

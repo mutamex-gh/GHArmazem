@@ -5,24 +5,16 @@ import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-
-import java.util.List;
 
 public class Commands implements CommandExecutor {
 
     String nopermission = Main.getInstance().getConfig().getString("Messages.no-permission");
     String onlyplayers = Main.getInstance().getConfig().getString("Messages.only-players");
-    String sellitens = Main.getInstance().getConfig().getString("Messages.sell-itens");
-    String noitenstosell = Main.getInstance().getConfig().getString("Messages.no-itens-to-sell");
-    String noitenstostore = Main.getInstance().getConfig().getString("Messages.no-itens-to-store");
-    String storeitens = Main.getInstance().getConfig().getString("Messages.store-itens");
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String arg, String[] args) {
@@ -66,24 +58,7 @@ public class Commands implements CommandExecutor {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
-
-            int totalQuantia = BaseManager.getAllStored(player);
-            if (totalQuantia > 0) {
-                double totalRendimento = BaseManager.getTotalValue(player);
-                Main.getEconomy().depositPlayer(player, totalRendimento);
-
-                BaseManager.sellAll(player);
-
-                UtilClass.sendSound(player, Sound.LEVEL_UP);
-                player.sendMessage(ColorUtil.colored(sellitens)
-                        .replace("{rendimento}", UtilClass.formatNumber(totalRendimento))
-                        .replace("{itens}", UtilClass.formatNumber(totalQuantia)));
-
-                return true;
-            } else {
-                player.sendMessage(ColorUtil.colored(noitenstosell));
-                return true;
-            }
+            BaseManager.sellAll(player);
         }
 
         // (/armazem store)
@@ -92,34 +67,7 @@ public class Commands implements CommandExecutor {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
-
-            List<Material> allowed = Main.getInstance().getAllowedItems();
-
-            boolean hasStoredItems = false;
-            for (Material material : allowed) {
-                int totalAmount = 0;
-
-                for (ItemStack item : player.getInventory().getContents()) {
-                    if (item != null && item.getType() == material) {
-                        totalAmount += item.getAmount();
-                        player.getInventory().remove(item);
-                    }
-                }
-                if (totalAmount > 0) {
-                    hasStoredItems = true;
-                    ItemStack storedItem = new ItemStack(material, totalAmount);
-                    BaseManager.saveItem(player, storedItem);
-
-                    player.sendMessage(ColorUtil.colored(storeitens)
-                            .replace("{amount}", totalAmount + "")
-                            .replace("{item}", material.name()));
-                }
-            }
-            if (!hasStoredItems) {
-                player.sendMessage(ColorUtil.colored(noitenstostore));
-                return true;
-            }
-            player.closeInventory();
+            BaseManager.store(player);
         }
         return false;
     }

@@ -100,7 +100,7 @@ Prices:
   CACTUS: 120
 
 # Crie os itens no menu (lembre-se que, nem sempre os nomes do
-# "material" serão igual os do jogo, sempre confira se der erros.
+# "material" serão igual as do jogo, sempre confira se der erros.
 #
 # Lembre-se que o preço de venda é por item.
 items:

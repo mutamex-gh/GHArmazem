@@ -27,6 +27,9 @@ Todas as permissões do plugin abaixo:
 ![image](https://github.com/user-attachments/assets/b2276061-0510-4159-8c7b-4b15cd293463)
 ![image](https://github.com/user-attachments/assets/206a65d7-4984-4b8e-a520-d4ba42fafd37)
 ![image](https://github.com/user-attachments/assets/08b7ef7a-77c5-4848-abab-4e0f2e6a0519)
+![image](https://github.com/user-attachments/assets/32226ab5-8dfb-4bf0-87c6-5575ae107b53)
+![image](https://github.com/user-attachments/assets/3bb05982-8afa-4502-9253-58ef27b5c343)
+![image](https://github.com/user-attachments/assets/46346122-412d-4c6d-90be-9939248b8d30)
 
 
 

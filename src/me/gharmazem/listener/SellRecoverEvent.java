@@ -50,6 +50,7 @@ public class SellRecoverEvent implements Listener {
             int quantia = BaseManager.getStored(player, button.getItemStack());
             double rendimento = button.getPrice() * quantia;
 
+            // vender/recolher por inventario :(
             if (event.getClick().isLeftClick()) {
                 if(quantia > 0) {
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
@@ -65,7 +66,8 @@ public class SellRecoverEvent implements Listener {
                 }else {
                     player.sendMessage(ColorUtil.colored(noitenstosell));
                 }
-            }else if (event.getClick().isRightClick() && quantia > 0) {
+            }
+            else if (event.getClick().isRightClick() && quantia > 0) {
                 UtilClass.sendSound(player, Sound.CLICK);
                 int freeSlots = 0;
 

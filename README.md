@@ -1,12 +1,21 @@
 # GHArmazem
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1e3f3bba341b495c9ce58eae7b0b6261)](https://app.codacy.com/gh/mutamex-gh/GHArmazem/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+# Sobre o GHArmazem:
+- O GHArmazem possui suporte com o PlotSquared, então quando quebrado os itens configurados na config (dentro da plot), será armazenado automaticamente no armazem do jogador.
+- Suporte para farm de cacto -> Direto para o armazem com bonus aplicado
+- Suporte de formatação de numeros, **exemplo: <1k, 1m, 1b, 1t, 1q, 1qq, 1s, 1sp>**
 
-Dependencias e download:
+
+Atenção: 
+- Após colocar o plugin em seu servidor, dê 1 (um) reload inicialmente para carregar as sections;
+- Se o jogador estiver com /op, o bonus pode não funcionar corretamente;
+
+updates in coming..
+
+# Dependencias e download:
 - Dependencias: Vault, PlotSquared
 - Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/plugin/GHArmazem.jar)
 
-Descrição:
-- Plugin possui suporte com o PlotSquared, então quando quebrado os itens configurados na config (dentro da plot), armazena automaticamente no armazem do jogador, tendo suporte para farm de cacto tambem, armazenando diretamente no armazem do jogador.
 
 # Permissões
 Todas as permissões do plugin abaixo:

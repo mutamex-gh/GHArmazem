@@ -34,7 +34,6 @@ public class SellAllEvent implements Listener {
 
             if (clickedItem == null || clickedItem.getType() != sellAllMaterial) return false;
 
-            DecimalFormat df = new DecimalFormat("#,###,###,##0.##");
             int totalQuantia = BaseManager.getAllStored(player);
             if (totalQuantia > 0) {
                 double rendimento = BaseManager.getTotalValue(player);
@@ -43,8 +42,8 @@ public class SellAllEvent implements Listener {
                 BaseManager.sellAll(player);
 
                 player.sendMessage(ColorUtil.colored(sellItens)
-                        .replace("{rendimento}", df.format(rendimento))
-                        .replace("{itens}", String.valueOf(totalQuantia)));
+                        .replace("{rendimento}", UtilClass.formatNumber(rendimento))
+                        .replace("{itens}", UtilClass.formatNumber(totalQuantia)));
 
                 UtilClass.sendSound(player, Sound.LEVEL_UP);
             }else {

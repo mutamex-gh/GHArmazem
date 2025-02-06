@@ -2,9 +2,10 @@ package me.gharmazem;
 
 import com.google.common.base.Stopwatch;
 import lombok.val;
+import me.gharmazem.api.MetricsProvider;
 import me.gharmazem.commands.Commands;
 import me.gharmazem.configuration.registry.ConfigRegistry;
-import me.gharmazem.economy.EconomyHook;
+import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.listener.*;
 import me.gharmazem.listener.plotsquared.PSBlockBreak;
 import me.gharmazem.listener.plotsquared.PSItemSpawn;
@@ -24,6 +25,7 @@ public class Main extends JavaPlugin {
             saveDefaultConfig();
             setupDatabaseFile();
 
+            MetricsProvider.of(this).register();
             EconomyHook.register();
             ConfigRegistry.register();
             BonusManager.register();

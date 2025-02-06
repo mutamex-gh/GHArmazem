@@ -1,7 +1,7 @@
 package me.gharmazem.listener;
 
 import me.gharmazem.Main;
-import me.gharmazem.economy.EconomyHook;
+import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.inventories.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.UtilClass;

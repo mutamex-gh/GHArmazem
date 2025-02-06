@@ -1,7 +1,7 @@
 package me.gharmazem.inventories;
 
 import me.gharmazem.Main;
-import me.gharmazem.economy.EconomyHook;
+import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.ItemBuilderGB;

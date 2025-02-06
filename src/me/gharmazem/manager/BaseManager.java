@@ -3,7 +3,7 @@ package me.gharmazem.manager;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigDBase;
 import me.gharmazem.configuration.ConfigValues;
-import me.gharmazem.economy.EconomyHook;
+import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.utils.ColorUtil;

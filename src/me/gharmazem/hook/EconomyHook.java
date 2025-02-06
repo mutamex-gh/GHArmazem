@@ -1,4 +1,4 @@
-package me.gharmazem.economy;
+package me.gharmazem.hook;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;

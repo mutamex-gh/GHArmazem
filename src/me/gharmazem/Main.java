@@ -10,6 +10,7 @@ import me.gharmazem.listener.*;
 import me.gharmazem.listener.plotsquared.PSBlockBreak;
 import me.gharmazem.listener.plotsquared.PSItemSpawn;
 import me.gharmazem.manager.BonusManager;
+import me.gharmazem.manager.RewardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
@@ -26,9 +27,9 @@ public class Main extends JavaPlugin {
             setupDatabaseFile();
 
             MetricsProvider.of(this).register();
-            EconomyHook.register();
             ConfigRegistry.register();
             BonusManager.register();
+            EconomyHook.register();
 
             loadListener();
             loadCommands();

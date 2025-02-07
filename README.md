@@ -7,8 +7,10 @@
 - Suporte de recompensas ao quebrar as plantações personalizaveis com comandos
 - Suporte de formatação de numeros, **exemplo: <1k, 1m, 1b, 1t, 1q, 1qq, 1s, 1sp>**
 
+verifique as releases.
 
-Atenção: 
+
+# Atenção: 
 - Após colocar o plugin em seu servidor, dê 1 (um) reload inicialmente para carregar as sections;
 - Se o jogador estiver com /op, o bonus pode não funcionar corretamente;
 
@@ -23,7 +25,7 @@ Confira as permissões do plugin abaixo:
 | gharmazem.sellall    | /armazem sell  | vender todos os itens do armazem por comando        |
 | gharmazem.store      | /armazem store | guardar todos os itens do inventario por comando    |
 | sem permissão        | /armazem help  | apresenta todos os comandos do plugin               |
-| gharmaze.rewards     | sem comando    | permite que o jogador ganhe as recompensas se ativo |
+| gharmazem.rewards    | sem comando    | permite que o jogador ganhe as recompensas se ativo |
 
 # Dependencias e download:
 - Dependencias: Vault, PlotSquared

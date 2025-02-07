@@ -3,6 +3,8 @@
 # Sobre o GHArmazem:
 - O GHArmazem possui suporte com o PlotSquared, então quando quebrado os itens configurados na config (dentro da plot), será armazenado automaticamente no armazem do jogador.
 - Suporte para farm de cacto -> Direto para o armazem com bonus aplicado
+- Suporte de bonus personalizados com permissões para vips etc...
+- Suporte de recompensas ao quebrar as plantações personalizaveis com comandos
 - Suporte de formatação de numeros, **exemplo: <1k, 1m, 1b, 1t, 1q, 1qq, 1s, 1sp>**
 
 
@@ -15,12 +17,13 @@ updates in coming..
 # Permissões
 Confira as permissões do plugin abaixo:
 
-| Permissão            | Uso             | Descrição                                        |
-|----------------------|-----------------|--------------------------------------------------|
-| gharmazem.usecommand | /armazem        | abre o menu do armazém                           |  
-| gharmazem.sellall    | /armazem sell   | vender todos os itens do armazem por comando     |
-| gharmazem.store      | /armazem store  | guardar todos os itens do inventario por comando |
-| sem permissão        | /armazem help   | apresenta todos os comandos do plugin            |
+| Permissão            | Uso            | Descrição                                           |
+|----------------------|----------------|-----------------------------------------------------|
+| gharmazem.usecommand | /armazem       | abre o menu do armazém                              |  
+| gharmazem.sellall    | /armazem sell  | vender todos os itens do armazem por comando        |
+| gharmazem.store      | /armazem store | guardar todos os itens do inventario por comando    |
+| sem permissão        | /armazem help  | apresenta todos os comandos do plugin               |
+| gharmaze.rewards     | sem comando    | permite que o jogador ganhe as recompensas se ativo |
 
 # Dependencias e download:
 - Dependencias: Vault, PlotSquared

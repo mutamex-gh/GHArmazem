@@ -78,16 +78,30 @@ SellAllItem:
 # Se ativo, os blocos da lista "MATERIAIS" vão diretamente ao armazém ao ser quebrado
 PlotSquaredSupport:
   enable: true                    # Habilita o suporte com PlotSquared <se false todas as opções abaixo serão desativadas>
+  replant: true                   # Replanta após a plantação ser quebrada
+  enable-cactus: true             # Ativa os cactos plantados (farm) irem direto ao armazém
   tool-to-break:                  # <O jogador só pode quebrar com essas ferramentas!>
     - "DIAMOND_HOE"
     - "WOODEN_HOE"
    #- "AIR" <Permite quebrar com a mão>
-  enable-cactus: true             # Ativa os cactos plantados (farm) irem direto ao armazém
-  replant: true                   # Replanta após a plantação ser quebrada
   bonus:                          # Crie quantos quiser seguindo formato (permissão:multiplicador)
     gharmazem.default: 1.0
     gharmazem.vip: 2.0
     gharmazem.mvp: 3.0
+  rewards:                        # (NECESSITA PERMISSÃO: gharmazem.rewards)
+    enable: true                  # Ativar e desativar a opção de rewards
+    chance: 2.0                   # Chance do jogador ganhar a recompensa em poncentagem (%)
+    mode: SORTER                  # Modos: SORTER (sorteia um comando da lista) ALL_BELOW (executa todos da lista)
+    rewards-command:              # O Plugin vai sortear um dos comandos abaixo para givar a recompensa
+      - "say {player} é bonito!"
+      - "say bonus example 1"
+      - "say bonus example 2"
+    rewards-message:               # Mensagem ao ganhar a recompensa:
+      - " "
+      - "          &a&lRECOMPENSA"
+      - "&fVocê recebeu uma recompensa"
+      - "&f  por quebrar plantações!"
+      - " "
 
 Materiais:
   - WHEAT

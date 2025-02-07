@@ -1,9 +1,11 @@
 package me.gharmazem.listener.plotsquared;
 
 import com.intellectualcrafters.plot.api.PlotAPI;
+import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.manager.BonusManager;
+import me.gharmazem.manager.RewardManager;
 import me.gharmazem.manager.enums.BlockDropMapper;
 import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
@@ -24,9 +26,9 @@ public class PSBlockBreak implements Listener {
 
         PlotAPI plotAPI = new PlotAPI();
 
-        boolean isEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.enable");
-        boolean replantEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.replant");
-        List<String> toolToBreak = Main.getInstance().getConfig().getStringList("PlotSquaredSupport.tool-to-break");
+        val isEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.enable");
+        val replantEnable = Main.getInstance().getConfig().getBoolean("PlotSquaredSupport.replant");
+        val toolToBreak = Main.getInstance().getConfig().getStringList("PlotSquaredSupport.tool-to-break");
 
         if (!isEnable) return;
         if (plotAPI.getPlot(block.getLocation()) == null) return;
@@ -54,9 +56,11 @@ public class PSBlockBreak implements Listener {
                         return;
                     }
                     BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
+                    RewardManager.sendReward(player);
                     return;
                 }
                 BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
+                RewardManager.sendReward(player);
                 block.setType(Material.AIR);
             }
         }

@@ -46,14 +46,13 @@ public class InventoryEvents implements Listener {
         if(event.getInventory().getTitle().equals(armazeminvname)) {
             event.setCancelled(true);
 
+            List<Material> allowed = ConfigValues.getAllowedItems();
             ItemStack currentItem = event.getCurrentItem();
 
             if (currentItem == null || currentItem.getType() == Material.AIR) return true;
             if (event.getClickedInventory() == null) return true;
 
-            List<Material> allowed = ConfigValues.getAllowedItems();
             if (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.ARROW_DAMAGE)) {
-
                 boolean hasStoredItems = false;
                 for (Material material : allowed) {
                     int totalAmount = 0;
@@ -79,7 +78,6 @@ public class InventoryEvents implements Listener {
                 if (!hasStoredItems) {
                     player.sendMessage(ColorUtil.colored(noitenstostore));
                 }
-
                 player.closeInventory();
             }else if(event.getCurrentItem().getItemMeta() == null) return false;
         }

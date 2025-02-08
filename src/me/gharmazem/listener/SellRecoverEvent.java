@@ -19,17 +19,16 @@ import org.bukkit.inventory.ItemStack;
 
 public class SellRecoverEvent implements Listener {
 
+    FileConfiguration config = Main.getInstance().getConfig();
+    String recoveryItens = config.getString("Messages.recovery-itens");
+    String sellItens = config.getString("Messages.sell-itens");
+    String noItensToSell = config.getString("Messages.no-itens-to-sell");
+    String noItensToRecover = config.getString("Messages.no-itens-to-recover");
+    String noSpaceInventory = config.getString("Messages.no-space-inventory");
+
     @EventHandler
     public boolean sellAndRecover(InventoryClickEvent event) {
         if (event.getInventory().equals(ArmazemSection.getArmazemInventory())) {
-
-            FileConfiguration config = Main.getInstance().getConfig();
-            String itensrecuperados = config.getString("Messages.recovery-itens");
-            String sellitens = config.getString("Messages.sell-itens");
-            String noitenstosell = config.getString("Messages.no-itens-to-sell");
-            String noitenstorecover = config.getString("Messages.no-itens-to-recover");
-            String nospaceinventory = config.getString("Messages.no-space-inventory");
-
             Player player = (Player) event.getWhoClicked();
             ItemStack item = event.getCurrentItem();
 
@@ -57,12 +56,12 @@ public class SellRecoverEvent implements Listener {
 
                     player.closeInventory();
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
-                    player.sendMessage(ColorUtil.colored(sellitens)
+                    player.sendMessage(ColorUtil.colored(sellItens)
                             .replace("{rendimento}", UtilClass.formatNumber(rendimento))
                             .replace("{itens}", UtilClass.formatNumber(quantia)));
                     return true;
                 } else {
-                    player.sendMessage(ColorUtil.colored(noitenstosell));
+                    player.sendMessage(ColorUtil.colored(noItensToSell));
                 }
             } else if (event.getClick().isRightClick() && quantia > 0) {
 
@@ -77,16 +76,17 @@ public class SellRecoverEvent implements Listener {
                 int itemsToCollect = Math.min(quantia, maxItems);
                 if (maxItems > 0) {
                     BaseManager.getSpecificItem(player, itemFinal, itemsToCollect);
-                    player.closeInventory();
 
                     UtilClass.sendSound(player, Sound.CLICK);
-                    player.sendMessage(ColorUtil.colored(itensrecuperados)
+                    player.sendMessage(ColorUtil.colored(recoveryItens)
                             .replace("{itens}", String.valueOf(itemsToCollect)));
+
+                    player.closeInventory();
                 } else {
-                    player.sendMessage(ColorUtil.colored(nospaceinventory));
+                    player.sendMessage(ColorUtil.colored(noSpaceInventory));
                 }
             } else {
-                player.sendMessage(ColorUtil.colored(noitenstorecover));
+                player.sendMessage(ColorUtil.colored(noItensToRecover));
             }
 
         }

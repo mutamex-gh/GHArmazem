@@ -9,7 +9,6 @@
 
 verifique as releases.
 
-
 # Atenção: 
 - Após colocar o plugin em seu servidor, dê 1 (um) reload inicialmente para carregar as sections;
 - Se o jogador estiver com /op, o bonus pode não funcionar corretamente;
@@ -29,7 +28,7 @@ Confira as permissões do plugin abaixo:
 
 # Dependencias e download:
 - Dependencias: Vault, PlotSquared
-- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/plugin/GHArmazem.jar)
+- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/rewards/GHArmazem.jar)
 
 # Fotos
 

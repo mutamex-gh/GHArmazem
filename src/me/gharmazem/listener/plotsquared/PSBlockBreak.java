@@ -41,25 +41,23 @@ public class PSBlockBreak implements Listener {
             int dropsMultiplier = isFullyGrown ? block.getDrops().size() + UtilClass.getFortune(player) : 1;
 
             if (blockMapperType != null) {
-                if (block.getType() == Material.NETHER_WARTS) {
-                    int baseDrops = 1;
-                    dropsMultiplier = isFullyGrown ? baseDrops + UtilClass.getFortune(player) : 1;
-                }
+                if (block.getType() == Material.NETHER_WARTS) dropsMultiplier = isFullyGrown ? 1 + UtilClass.getFortune(player) : 1;
+
                 event.setCancelled(true);
 
                 if (replantEnable) {
                     block.setType(block.getType());
 
-                    if (!isFullyGrown) {
-                        return;
-                    }
+                    if (!isFullyGrown) return;
+
                     BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
                     RewardManager.sendReward(player);
-                    return;
+                }else {
+                    BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
+                    RewardManager.sendReward(player);
+
+                    block.setType(Material.AIR);
                 }
-                BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
-                RewardManager.sendReward(player);
-                block.setType(Material.AIR);
             }
         }
     }

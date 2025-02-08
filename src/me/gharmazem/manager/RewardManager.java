@@ -1,6 +1,5 @@
 package me.gharmazem.manager;
 
-import lombok.Getter;
 import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.manager.enums.RewardsMode;
@@ -20,12 +19,14 @@ public class RewardManager {
         val possibleRewards = config.getStringList("PlotSquaredSupport.rewards.rewards-command");
         val rewardsMessage = config.getStringList("PlotSquaredSupport.rewards.rewards-message");
         val rewardsEnable = config.getBoolean("PlotSquaredSupport.rewards.enable");
+        val psEnable = config.getBoolean("PlotSquaredSupport.enable");
         val chance = config.getDouble("PlotSquaredSupport.rewards.chance");
         val mode = RewardsMode.fromString(config.getString("PlotSquaredSupport.rewards.mode", "SORTER"));
 
+        if (!psEnable && !rewardsEnable) return;
         if (possibleRewards.isEmpty()) return;
 
-        if (player.hasPermission("gharmazem.rewards") && rewardsEnable) {
+        if (player.hasPermission("gharmazem.rewards")) {
             val random = new Random();
             val randomValue = random.nextDouble() * 100;
 
@@ -35,12 +36,20 @@ public class RewardManager {
                         case SORTER:
                             val rewardCommand = possibleRewards.get(random.nextInt(possibleRewards.size()));
 
-                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), rewardCommand.replace("{player}", player.getName()));
+                            Bukkit.dispatchCommand(
+                                    Bukkit.getConsoleSender(),
+                                    rewardCommand
+                                            .replace("{player}", player.getName())
+                            );
                             break;
 
                         case ALL_BELOW:
                             for (val command : possibleRewards) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("{player}", player.getName()));
+                                Bukkit.dispatchCommand(
+                                        Bukkit.getConsoleSender(),
+                                        command
+                                                .replace("{player}", player.getName())
+                                );
                             }
                             break;
                     }

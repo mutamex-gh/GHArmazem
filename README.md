@@ -28,7 +28,7 @@ Confira as permissões do plugin abaixo:
 
 # Dependencias e download:
 - Dependencias: Vault, PlotSquared
-- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/rewards/GHArmazem.jar)
+- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/store-plugin/GHArmazem.jar)
 
 # Fotos
 

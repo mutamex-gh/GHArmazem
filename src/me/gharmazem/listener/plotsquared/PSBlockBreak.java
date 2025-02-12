@@ -5,7 +5,7 @@ import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.manager.BonusManager;
-import me.gharmazem.manager.RewardManager;
+import me.gharmazem.manager.RewardsManager;
 import me.gharmazem.manager.enums.BlockDropMapper;
 import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
@@ -51,10 +51,10 @@ public class PSBlockBreak implements Listener {
                     if (!isFullyGrown) return;
 
                     BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
-                    RewardManager.sendReward(player);
+                    RewardsManager.sendReward(player);
                 }else {
                     BonusManager.setBonus(player, blockMapperType, dropsMultiplier);
-                    RewardManager.sendReward(player);
+                    RewardsManager.sendReward(player);
 
                     block.setType(Material.AIR);
                 }

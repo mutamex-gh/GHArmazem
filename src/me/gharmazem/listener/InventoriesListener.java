@@ -3,7 +3,7 @@ package me.gharmazem.listener;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.inventories.ArmazemItens;
-import me.gharmazem.inventories.ArmazemSection;
+import me.gharmazem.parser.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-public class InventoryEvents implements Listener {
+public class InventoriesListener implements Listener {
 
     @EventHandler
     public boolean onClick(InventoryClickEvent event) {

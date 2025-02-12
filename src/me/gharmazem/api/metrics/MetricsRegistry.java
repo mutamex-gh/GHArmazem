@@ -1,4 +1,4 @@
-package me.gharmazem.api;
+package me.gharmazem.api.metrics;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

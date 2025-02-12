@@ -2,7 +2,7 @@ package me.gharmazem;
 
 import com.google.common.base.Stopwatch;
 import lombok.val;
-import me.gharmazem.api.MetricsProvider;
+import me.gharmazem.api.metrics.MetricsProvider;
 import me.gharmazem.commands.Commands;
 import me.gharmazem.configuration.registry.ConfigRegistry;
 import me.gharmazem.hook.EconomyHook;
@@ -10,7 +10,6 @@ import me.gharmazem.listener.*;
 import me.gharmazem.listener.plotsquared.PSBlockBreak;
 import me.gharmazem.listener.plotsquared.PSItemSpawn;
 import me.gharmazem.manager.BonusManager;
-import me.gharmazem.manager.RewardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
@@ -46,9 +45,9 @@ public class Main extends JavaPlugin {
     }
 
     public void loadListener() {
-        Bukkit.getPluginManager().registerEvents(new InventoryEvents(), Main.this);
-        Bukkit.getPluginManager().registerEvents(new SellRecoverEvent(), Main.this);
-        Bukkit.getPluginManager().registerEvents(new SellAllEvent(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new InventoriesListener(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new SellRecoverListener(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new SellAllListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new PSBlockBreak(), Main.this);
         Bukkit.getPluginManager().registerEvents(new PSItemSpawn(), Main.this);
     }

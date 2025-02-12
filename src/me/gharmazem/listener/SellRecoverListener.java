@@ -2,11 +2,11 @@ package me.gharmazem.listener;
 
 import me.gharmazem.Main;
 import me.gharmazem.hook.EconomyHook;
-import me.gharmazem.inventories.ArmazemSection;
+import me.gharmazem.parser.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.UtilClass;
 import me.gharmazem.utils.ColorUtil;
-import me.gharmazem.manager.InventoryButton;
+import me.gharmazem.api.InventoryButton;
 import me.gharmazem.utils.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -17,7 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class SellRecoverEvent implements Listener {
+public class SellRecoverListener implements Listener {
 
     FileConfiguration config = Main.getInstance().getConfig();
     String recoveryItens = config.getString("Messages.recovery-itens");
@@ -45,7 +45,7 @@ public class SellRecoverEvent implements Listener {
 
             ItemStack itemFinal = new ItemStack(material, quantity);
 
-            int quantia = BaseManager.getStored(player, button.getItemStack());
+            int quantia = BaseManager.getSpecificStored(player, button.getItemStack());
             double rendimento = button.getPrice() * quantia;
 
             // vender/recolher por inventario :(

@@ -1,4 +1,4 @@
-package me.gharmazem.api;
+package me.gharmazem.api.metrics;
 
 import lombok.Data;
 import me.gharmazem.Main;

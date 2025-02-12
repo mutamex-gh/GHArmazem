@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Random;
 
-public class RewardManager {
+public class RewardsManager {
 
     public static void sendReward(Player player) {
         val config = Main.getInstance().getConfig();

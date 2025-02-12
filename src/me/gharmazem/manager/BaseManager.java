@@ -6,6 +6,7 @@ import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.inventories.ArmazemItens;
+import me.gharmazem.parser.ArmazemSection;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
@@ -165,6 +166,22 @@ public class BaseManager {
         return totalValue;
     }
 
+    public static double getSpecificValue(Player player, ItemStack itemStack) {
+        String playerUUID = player.getUniqueId().toString();
+        FileConfiguration db = ConfigDBase.getDatabaseConfig();
+        Material material = itemStack.getType();
+
+        if (db.contains("armazem." + playerUUID + "." + material.name())) {
+            int itemAmount = db.getInt("armazem." + playerUUID + "." + material.name());
+            Double itemPrice = ConfigValues.loadItemPrices().get(material);
+
+            if (itemPrice != null) {
+                return itemPrice * itemAmount;
+            }
+        }
+        return 0.0;
+    }
+
     public static void getSpecificItem(Player player, ItemStack itemType, int quantidade) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = ConfigDBase.getDatabaseConfig();
@@ -194,16 +211,15 @@ public class BaseManager {
         }
     }
 
-    public static int getStored(Player player, ItemStack itemStack) {
+    public static int getSpecificStored(Player player, ItemStack itemStack) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = ConfigDBase.getDatabaseConfig();
         String itemTypeName = itemStack.getType().name();
 
-        int itemAmount = 0;
         if (db.contains("armazem." + playerUUID + "." + itemTypeName)) {
-            itemAmount = db.getInt("armazem." + playerUUID + "." + itemTypeName);
+            return db.getInt("armazem." + playerUUID + "." + itemTypeName);
         }
-        return itemAmount;
+        return 0;
     }
 
     public static int getAllStored(Player player) {
@@ -224,12 +240,12 @@ public class BaseManager {
     public static void openStorage(Player player) {
         int slot = config.getInt("StorageItem.slot");
 
-        Inventory armazem = ArmazemInventory.getInventory();
-        ItemStack item = ArmazemItens.armazemItem();
+        ArmazemSection.updateLore(player);
+
         ArmazemItens.pessoalArmazemInfoItem(player);
         ArmazemItens.sellAllItem();
 
-        armazem.setItem(slot, item);
-        player.openInventory(armazem);
+        ArmazemInventory.getInventory().setItem(slot, ArmazemItens.armazemItem());
+        player.openInventory(ArmazemInventory.getInventory());
     }
 }

@@ -117,6 +117,11 @@ Prices:
 # "material" serão igual as do jogo, sempre confira se der erros.
 #
 # Lembre-se que o preço de venda é por item.
+#
+# Variaveis
+#     {allstored} - Retorna todos os itens armazenados do jogador
+#     {allvalue} - Retorna o preço total desses itens armazenados
+#     {player} - Retorna o player (não sei por que você usaria isso kk)
 items:
   trigo:
     material: WHEAT
@@ -127,9 +132,12 @@ items:
       - "  &fAqui você pode vender ou"
       - "  &frecolher os itens!"
       - ""
-      - "&7Vender por &250 Coins &7cada"
+      - "&fArmazenados: &e{allstored} Itens"
       - ""
-      - "&7Botão esquerdo: &aVender"
+      - "&7Vender por &a{allvalue} &2Coins"
+      - "&7Preço unitario &a50 &2Coins"
+      - ""
+      - "&7Botão esquerdo: &2Vender"
       - "&7Botão direito: &eRecolher"
       - ""
     price: 50
@@ -144,9 +152,12 @@ items:
       - "  &fAqui você pode vender ou"
       - "  &frecolher os itens!"
       - ""
-      - "&7Vender por &270 Coins &7cada"
+      - "&fArmazenados: &e{allstored} Itens"
       - ""
-      - "&7Botão esquerdo: &aVender"
+      - "&7Vender por &a{allvalue} &2Coins"
+      - "&7Preço unitario &a70 &2Coins"
+      - ""
+      - "&7Botão esquerdo: &2Vender"
       - "&7Botão direito: &eRecolher"
       - ""
     price: 70
@@ -161,9 +172,12 @@ items:
       - "  &fAqui você pode vender ou"
       - "  &frecolher os itens!"
       - ""
-      - "&7Vender por &2120 Coins &7cada"
+      - "&fArmazenados: &e{allstored} Itens"
       - ""
-      - "&7Botão esquerdo: &aVender"
+      - "&7Vender por &a{allvalue} &2Coins"
+      - "&7Preço unitario &a120 &2Coins"
+      - ""
+      - "&7Botão esquerdo: &2Vender"
       - "&7Botão direito: &eRecolher"
       - ""
     price: 120

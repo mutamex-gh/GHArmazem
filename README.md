@@ -7,21 +7,23 @@
 - Suporte de rewards ao quebrar as plantações personalizaveis com comandos;
 - Suporte de formatação de numeros, **exemplo: <1k, 1m, 1b, 1t, 1q, 1qq, 1s, 1sp>**;
 
-verifique as releases.
+Verifique as Releases.
 
-# Atenção: 
+**Atenção:**
 - Se o jogador estiver com /op, o bonus pode não funcionar corretamente;
 
 # Permissões
 Confira as permissões do plugin abaixo:
 
-| Permissão            | Uso            | Descrição                                           |
-|----------------------|----------------|-----------------------------------------------------|
-| gharmazem.usecommand | /armazem       | abre o menu do armazém                              |  
-| gharmazem.sellall    | /armazem sell  | vender todos os itens do armazem por comando        |
-| gharmazem.store      | /armazem store | guardar todos os itens do inventario por comando    |
-| sem permissão        | /armazem help  | apresenta todos os comandos do plugin               |
-| gharmazem.rewards    | sem comando    | permite que o jogador ganhe as recompensas se ativo |
+| Permissão         | Uso              | Descrição                                             |
+|:------------------|:-----------------|-------------------------------------------------------|
+| gharmazem.use     | /armazem         | acessar o menu do armazém                             |  
+| gharmazem.sellall | /armazem vender  | vender todos os itens do armazem por comando          |
+| gharmazem.store   | /armazem guardar | guardar todos os itens do inventario por comando      |
+| sem permissão     | /armazem ajuda   | apresenta todos os comandos do plugin                 |
+| gharmazem.rewards | sem comando      | permite que o jogador ganhe as recompensas (se ativo) |
+
+Verifique as aliases dos comandos na Release - Version 1.4.4
 
 # Dependencias e download:
 - Dependencias: Vault, PlotSquared
@@ -37,8 +39,9 @@ Confira as permissões do plugin abaixo:
 ![image](https://github.com/user-attachments/assets/29ad2992-e284-4361-85e6-54499b42d105)
 ![image](https://github.com/user-attachments/assets/ead62e6d-bbc3-4c56-b557-84d64b49454d)
 ![image](https://github.com/user-attachments/assets/b2276061-0510-4159-8c7b-4b15cd293463)
-![image](https://github.com/user-attachments/assets/206a65d7-4984-4b8e-a520-d4ba42fafd37)
+![image](https://github.com/user-attachments/assets/db483411-ac25-4619-901d-b0e03fa9c646)
 ![image](https://github.com/user-attachments/assets/46346122-412d-4c6d-90be-9939248b8d30)
+![image](https://github.com/user-attachments/assets/851d93f5-e136-49eb-b295-b2bea0d3ee59)
 
 
 

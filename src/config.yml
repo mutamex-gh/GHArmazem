@@ -81,7 +81,7 @@ PlotSquaredSupport:
   enable-cactus: true             # Ativa os cactos plantados (farm) irem direto ao armazém
   tool-to-break:                  # <O jogador só pode quebrar com essas ferramentas!>
     - "DIAMOND_HOE"
-    - "WOODEN_HOE"
+    - "IRON_HOE"
    #- "AIR" <Permite quebrar com a mão>
   bonus:                          # Crie quantos quiser seguindo formato (permissão:multiplicador)
     gharmazem.default: 1.0

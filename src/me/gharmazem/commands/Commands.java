@@ -1,7 +1,6 @@
 package me.gharmazem.commands;
 
 import me.gharmazem.Main;
-import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
@@ -27,7 +26,7 @@ public class Commands implements CommandExecutor {
 
         // (/armazem)
         if (args.length == 0 && cmd.getName().equalsIgnoreCase("armazem")) {
-            if (!sender.hasPermission("gharmazem.usecommand")) {
+            if (!sender.hasPermission("gharmazem.use")) {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
             }
@@ -40,17 +39,17 @@ public class Commands implements CommandExecutor {
         String subCommand = args[0];
 
         // (/armazem help)
-        if (subCommand.equalsIgnoreCase("help")) {
+        if (subCommand.equalsIgnoreCase("help") || subCommand.equalsIgnoreCase("ajuda")) {
             player.sendMessage(ColorUtil.colored("&4Comandos Armazém:"));
             player.sendMessage(ColorUtil.colored("  &f/armazem &f> &7Abrir armazém"));
-            player.sendMessage(ColorUtil.colored("  &f/armazem help &f> &7Comandos para jogador"));
-            player.sendMessage(ColorUtil.colored("  &f/armazem sell &f> &7Venda todos os itens de seu armazem"));
-            player.sendMessage(ColorUtil.colored("  &f/armazem store &f> &7Armazene todos os itens de seu inventário"));
+            player.sendMessage(ColorUtil.colored("  &f/armazem ajuda &f> &7Comandos para jogador"));
+            player.sendMessage(ColorUtil.colored("  &f/armazem vender &f> &7Venda todos os itens de seu armazem"));
+            player.sendMessage(ColorUtil.colored("  &f/armazem guardar &f> &7Armazene todos os itens de seu inventário"));
             return true;
         }
 
         // (/armazem sell)
-        if (subCommand.equalsIgnoreCase("sell")) {
+        if (subCommand.equalsIgnoreCase("sell") || subCommand.equalsIgnoreCase("vender")) {
             if (!sender.hasPermission("gharmazem.sellall")) {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;
@@ -59,7 +58,7 @@ public class Commands implements CommandExecutor {
         }
 
         // (/armazem store)
-        if (subCommand.equalsIgnoreCase("store")) {
+        if (subCommand.equalsIgnoreCase("store") || subCommand.equalsIgnoreCase("guardar")) {
             if (!sender.hasPermission("gharmazem.store")) {
                 player.sendMessage(ColorUtil.colored(nopermission));
                 return true;

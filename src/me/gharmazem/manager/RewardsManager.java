@@ -21,7 +21,7 @@ public class RewardsManager {
         val rewardsEnable = config.getBoolean("PlotSquaredSupport.rewards.enable");
         val psEnable = config.getBoolean("PlotSquaredSupport.enable");
         val chance = config.getDouble("PlotSquaredSupport.rewards.chance");
-        val mode = RewardsMode.fromString(config.getString("PlotSquaredSupport.rewards.mode", "SORTER"));
+        val mode = RewardsMode.mode(config.getString("PlotSquaredSupport.rewards.mode", "SORTER"));
 
         if (!psEnable && !rewardsEnable) return;
         if (possibleRewards.isEmpty()) return;

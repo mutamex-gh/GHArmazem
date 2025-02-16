@@ -133,7 +133,11 @@ public class BaseManager {
         if (db.contains("armazem." + playerUUID)) {
             db.getConfigurationSection("armazem." + playerUUID).getKeys(false).forEach(itemType -> {
                 int itemAmount = db.getInt("armazem." + playerUUID + "." + itemType);
-                itensArmazenados.add(ColorUtil.colored(itemType + " " + itemAmount));
+                itensArmazenados.add(
+                        ColorUtil.colored(
+                                          " &f" + DropsNameManager.getName(Material.valueOf(itemType))
+                                        + " " +
+                                          " &e" + UtilClass.formatNumber(itemAmount)));
             });
         } else {
             itensArmazenados.add(ColorUtil.colored(noItens));

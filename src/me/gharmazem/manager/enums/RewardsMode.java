@@ -5,7 +5,7 @@ public enum RewardsMode {
     SORTER,
     ALL_BELOW;
 
-    public static RewardsMode fromString(String mode) {
+    public static RewardsMode mode(String mode) {
         try {
             return RewardsMode.valueOf(mode.toUpperCase());
         } catch (IllegalArgumentException e) {

@@ -12,7 +12,6 @@ import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class BaseManager {
 
                 player.sendMessage(ColorUtil.colored(storeitens)
                         .replace("{amount}", totalAmount + "")
-                        .replace("{item}", material.name()));
+                        .replace("{item}", DropsNameManager.getName(material)));
             }
         }
         if (!hasStoredItems) {
@@ -100,8 +99,8 @@ public class BaseManager {
             ConfigDBase.saveDatabaseConfig();
 
             player.sendMessage(ColorUtil.colored(sellItens)
-                    .replace("{rendimento}", UtilClass.formatNumber(totalValue))
-                    .replace("{itens}", UtilClass.formatNumber(getAllStored)));
+                    .replace("{coins}", UtilClass.formatNumber(totalValue))
+                    .replace("{amount}", UtilClass.formatNumber(getAllStored)));
         } else {
             player.sendMessage(ColorUtil.colored(noItensToSell));
         }
@@ -125,7 +124,7 @@ public class BaseManager {
     public static List<String> storedItens(Player player) {
         FileConfiguration config = Main.getInstance().getConfig();
 
-        String noitens = config.getString("Messages.no-itens-stored");
+        String noItens = config.getString("Messages.no-itens-stored");
 
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = ConfigDBase.getDatabaseConfig();
@@ -137,7 +136,7 @@ public class BaseManager {
                 itensArmazenados.add(ColorUtil.colored(itemType + " " + itemAmount));
             });
         } else {
-            itensArmazenados.add(ColorUtil.colored(noitens));
+            itensArmazenados.add(ColorUtil.colored(noItens));
         }
         return itensArmazenados;
     }

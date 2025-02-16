@@ -2,7 +2,6 @@ package me.gharmazem.utils;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.material.Crops;
@@ -22,9 +21,16 @@ public class UtilClass {
 
     public static int getFortune(Player p) {
         if (p.getItemInHand().containsEnchantment(Enchantment.LOOT_BONUS_BLOCKS)) {
-            return rand.nextInt(p.getItemInHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS)) + 1;
+            return rand.nextInt(p.getItemInHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS));
         }
-        return 1;
+        return 0;
+    }
+
+    public static int itemFortune(Player p) {
+        if (p.getItemInHand().containsEnchantment(Enchantment.LOOT_BONUS_BLOCKS)) {
+            return p.getItemInHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+        }
+        return 0;
     }
 
     public static boolean isFullyGrown(Block block) {
@@ -41,6 +47,16 @@ public class UtilClass {
             return netherWarts.getState() == NetherWartsState.RIPE;
         }
 
+        if (type == Material.MELON_BLOCK) {
+            block.setType(Material.AIR);
+            return true;
+        }
+
+        if (type == Material.SUGAR_CANE_BLOCK) {
+            block.setType(Material.AIR);
+            return true;
+        }
+
         if (type == Material.POTATO || type == Material.CARROT) {
             return data.getData() == 7; // estagio maximo de crescimento
         }
@@ -50,7 +66,7 @@ public class UtilClass {
 
     public static String formatNumber(double number) {
         if (number < 1000) {
-            return String.valueOf(number);
+            return String.valueOf((int)number);
         }
 
         String[] suffixes = {"", "k", "m", "b", "t", "q", "qq", "s", "sp"};

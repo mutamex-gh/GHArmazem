@@ -3,6 +3,7 @@ package me.gharmazem.listener;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.inventories.ArmazemItens;
+import me.gharmazem.manager.DropsNameManager;
 import me.gharmazem.parser.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
 import me.gharmazem.utils.ColorUtil;
@@ -72,7 +73,7 @@ public class InventoriesListener implements Listener {
                         UtilClass.sendSound(player, Sound.LEVEL_UP);
                         player.sendMessage(ColorUtil.colored(storeitens)
                                 .replace("{amount}", UtilClass.formatNumber(totalAmount))
-                                .replace("{item}", material.name()));
+                                .replace("{item}", DropsNameManager.getName(material)));
                     }
                 }
                 if (!hasStoredItems) {

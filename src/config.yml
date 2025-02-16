@@ -1,6 +1,6 @@
 ##############################################
 #                GHArmazem                   #
-#              version: 1.4.2                #
+#              version: 1.4.4                #
 ##############################################
 #
 # github.com/mutamex-gh/
@@ -17,10 +17,10 @@ Messages:
   no-itens-to-recover: "&cVocê não tem itens para recolher!"
   no-itens-to-store: "&cVocê não tem itens válidos para armazenar!"
   no-space-inventory: "&cVocê não tem espaço no inventario para recolher os drops!"
-  actionbar-store: "&aForam armazenados {quantia} item(s)!"
+  actionbar-store: "&a{amount} {dropname} &f({multiplier}x) &e(Fortuna: &f{fortune}&e)"
   store-itens: "&aForam armazenados {amount} {item} em seu armazém!"
-  recovery-itens: "&aVocê recolheu {itens} itens do seu armazém!"
-  sell-itens: "&aVocê vendeu {itens} itens por {rendimento} coins!"
+  recovery-itens: "&aVocê recolheu {amount} itens do seu armazém!"
+  sell-itens: "&aVocê vendeu {amount} itens por {coins} coins!"
 
 Inventory:
   inventory-name: "Seu armazém pessoal"
@@ -33,7 +33,6 @@ StorageInventory:
 ##############################################
 #                   ITENS                    #
 ##############################################
-
 PessoalArmazemItem:
   title: "&a{player}"
   slot: 11
@@ -103,10 +102,15 @@ PlotSquaredSupport:
       - "&f  por quebrar plantações!"
       - " "
 
+# Todos os drops disponiveis:
 Materiais:
   - WHEAT
   - NETHER_WARTS
   - CACTUS
+  #- MELON_BLOCK
+  #- SUGAR_CANE_BLOCK
+  #- POTATO
+  #- CARROT
 
 Prices:
   WHEAT: 50

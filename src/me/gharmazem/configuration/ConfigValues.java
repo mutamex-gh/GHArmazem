@@ -52,5 +52,4 @@ public class ConfigValues {
         }
         return itemPrices;
     }
-
 }

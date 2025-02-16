@@ -11,6 +11,7 @@ import org.bukkit.Material;
  *      no mesmo itens usado em inventario
  */
 
+@Getter
 public enum BlockDropMapper {
 
           //IN-GAME       //IN-CONFIG
@@ -22,8 +23,8 @@ public enum BlockDropMapper {
     POTATO(Material.POTATO, Material.POTATO_ITEM),
     MELON(Material.MELON_BLOCK, Material.MELON); // retorna melancia
 
-    @Getter private final Material blockType;
-    @Getter private final Material dropType;
+    private final Material blockType;
+    private final Material dropType;
 
     BlockDropMapper(Material blockType, Material dropType) {
         this.blockType = blockType;

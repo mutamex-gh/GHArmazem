@@ -57,8 +57,8 @@ public class SellRecoverListener implements Listener {
                     player.closeInventory();
                     UtilClass.sendSound(player, Sound.LEVEL_UP);
                     player.sendMessage(ColorUtil.colored(sellItens)
-                            .replace("{rendimento}", UtilClass.formatNumber(rendimento))
-                            .replace("{itens}", UtilClass.formatNumber(quantia)));
+                            .replace("{coins}", UtilClass.formatNumber(rendimento))
+                            .replace("{amount}", UtilClass.formatNumber(quantia)));
                     return true;
                 } else {
                     player.sendMessage(ColorUtil.colored(noItensToSell));
@@ -79,7 +79,7 @@ public class SellRecoverListener implements Listener {
 
                     UtilClass.sendSound(player, Sound.CLICK);
                     player.sendMessage(ColorUtil.colored(recoveryItens)
-                            .replace("{itens}", String.valueOf(itemsToCollect)));
+                            .replace("{amount}", UtilClass.formatNumber(itemsToCollect)));
 
                     player.closeInventory();
                 } else {

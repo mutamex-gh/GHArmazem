@@ -34,7 +34,10 @@ public class BonusManager {
                 ActionBarUtils.sendActionBar(
                         player,
                         ColorUtil.colored(actionBarStore)
-                                .replace("{quantia}", UtilClass.formatNumber(nowQuantity))
+                                .replace("{amount}", UtilClass.formatNumber(nowQuantity))
+                                .replace("{dropname}", DropsNameManager.getName(material) != null ? DropsNameManager.getName(material) : "Melancia")
+                                .replace("{fortune}", String.valueOf(UtilClass.itemFortune(player)))
+                                .replace("{multiplier}", String.valueOf(bonus))
                 );
             }
         }

@@ -8,6 +8,7 @@ import me.gharmazem.configuration.registry.ConfigRegistry;
 import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.listener.*;
 import me.gharmazem.listener.plotsquared.PSBlockBreak;
+import me.gharmazem.listener.plotsquared.PSCaneBreak;
 import me.gharmazem.listener.plotsquared.PSItemSpawn;
 import me.gharmazem.manager.BonusManager;
 import org.bukkit.Bukkit;
@@ -50,6 +51,7 @@ public class Main extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SellAllListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new PSBlockBreak(), Main.this);
         Bukkit.getPluginManager().registerEvents(new PSItemSpawn(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new PSCaneBreak(), Main.this);
     }
 
     public void loadCommands() {

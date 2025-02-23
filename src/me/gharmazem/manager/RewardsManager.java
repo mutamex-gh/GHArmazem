@@ -38,8 +38,7 @@ public class RewardsManager {
 
                             Bukkit.dispatchCommand(
                                     Bukkit.getConsoleSender(),
-                                    rewardCommand
-                                            .replace("{player}", player.getName())
+                                    rewardCommand.replace("{player}", player.getName())
                             );
                             break;
 
@@ -47,8 +46,7 @@ public class RewardsManager {
                             for (val command : possibleRewards) {
                                 Bukkit.dispatchCommand(
                                         Bukkit.getConsoleSender(),
-                                        command
-                                                .replace("{player}", player.getName())
+                                        command.replace("{player}", player.getName())
                                 );
                             }
                             break;

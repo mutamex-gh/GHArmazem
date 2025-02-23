@@ -28,7 +28,7 @@ Inventory:
 
 StorageInventory:
   inventory-name: "Baú do armazém"
-  inventory-size: 27
+  inventory-size: 45
 
 ##############################################
 #                   ITENS                    #
@@ -102,30 +102,40 @@ PlotSquaredSupport:
       - "&f  por quebrar plantações!"
       - " "
 
-# Todos os drops disponiveis:
+# Foram deixado todos as plantações possiveis a baixo, se quiser remover
+# basta ir tirando os que nao quer da seção "Materiais", "Prices" e "items"
 Materiais:
   - WHEAT
   - NETHER_WARTS
   - CACTUS
-  #- MELON_BLOCK
-  #- SUGAR_CANE_BLOCK
-  #- POTATO
-  #- CARROT
+  - MELON_BLOCK
+  - SUGAR_CANE_BLOCK
+  - POTATO
+  - CARROT
 
 Prices:
   WHEAT: 50
   NETHER_WARTS: 70
   CACTUS: 120
+  MELON_BLOCK: 500
+  SUGAR_CANE_BLOCK: 500
+  POTATO: 500
+  CARROT: 500
 
-# Crie os itens no menu (lembre-se que, nem sempre os nomes do
-# "material" serão igual as do jogo, sempre confira se der erros.
-#
-# Lembre-se que o preço de venda é por item.
-#
 # Variaveis
 #     {allstored} - Retorna todos os itens armazenados do jogador
 #     {allvalue} - Retorna o preço total desses itens armazenados
-#     {player} - Retorna o player (não sei por que você usaria isso kk)
+#     {player} - Retorna o player (caso precise para algo)
+
+# Itens para colocar em "material:" para vincular da maneira certa
+#
+# WHEAT: Trigo
+# NETHER_STALK: Nether Wart
+# CACTUS: Cactos
+# MELON: Melancia
+# SUGAR_CANE: Cana de açucar
+# POTATO_ITEM: Batata
+# CARROT_ITEM: Cenoura
 items:
   trigo:
     material: WHEAT
@@ -186,3 +196,83 @@ items:
       - ""
     price: 120
     slot: 16
+
+  potato:
+    material: POTATO_ITEM
+    name: "&ePotato"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&fArmazenados: &e{allstored} Itens"
+      - ""
+      - "&7Vender por &a{allvalue} &2Coins"
+      - "&7Preço unitario &a500 &2Coins"
+      - ""
+      - "&7Botão esquerdo: &2Vender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 500
+    slot: 23
+
+  carrot:
+    material: CARROT_ITEM
+    name: "&6Carrot"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&fArmazenados: &e{allstored} Itens"
+      - ""
+      - "&7Vender por &a{allvalue} &2Coins"
+      - "&7Preço unitario &a500 &2Coins"
+      - ""
+      - "&7Botão esquerdo: &2Vender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 500
+    slot: 24
+
+  melancia:
+    material: MELON
+    name: "&cMelancia"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&fArmazenados: &e{allstored} Itens"
+      - ""
+      - "&7Vender por &a{allvalue} &2Coins"
+      - "&7Preço unitario &a500 &2Coins"
+      - ""
+      - "&7Botão esquerdo: &2Vender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 500
+    slot: 25
+
+  cana:
+    material: SUGAR_CANE
+    name: "&aCana de açucar"
+    lore:
+      - "&7Gerencie seu armazem"
+      - ""
+      - "  &fAqui você pode vender ou"
+      - "  &frecolher os itens!"
+      - ""
+      - "&fArmazenados: &e{allstored} Itens"
+      - ""
+      - "&7Vender por &a{allvalue} &2Coins"
+      - "&7Preço unitario &a500 &2Coins"
+      - ""
+      - "&7Botão esquerdo: &2Vender"
+      - "&7Botão direito: &eRecolher"
+      - ""
+    price: 500
+    slot: 32

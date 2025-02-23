@@ -2,6 +2,7 @@ package me.gharmazem.utils;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.material.Crops;
@@ -47,13 +48,7 @@ public class UtilClass {
             return netherWarts.getState() == NetherWartsState.RIPE;
         }
 
-        if (type == Material.MELON_BLOCK) {
-            block.setType(Material.AIR);
-            return true;
-        }
-
-        if (type == Material.SUGAR_CANE_BLOCK) {
-            block.setType(Material.AIR);
+        if (type == Material.MELON_BLOCK || type == Material.SUGAR_CANE_BLOCK) {
             return true;
         }
 

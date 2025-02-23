@@ -11,7 +11,9 @@ public class DropsNameManager {
     static {
         blockNames.put(Material.NETHER_STALK, "Fungo(s) do nether");
         blockNames.put(Material.SUGAR_CANE_BLOCK, "Cana(s) de açúcar");
+        blockNames.put(Material.SUGAR_CANE, "Cana(s) de açúcar");
         blockNames.put(Material.MELON_BLOCK, "Melancia(s)");
+        blockNames.put(Material.MELON, "Melancia(s)");
         blockNames.put(Material.CARROT_ITEM, "Cenoura(s)");
         blockNames.put(Material.POTATO_ITEM, "Batata(s)");
         blockNames.put(Material.WHEAT, "Trigo(s)");
@@ -19,6 +21,6 @@ public class DropsNameManager {
     }
 
     public static String getName(Material material) {
-        return blockNames.getOrDefault(material, null);
+        return blockNames.getOrDefault(material, material.name());
     }
 }

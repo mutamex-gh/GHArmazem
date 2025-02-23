@@ -29,9 +29,10 @@ public class PSBlockBreak implements Listener {
         val toolToBreak = Main.getInstance().getConfig().getStringList("PlotSquaredSupport.tool-to-break");
 
         if (!isEnable) return;
+        if (block.getType() == Material.CACTUS) event.setCancelled(true);
+        if (block.getType() == Material.SUGAR_CANE_BLOCK) return;
         if (plotAPI.getPlot(block.getLocation()) == null) return;
         if (!plotAPI.getPlot(block.getLocation()).isOwner(player.getUniqueId())) return;
-        if (block.getType() == Material.CACTUS) event.setCancelled(true);
 
         if (toolToBreak.contains(player.getItemInHand().getType().name()) &&
                 ConfigValues.getAllowedItems().contains(block.getType())) {
@@ -42,10 +43,11 @@ public class PSBlockBreak implements Listener {
 
             if (blockMapperType != null) {
                 if (block.getType() == Material.NETHER_WARTS) dropsMultiplier = isFullyGrown ? 1 + UtilClass.getFortune(player) : 1;
+                if (block.getType() == Material.MELON_BLOCK) dropsMultiplier = isFullyGrown ? 6 + UtilClass.getFortune(player) : 6;
 
                 event.setCancelled(true);
 
-                if (replantEnable) {
+                if (replantEnable && block.getType() != Material.MELON_BLOCK) {
                     block.setType(block.getType());
 
                     if (!isFullyGrown) return;

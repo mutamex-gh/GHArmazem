@@ -27,7 +27,7 @@ Verifique as aliases dos comandos na Release - Version 1.4.4
 
 # Dependencias e download:
 - Dependencias: Vault, PlotSquared
-- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/GHArmazem/GHArmazem.jar)
+- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/storage-plugin/GHArmazem.jar)
 
 # Fotos
 

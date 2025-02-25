@@ -15,13 +15,14 @@ Verifique as Releases.
 # Permissões
 Confira as permissões do plugin abaixo:
 
-| Permissão         | Uso              | Descrição                                             |
-|:------------------|:-----------------|-------------------------------------------------------|
-| gharmazem.use     | /armazem         | acessar o menu do armazém                             |  
-| gharmazem.sellall | /armazem vender  | vender todos os itens do armazem por comando          |
-| gharmazem.store   | /armazem guardar | guardar todos os itens do inventario por comando      |
-| sem permissão     | /armazem ajuda   | apresenta todos os comandos do plugin                 |
-| gharmazem.rewards | sem comando      | permite que o jogador ganhe as recompensas (se ativo) |
+| Permissão             | Uso              | Descrição                                                |
+|:----------------------|:-----------------|----------------------------------------------------------|
+| gharmazem.use         | /armazem         | acessar o menu do armazém                                |  
+| gharmazem.sellall     | /armazem vender  | vender todos os itens do armazem por comando             |
+| gharmazem.store       | /armazem guardar | guardar todos os itens do inventario por comando         |
+| sem permissão         | /armazem ajuda   | apresenta todos os comandos do plugin                    |
+| gharmazem.rewards     | sem comando      | permite que o jogador ganhe as recompensas (se ativo)    |
+| gharmazem.rewards.vip | sem comando      | permite que o jogador tenha uma chance maior nas rewards |
 
 Verifique as aliases dos comandos na Release - Version 1.4.4
 

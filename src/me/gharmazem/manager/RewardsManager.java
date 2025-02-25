@@ -20,17 +20,24 @@ public class RewardsManager {
         val rewardsMessage = config.getStringList("PlotSquaredSupport.rewards.rewards-message");
         val rewardsEnable = config.getBoolean("PlotSquaredSupport.rewards.enable");
         val psEnable = config.getBoolean("PlotSquaredSupport.enable");
-        val chance = config.getDouble("PlotSquaredSupport.rewards.chance");
+        val baseChance = config.getDouble("PlotSquaredSupport.rewards.base-chance");
+        val vipChance = config.getDouble("PlotSquaredSupport.rewards.vips-chance");
         val mode = RewardsMode.mode(config.getString("PlotSquaredSupport.rewards.mode", "SORTER"));
 
         if (!psEnable && !rewardsEnable) return;
         if (possibleRewards.isEmpty()) return;
 
+        double chance;
         if (player.hasPermission("gharmazem.rewards")) {
             val random = new Random();
             val randomValue = random.nextDouble() * 100;
 
             try {
+                if(player.hasPermission("gharmazem.rewards.vip")) {
+                    chance = vipChance;
+                }else {
+                    chance = baseChance;
+                }
                 if (randomValue <= chance) {
                     switch (mode) {
                         case SORTER:

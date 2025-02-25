@@ -17,7 +17,7 @@ public class BonusManager {
         loadBonusPermissions();
     }
 
-    public static void setBonus(Player player, Material material, int quantity) {
+    public static void setBonus(Player player, Material material, double amount) {
         val getPerm = loadBonusPermissions();
         val actionBarStore = Main.getInstance().getConfig().getString("Messages.actionbar-store");
 
@@ -26,15 +26,15 @@ public class BonusManager {
             double bonus = entry.getValue();
 
             if (player.hasPermission(permission)) {
-                int nowQuantity = (int) (quantity * bonus);
-                BaseManager.storeSpecificItem(player, material, nowQuantity);
+                double quantity = amount * bonus;
+                BaseManager.storeSpecificItem(player, material, (int) quantity);
 
                 if(material == Material.CACTUS) return;
 
                 ActionBarUtils.sendActionBar(
                         player,
                         ColorUtil.colored(actionBarStore)
-                                .replace("{amount}", UtilClass.formatNumber(nowQuantity))
+                                .replace("{amount}", UtilClass.formatNumber(quantity))
                                 .replace("{dropname}", DropsNameManager.getName(material) != null ? DropsNameManager.getName(material) : "Melancia")
                                 .replace("{fortune}", String.valueOf(UtilClass.itemFortune(player)))
                                 .replace("{multiplier}", String.valueOf(bonus))

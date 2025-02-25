@@ -89,7 +89,8 @@ PlotSquaredSupport:
     gharmazem.mvp: 3.0
   rewards:                        # (NECESSITA PERMISSÃO: gharmazem.rewards)
     enable: true                  # Ativar e desativar a opção de rewards
-    chance: 2.0                   # Chance do jogador ganhar a recompensa em poncentagem (%)
+    base-chance: 1.0              # Chance do jogador ganhar a recompensa em poncentagem (%) perm: gharmazem.rewards
+    vips-chance: 3.0              # Chance do jogador ganhar a recompensa em poncentagem (%) perms: gharmazem.rewards e gharmazem.rewards.vip
     mode: SORTER                  # Modos: SORTER (sorteia um comando da lista) ALL_BELOW (executa todos da lista)
     rewards-command:              # O Plugin vai sortear um dos comandos abaixo para givar a recompensa
       - "say {player} é bonito!"

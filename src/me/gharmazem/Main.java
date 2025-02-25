@@ -11,6 +11,8 @@ import me.gharmazem.listener.plotsquared.PSBlockBreak;
 import me.gharmazem.listener.plotsquared.PSCaneBreak;
 import me.gharmazem.listener.plotsquared.PSItemSpawn;
 import me.gharmazem.manager.BonusManager;
+import me.gharmazem.utils.ColorUtil;
+import me.gharmazem.utils.UtilClass;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
@@ -35,10 +37,18 @@ public class Main extends JavaPlugin {
             loadCommands();
 
             loadTime.stop();
+            getLogger().info("-------------------------------------------------------------");
+            getLogger().info("Database e configuracao inicializado com sucesso!");
+            getLogger().info("Metricas do plugin inicializada com sucesso!");
+            getLogger().info("Registro de Configuracoes inicializado com sucesso!");
+            getLogger().info("Gerenciador de Bonus e Rewards inicializado com sucesso!");
+            getLogger().info("Economia inicializada com sucesso!");
+            getLogger().info("-------------------------------------------------------------");
             getLogger().info("@Discord: mutamex");
             getLogger().info("@Author: mutamex-gh");
             getLogger().info("@Github: github.com/mutamex-gh/GHArmazem");
-            getLogger().log(Level.INFO, "Plugin inicializado com sucesso ({0})", loadTime);
+            getLogger().log(Level.INFO, "O plugin foi inicializado na Versao " + getDescription().getVersion() + " em ({0})", loadTime);
+            getLogger().info("-------------------------------------------------------------");
         }catch (Throwable t) {
             getLogger().severe("Plugin nao inicializado devido a um erro!");
             t.printStackTrace();

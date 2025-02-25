@@ -2,7 +2,6 @@ package me.gharmazem.listener.plotsquared;
 
 import com.intellectualcrafters.plot.api.PlotAPI;
 import com.intellectualcrafters.plot.object.Plot;
-import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.manager.BonusManager;
 import me.gharmazem.manager.RewardsManager;
@@ -25,10 +24,11 @@ public class PSCaneBreak implements Listener {
         Block block = event.getBlock();
         Material blockDropMapper = BlockDropMapper.getDrop(block.getType());
 
+        if (!psEnable) return;
         if (block.getType() != Material.SUGAR_CANE_BLOCK) return;
 
         final Plot plotAPI = new PlotAPI().getPlot(block.getLocation());
-        if (!psEnable || plotAPI == null || !plotAPI.hasOwner() || !plotAPI.isOwner(player.getUniqueId())) return;
+        if (plotAPI == null || !plotAPI.hasOwner() || !plotAPI.isOwner(player.getUniqueId())) return;
 
         boolean isFullyGrown = UtilClass.isFullyGrown(block);
         int dropsMultiplier = isFullyGrown ? 1 + UtilClass.getFortune(player) : 1;

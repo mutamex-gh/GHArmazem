@@ -169,22 +169,6 @@ public class BaseManager {
         return totalValue;
     }
 
-    public static double getSpecificValue(Player player, ItemStack itemStack) {
-        String playerUUID = player.getUniqueId().toString();
-        FileConfiguration db = ConfigDBase.getDatabaseConfig();
-        Material material = itemStack.getType();
-
-        if (db.contains("armazem." + playerUUID + "." + material.name())) {
-            int itemAmount = db.getInt("armazem." + playerUUID + "." + material.name());
-            Double itemPrice = ConfigValues.loadItemPrices().get(material);
-
-            if (itemPrice != null) {
-                return itemPrice * itemAmount;
-            }
-        }
-        return 0.0;
-    }
-
     public static void getSpecificItem(Player player, ItemStack itemType, int quantidade) {
         String playerUUID = player.getUniqueId().toString();
         FileConfiguration db = ConfigDBase.getDatabaseConfig();

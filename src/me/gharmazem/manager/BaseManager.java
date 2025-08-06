@@ -10,10 +10,12 @@ import me.gharmazem.parser.ArmazemSection;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -101,8 +103,10 @@ public class BaseManager {
             player.sendMessage(ColorUtil.colored(sellItens)
                     .replace("{coins}", UtilClass.formatNumber(totalValue))
                     .replace("{amount}", UtilClass.formatNumber(getAllStored)));
+            UtilClass.sendSound(player, Sound.LEVEL_UP);
         } else {
             player.sendMessage(ColorUtil.colored(noItensToSell));
+            UtilClass.sendSound(player, Sound.VILLAGER_NO);
         }
     }
 

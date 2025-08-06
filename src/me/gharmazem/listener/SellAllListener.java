@@ -24,7 +24,6 @@ public class SellAllListener implements Listener {
             if (event.getCurrentItem() == null || event.getCurrentItem().getType() != sellAllMaterial) return false;
 
             BaseManager.sellAll(player);
-            UtilClass.sendSound(player, Sound.LEVEL_UP);
             player.closeInventory();
             return true;
         }

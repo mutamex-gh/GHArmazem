@@ -13,10 +13,6 @@ import java.util.Map;
 
 public class BonusManager {
 
-    public static void register() {
-        loadBonusPermissions();
-    }
-
     public static void setBonus(Player player, Material material, double amount) {
         val getPerm = loadBonusPermissions();
         val actionBarStore = Main.getInstance().getConfig().getString("Messages.actionbar-store");
@@ -56,5 +52,9 @@ public class BonusManager {
             }
         }
         return mapPerm;
+    }
+
+    public static void register() {
+        loadBonusPermissions();
     }
 }

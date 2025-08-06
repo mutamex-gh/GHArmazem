@@ -11,8 +11,6 @@ import me.gharmazem.listener.plotsquared.PSBlockBreak;
 import me.gharmazem.listener.plotsquared.PSCaneBreak;
 import me.gharmazem.listener.plotsquared.PSItemSpawn;
 import me.gharmazem.manager.BonusManager;
-import me.gharmazem.utils.ColorUtil;
-import me.gharmazem.utils.UtilClass;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;

@@ -29,11 +29,9 @@ public class PSItemSpawn implements Listener {
             if (plotAPI == null) return;
             final OfflinePlayer player = Bukkit.getOfflinePlayer(plotAPI.getOwners().stream().findFirst().get());
 
-            if (!player.isOnline()) return;
-            if (!plotAPI.hasOwner()) return;
-            if (!plotAPI.isOwner(player.getUniqueId())) return;
+            if (!player.isOnline() || !plotAPI.hasOwner() || !plotAPI.isOwner(player.getUniqueId())) return;
 
-            BonusManager.setBonus((Player) player, Material.CACTUS, 1);
+            BonusManager.setBonus((Player) player, Material.CACTUS, entity.getItemStack().getAmount());
             event.getEntity().remove();
         }
     }

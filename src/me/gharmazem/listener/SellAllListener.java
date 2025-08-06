@@ -3,7 +3,9 @@ package me.gharmazem.listener;
 import me.gharmazem.Main;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.manager.BaseManager;
+import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,6 +24,7 @@ public class SellAllListener implements Listener {
             if (event.getCurrentItem() == null || event.getCurrentItem().getType() != sellAllMaterial) return false;
 
             BaseManager.sellAll(player);
+            UtilClass.sendSound(player, Sound.LEVEL_UP);
             player.closeInventory();
             return true;
         }

@@ -33,9 +33,9 @@ Verifique as aliases dos comandos na Release - Version 1.4.4
 
 # Fotos
 
+<img width="536" height="108" alt="image" src="https://github.com/user-attachments/assets/b9a63758-c48a-43e4-a991-b6c5d4749f20" />
+<img width="481" height="126" alt="image" src="https://github.com/user-attachments/assets/d7bda4ec-636d-4e76-a65e-46094ee7a2bb" />
 <img width="544" height="232" alt="image" src="https://github.com/user-attachments/assets/c3b66722-66bd-4979-ae29-2722d46a3965" />
-![image](https://github.com/user-attachments/assets/56d3ef40-448e-4e1b-ac6f-3028a2750851)
-![image](https://github.com/user-attachments/assets/85b06e7b-6311-421d-9b2f-b459cf3df8ed)
 <img width="573" height="396" alt="image" src="https://github.com/user-attachments/assets/d888663c-bc81-45db-98b8-cbd8e432ad3f" />
 <img width="645" height="451" alt="image" src="https://github.com/user-attachments/assets/88bb983a-1e79-4948-970d-c2fd51f4ca61" />
 - Antes de vender:

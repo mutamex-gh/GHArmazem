@@ -1,6 +1,7 @@
 package me.gharmazem.inventories;
 
 import lombok.Getter;
+import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.utils.ColorUtil;
 import org.bukkit.Bukkit;
@@ -11,13 +12,13 @@ public class ArmazemInventory {
     @Getter public static final Inventory inventory;
 
     static {
-        String invname = Main.getInstance().getConfig().getString("Inventory.inventory-name");
-        int invsize = Main.getInstance().getConfig().getInt("Inventory.inventory-size");
+        val inventoryName = Main.getInstance().getConfig().getString("Inventory.inventory-name");
+        val inventorySize = Main.getInstance().getConfig().getInt("Inventory.inventory-size");
 
         inventory = Bukkit.createInventory(
                 null,
-                invsize,
-                ColorUtil.colored(invname)
+                inventorySize,
+                ColorUtil.colored(inventoryName)
         );
     }
 

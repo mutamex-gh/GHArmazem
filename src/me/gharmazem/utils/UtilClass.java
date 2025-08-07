@@ -75,4 +75,24 @@ public class UtilClass {
         return df.format(shortenedNumber) + suffixes[suffixIndex];
     }
 
+    public static String getStorageBar(int used, int max) {
+        int totalBars = 10;
+        double percentage = (double) used / max;
+        int filledBars = (int) (percentage * totalBars);
+
+        StringBuilder bar = new StringBuilder("§fEstoque: ");
+
+        for (int i = 0; i < totalBars; i++) {
+            if (i < filledBars) {
+                bar.append("§a▌");
+            } else {
+                bar.append("§7▌");
+            }
+        }
+
+        bar.append(" §7").append((int)(percentage * 100)).append("%");
+
+        return bar.toString();
+    }
+
 }

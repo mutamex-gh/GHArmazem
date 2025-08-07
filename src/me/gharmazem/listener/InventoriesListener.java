@@ -1,11 +1,14 @@
 package me.gharmazem.listener;
 
+import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigValues;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.manager.DropsNameManager;
+import me.gharmazem.manager.LimitManager;
 import me.gharmazem.parser.ArmazemSection;
 import me.gharmazem.manager.BaseManager;
+import me.gharmazem.utils.ActionBarUtils;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
@@ -26,7 +29,6 @@ public class InventoriesListener implements Listener {
     public boolean onClick(InventoryClickEvent event) {
 
         FileConfiguration config = Main.getInstance().getConfig();
-        String materialmenu = config.getString("StorageItem.material");
         String menuinvname = config.getString("Inventory.inventory-name");
         String armazeminvname = config.getString("StorageInventory.inventory-name");
         String noitenstostore = config.getString("Messages.no-itens-to-store");
@@ -36,7 +38,7 @@ public class InventoriesListener implements Listener {
         if(event.getInventory().getTitle().equals(menuinvname)) {
             event.setCancelled(true);
 
-            if(event.getCurrentItem().getType().equals(Material.getMaterial(materialmenu))) {
+            if(event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.PROTECTION_PROJECTILE)) {
                 player.openInventory(ArmazemSection.getArmazemInventory());
 
                 ArmazemSection.inventory.setItem(11, ArmazemItens.savedItens(player));
@@ -52,6 +54,22 @@ public class InventoriesListener implements Listener {
 
             if (currentItem == null || currentItem.getType() == Material.AIR) return true;
             if (event.getClickedInventory() == null) return true;
+
+            val limitEnable = config.getBoolean("Limit.enable");
+            val limitExceeded = config.getString("Messages.limit-exceeded");
+
+            LimitManager limitManager = new LimitManager();
+
+            if (limitEnable && BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
+                ActionBarUtils.sendActionBar(
+                        player,
+                        ColorUtil.colored(limitExceeded)
+                                .replace("{amount}", UtilClass.formatNumber(BaseManager.getAllStored(player)))
+                                .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)))
+                );
+                UtilClass.sendSound(player, Sound.VILLAGER_NO);
+                return false;
+            }
 
             if (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.ARROW_DAMAGE)) {
                 boolean hasStoredItems = false;

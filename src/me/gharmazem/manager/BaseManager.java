@@ -1,5 +1,6 @@
 package me.gharmazem.manager;
 
+import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigDBase;
 import me.gharmazem.configuration.ConfigValues;
@@ -7,6 +8,7 @@ import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.inventories.ArmazemItens;
 import me.gharmazem.parser.ArmazemSection;
+import me.gharmazem.utils.ActionBarUtils;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
@@ -15,7 +17,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,10 +40,24 @@ public class BaseManager {
     }
 
     public static void store(Player player) {
-        String storeitens = config.getString("Messages.store-itens");
-        String noitenstostore = config.getString("Messages.no-itens-to-store");
+        val storeitens = config.getString("Messages.store-itens");
+        val noitenstostore = config.getString("Messages.no-itens-to-store");
+        val limitEnable = config.getBoolean("Limit.enable");
+        val limitExceeded = config.getString("Messages.limit-exceeded");
 
         List<Material> allowed = ConfigValues.getAllowedItems();
+        LimitManager limitManager = new LimitManager();
+
+        if (limitEnable && BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
+            ActionBarUtils.sendActionBar(
+                    player,
+                    ColorUtil.colored(limitExceeded)
+                            .replace("{amount}", UtilClass.formatNumber(BaseManager.getAllStored(player)))
+                            .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)))
+            );
+            UtilClass.sendSound(player, Sound.VILLAGER_NO);
+            return;
+        }
 
         boolean hasStoredItems = false;
         for (Material material : allowed) {
@@ -234,7 +249,9 @@ public class BaseManager {
         ArmazemSection.updateLore(player);
 
         ArmazemItens.pessoalArmazemInfoItem(player);
-        ArmazemItens.sellAllItem();
+        ArmazemItens.sellAllItem(player);
+
+        if(config.getBoolean("Limit.enable")) ArmazemInventory.getInventory().setItem(16, ArmazemItens.limitItem(player));
 
         ArmazemInventory.getInventory().setItem(slot, ArmazemItens.armazemItem());
         player.openInventory(ArmazemInventory.getInventory());

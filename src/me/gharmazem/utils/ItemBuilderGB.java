@@ -152,6 +152,10 @@ public class ItemBuilderGB implements Cloneable {
         return this;
     }
 
+    /*
+        SkullTexture corrigido para suportar
+        as URLS.
+     */
     public ItemBuilderGB skullTexture(String textureUrl) {
         if (textureUrl == null || textureUrl.isEmpty()) return this;
 
@@ -159,28 +163,26 @@ public class ItemBuilderGB implements Cloneable {
             textureUrl = "https://textures.minecraft.net/texture/" + textureUrl;
         }
 
+        if (!(this.itemMeta instanceof SkullMeta)) return this;
         SkullMeta skullMeta = (SkullMeta) this.itemMeta;
+
         GameProfile profile = new GameProfile(UUID.nameUUIDFromBytes(textureUrl.getBytes()), null);
-        profile.getProperties().put(
+        profile.getProperties().put("textures", new Property(
                 "textures",
-                new Property(
-                        "textures",
-                        Arrays.toString(Base64.encodeBase64(
-                                String.format("{textures:{SKIN:{url:\"%s\"}}}", textureUrl).getBytes()
-                        ))
-                )
-        );
+                new String(Base64.encodeBase64((
+                        "{\"textures\":{\"SKIN\":{\"url\":\"" + textureUrl + "\"}}}"
+                ).getBytes()))
+        ));
 
         try {
             Field profileField = skullMeta.getClass().getDeclaredField("profile");
-
             profileField.setAccessible(true);
             profileField.set(skullMeta, profile);
-
-            this.itemMeta = skullMeta;
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        this.itemMeta = skullMeta;
 
         return this;
     }

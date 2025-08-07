@@ -7,11 +7,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-/**
- * @author Gustavo Henrique
- * @github mutamex-gh
- */
-
 @Getter
 @Setter
 @AllArgsConstructor

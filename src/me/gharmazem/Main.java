@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
 
 import static me.gharmazem.configuration.ConfigDBase.setupDatabaseFile;
+import static me.gharmazem.configuration.ConfigLimit.*;
 
 public class Main extends JavaPlugin {
 
@@ -25,6 +26,7 @@ public class Main extends JavaPlugin {
             val loadTime = Stopwatch.createStarted();
             saveDefaultConfig();
             setupDatabaseFile();
+            setupLimitFile();
 
             MetricsProvider.of(this).register();
             ConfigRegistry.register();
@@ -37,6 +39,7 @@ public class Main extends JavaPlugin {
             loadTime.stop();
             getLogger().info("-------------------------------------------------------------");
             getLogger().info("Database e configuracao inicializado com sucesso!");
+            getLogger().info("Niveis e Limites carregados com sucesso!");
             getLogger().info("Metricas do plugin inicializada com sucesso!");
             getLogger().info("Registro de Configuracoes inicializado com sucesso!");
             getLogger().info("Gerenciador de Bonus e Rewards inicializado com sucesso!");
@@ -54,6 +57,8 @@ public class Main extends JavaPlugin {
     }
 
     public void loadListener() {
+        Bukkit.getPluginManager().registerEvents(new RegisterPlayerLimitListener(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new TierUpgradeListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new InventoriesListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellRecoverListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellAllListener(), Main.this);

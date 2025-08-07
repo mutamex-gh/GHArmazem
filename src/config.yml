@@ -1,6 +1,6 @@
 ##############################################
 #                GHArmazem                   #
-#              version: 1.4.6                #
+#              version: 2.0.0                #
 ##############################################
 #
 # github.com/mutamex-gh/
@@ -21,6 +21,10 @@ Messages:
   store-itens: "&aForam armazenados {amount} {item} em seu armazém!"
   recovery-itens: "&aVocê recolheu {amount} itens do seu armazém!"
   sell-itens: "&aVocê vendeu {amount} itens por {coins} coins!"
+  limit-upgrade: "&aVocê aumentou seu limite com sucesso!"
+  limit-upgrade-fail: "&cVocê não tem {amount} coin(s) para dar upgrade em seu limite!"
+  limit-exceeded: "&cVocê excedeu o limite do seu armazem! ({amount}/{limit})"
+  last-limit-tier: "&cVocê já está no ultimo nivel de capacidade do armazém!"
 
 Inventory:
   inventory-name: "Seu armazém pessoal"
@@ -37,14 +41,13 @@ PessoalArmazemItem:
   title: "&a{player}"
   slot: 11
   lore:
-    - "&7Suas informações:"
+    - "&7Seu armazém:"
     - ""
-    - "  &fSeus coins: &a{coins}"
-    - "  &fItens armazenados: &e{amount}"
+    - "  &fArmazenados: &e{amount}"
+    - "  &fSeu limite: &c{limit}"   # Coloque apenas se estiver ativo em @Limit.enable
     - ""
 
 StorageItem:
-  material: "CHEST"
   slot: 14
   title: "&aArmazém pessoal"
   lore:
@@ -55,7 +58,6 @@ StorageItem:
     - ""
 
 SellAllItem:
-  material: "STORAGE_MINECART"
   slot: 15
   title: "&aVender Tudo"
   lore:
@@ -64,6 +66,32 @@ SellAllItem:
     - " &fAo clicar, você irá vender todos"
     - " &fos seus itens armazenados!"
     - ""
+
+##############################################
+#                  LIMITE                    #
+##############################################
+#
+# O Limite limitará os itens que serão armazenados,
+# se desativado, poderão ser armazenados infinitamente.
+#
+# Siga o padrão, tier1, tier2, tier3.... o next sempre
+# deverá ser o próximo tier, e quando for o ultimo, o
+# next deverá ser "fim", da forma como está predefinida.
+Limit:
+  enable: true
+  tiers:
+    tier1:
+      next: "tier2"
+      limit: 100
+      price: 10000
+    tier2:
+      next: "tier3"
+      limit: 2000
+      price: 20000
+    tier3:
+      next: "fim"
+      limit: 300000
+      price: 3000000
 
 ##############################################
 #                  CRIAÇÃO                   #

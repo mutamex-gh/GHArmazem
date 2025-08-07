@@ -2,12 +2,18 @@ package me.gharmazem.listener.plotsquared;
 
 import com.intellectualcrafters.plot.api.PlotAPI;
 import com.intellectualcrafters.plot.object.Plot;
+import lombok.val;
 import me.gharmazem.Main;
+import me.gharmazem.manager.BaseManager;
 import me.gharmazem.manager.BonusManager;
+import me.gharmazem.manager.LimitManager;
 import me.gharmazem.manager.RewardsManager;
 import me.gharmazem.manager.enums.BlockDropMapper;
+import me.gharmazem.utils.ActionBarUtils;
+import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,9 +26,14 @@ public class PSCaneBreak implements Listener {
 
     @EventHandler
     public void onCaneBreak(BlockBreakEvent event) {
-        Player player = event.getPlayer();
-        Block block = event.getBlock();
-        Material blockDropMapper = BlockDropMapper.getDrop(block.getType());
+        val player = event.getPlayer();
+        val block = event.getBlock();
+        val blockDropMapper = BlockDropMapper.getDrop(block.getType());
+        val config = Main.getInstance().getConfig();
+        val limitEnable = config.getBoolean("Limit.enable");
+        val limitExceeded = config.getString("Messages.limit-exceeded");
+
+        LimitManager limitManager = new LimitManager();
 
         if (!psEnable) return;
         if (block.getType() != Material.SUGAR_CANE_BLOCK) return;
@@ -30,8 +41,24 @@ public class PSCaneBreak implements Listener {
         final Plot plotAPI = new PlotAPI().getPlot(block.getLocation());
         if (plotAPI == null || !plotAPI.hasOwner() || !plotAPI.isOwner(player.getUniqueId())) return;
 
-        boolean isFullyGrown = UtilClass.isFullyGrown(block);
-        int dropsMultiplier = isFullyGrown ? 1 + UtilClass.getFortune(player) : 1;
+        val isFullyGrown = UtilClass.isFullyGrown(block);
+        val dropsMultiplier = isFullyGrown ? 1 + UtilClass.getFortune(player) : 1;
+
+        if (limitEnable && BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
+            ActionBarUtils.sendActionBar(
+                    player,
+                    ColorUtil.colored(limitExceeded)
+                            .replace("{amount}", UtilClass.formatNumber(BaseManager.getAllStored(player)))
+                            .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)))
+            );
+            Block aboveBlock = block.getRelative(0, 1, 0);
+
+            aboveBlock.setType(Material.AIR);
+            block.setType(Material.AIR);
+
+            UtilClass.sendSound(player, Sound.VILLAGER_NO);
+            return;
+        }
 
         event.setCancelled(true);
 

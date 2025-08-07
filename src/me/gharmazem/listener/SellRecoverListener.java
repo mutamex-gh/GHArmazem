@@ -48,7 +48,6 @@ public class SellRecoverListener implements Listener {
             int quantia = BaseManager.getSpecificStored(player, button.getItemStack());
             double rendimento = button.getPrice() * quantia;
 
-            // vender/recolher por inventario :(
             if (event.getClick().isLeftClick()) {
                 if (quantia > 0) {
                     EconomyHook.getEconomy().depositPlayer(player, rendimento);

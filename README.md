@@ -35,12 +35,15 @@ Verifique as aliases dos comandos na Release - Version 1.4.4
 
 <img width="536" height="108" alt="image" src="https://github.com/user-attachments/assets/b9a63758-c48a-43e4-a991-b6c5d4749f20" />
 <img width="481" height="126" alt="image" src="https://github.com/user-attachments/assets/d7bda4ec-636d-4e76-a65e-46094ee7a2bb" />
+<img width="544" height="221" alt="image" src="https://github.com/user-attachments/assets/b362135a-6847-4aab-885b-608e16603fd5" />
 <img width="544" height="232" alt="image" src="https://github.com/user-attachments/assets/c3b66722-66bd-4979-ae29-2722d46a3965" />
 <img width="573" height="396" alt="image" src="https://github.com/user-attachments/assets/d888663c-bc81-45db-98b8-cbd8e432ad3f" />
 <img width="645" height="451" alt="image" src="https://github.com/user-attachments/assets/88bb983a-1e79-4948-970d-c2fd51f4ca61" />
-- Antes de vender:
+
+# Antes da venda:
 <img width="621" height="283" alt="image" src="https://github.com/user-attachments/assets/60aa5c9e-3eb6-4cb1-898e-4a1e9aa05aea" />
-- Após vender:
+
+# Após a venda:
 <img width="628" height="292" alt="image" src="https://github.com/user-attachments/assets/13bf47d3-0736-49f9-8761-a393d9f0ca1e" />
 <img width="533" height="337" alt="image" src="https://github.com/user-attachments/assets/501de6b7-ba0a-454d-90c7-991036255629" />
 <img width="708" height="379" alt="image" src="https://github.com/user-attachments/assets/40364811-92c8-4247-b45c-652ad66d2f53" />

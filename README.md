@@ -16,14 +16,15 @@ Verifique as Releases.
 # Permissões
 Confira as permissões do plugin abaixo:
 
-| Permissão             | Uso              | Descrição                                                |
-|:----------------------|:-----------------|----------------------------------------------------------|
-| gharmazem.use         | /armazem         | acessar o menu do armazém                                |  
-| gharmazem.sellall     | /armazem vender  | vender todos os itens do armazem por comando             |
-| gharmazem.store       | /armazem guardar | guardar todos os itens do inventario por comando         |
-| sem permissão         | /armazem ajuda   | apresenta todos os comandos do plugin                    |
-| gharmazem.rewards     | sem comando      | permite que o jogador ganhe as recompensas (se ativo)    |
-| gharmazem.rewards.vip | sem comando      | permite que o jogador tenha uma chance maior nas rewards |
+| Permissão             | Uso                                     | Descrição                                                |
+|:----------------------|:----------------------------------------|----------------------------------------------------------|
+| gharmazem.use         | /armazem                                | acessar o menu do armazém                                |  
+| gharmazem.sellall     | /armazem vender                         | vender todos os itens do armazem por comando             |
+| gharmazem.store       | /armazem guardar                        | guardar todos os itens do inventario por comando         |
+| sem permissão         | /armazem ajuda                          | apresenta todos os comandos do plugin                    |
+| gharmazem.admin       | /armazem give                           | permite o jogador givar cheques (permissão de adm)       |
+| gharmazem.rewards     | sem comando                             | permite que o jogador ganhe as recompensas (se ativo)    |
+| gharmazem.rewards.vip | sem comando                             | permite que o jogador tenha uma chance maior nas rewards |
 
 Verifique as aliases dos comandos na Release - Version 1.4.4
 
@@ -37,8 +38,9 @@ Verifique as aliases dos comandos na Release - Version 1.4.4
 <img width="481" height="126" alt="image" src="https://github.com/user-attachments/assets/d7bda4ec-636d-4e76-a65e-46094ee7a2bb" />
 <img width="544" height="221" alt="image" src="https://github.com/user-attachments/assets/b362135a-6847-4aab-885b-608e16603fd5" />
 <img width="544" height="232" alt="image" src="https://github.com/user-attachments/assets/c3b66722-66bd-4979-ae29-2722d46a3965" />
-<img width="573" height="396" alt="image" src="https://github.com/user-attachments/assets/d888663c-bc81-45db-98b8-cbd8e432ad3f" />
-<img width="645" height="451" alt="image" src="https://github.com/user-attachments/assets/88bb983a-1e79-4948-970d-c2fd51f4ca61" />
+<img width="456" height="337" alt="image" src="https://github.com/user-attachments/assets/47e8ec66-20d6-4969-9774-c8c1c3c0239a" />
+<img width="585" height="397" alt="image" src="https://github.com/user-attachments/assets/4256ea67-6a08-460b-93d4-b1325e22e356" />
+<img width="572" height="342" alt="image" src="https://github.com/user-attachments/assets/49b41c56-4ff7-4ae3-a6f3-d7de904483a8" />
 
 # Antes da venda:
 <img width="621" height="283" alt="image" src="https://github.com/user-attachments/assets/60aa5c9e-3eb6-4cb1-898e-4a1e9aa05aea" />

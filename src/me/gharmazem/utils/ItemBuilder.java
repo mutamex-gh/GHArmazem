@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -42,6 +43,10 @@ public class ItemBuilder {
     public ItemBuilder changeItem(Consumer<ItemStack> consumer) {
         consumer.accept(this.item);
         return this;
+    }
+
+    public ItemBuilder hideEnchantments() {
+        return changeItemMeta(it -> it.addItemFlags(ItemFlag.HIDE_ENCHANTS));
     }
 
     public ItemBuilder name(String name) {

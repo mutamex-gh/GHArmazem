@@ -5,6 +5,7 @@
 - Suporte para farm de cacto -> Direto para o armazem com bonus aplicado;
 - Suporte de bonus personalizados com permissões para vips etc...
 - Suporte de rewards ao quebrar as plantações personalizaveis com comandos;
+- Sistema de limites, com evoluções personalizadas;
 - Suporte de formatação de numeros, **exemplo: <1k, 1m, 1b, 1t, 1q, 1qq, 1s, 1sp>**;
 
 Verifique as Releases.
@@ -28,22 +29,24 @@ Verifique as aliases dos comandos na Release - Version 1.4.4
 
 # Dependencias e download:
 - Dependencias: Vault, PlotSquared
-- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/version-1.4.6/GHArmazem.jar)
+- Download: [clique aqui](https://github.com/mutamex-gh/GHArmazem/releases/download/Version-2.0.0/GHArmazem.jar)
 
 # Fotos
 
-![image](https://github.com/user-attachments/assets/56d3ef40-448e-4e1b-ac6f-3028a2750851)
-![image](https://github.com/user-attachments/assets/85b06e7b-6311-421d-9b2f-b459cf3df8ed)
-![image](https://github.com/user-attachments/assets/a665d214-50d9-4561-a28b-6be9e1463e50)
-![image](https://github.com/user-attachments/assets/3d588298-3091-4185-9510-fad2a8a9b85b)
-![image](https://github.com/user-attachments/assets/15e4c72b-6411-48b4-8a3d-a4b63979f9c2)
-![image](https://github.com/user-attachments/assets/29ad2992-e284-4361-85e6-54499b42d105)
-![image](https://github.com/user-attachments/assets/ead62e6d-bbc3-4c56-b557-84d64b49454d)
-![image](https://github.com/user-attachments/assets/b2276061-0510-4159-8c7b-4b15cd293463)
-![image](https://github.com/user-attachments/assets/db483411-ac25-4619-901d-b0e03fa9c646)
-![image](https://github.com/user-attachments/assets/46346122-412d-4c6d-90be-9939248b8d30)
-![image](https://github.com/user-attachments/assets/851d93f5-e136-49eb-b295-b2bea0d3ee59)
+<img width="536" height="108" alt="image" src="https://github.com/user-attachments/assets/b9a63758-c48a-43e4-a991-b6c5d4749f20" />
+<img width="481" height="126" alt="image" src="https://github.com/user-attachments/assets/d7bda4ec-636d-4e76-a65e-46094ee7a2bb" />
+<img width="544" height="221" alt="image" src="https://github.com/user-attachments/assets/b362135a-6847-4aab-885b-608e16603fd5" />
+<img width="544" height="232" alt="image" src="https://github.com/user-attachments/assets/c3b66722-66bd-4979-ae29-2722d46a3965" />
+<img width="573" height="396" alt="image" src="https://github.com/user-attachments/assets/d888663c-bc81-45db-98b8-cbd8e432ad3f" />
+<img width="645" height="451" alt="image" src="https://github.com/user-attachments/assets/88bb983a-1e79-4948-970d-c2fd51f4ca61" />
 
+# Antes da venda:
+<img width="621" height="283" alt="image" src="https://github.com/user-attachments/assets/60aa5c9e-3eb6-4cb1-898e-4a1e9aa05aea" />
 
-
+# Após a venda:
+<img width="628" height="292" alt="image" src="https://github.com/user-attachments/assets/13bf47d3-0736-49f9-8761-a393d9f0ca1e" />
+<img width="533" height="337" alt="image" src="https://github.com/user-attachments/assets/501de6b7-ba0a-454d-90c7-991036255629" />
+<img width="708" height="379" alt="image" src="https://github.com/user-attachments/assets/40364811-92c8-4247-b45c-652ad66d2f53" />
+<img width="693" height="339" alt="image" src="https://github.com/user-attachments/assets/8ea7b9d7-e271-4c6e-a487-554058be0c42" />
+<img width="546" height="523" alt="image" src="https://github.com/user-attachments/assets/834d30fc-82ca-4953-8407-d1978bc2d2be" />
 

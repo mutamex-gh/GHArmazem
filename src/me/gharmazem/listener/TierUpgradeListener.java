@@ -3,7 +3,8 @@ package me.gharmazem.listener;
 import lombok.val;
 import me.gharmazem.inventories.ArmazemInventory;
 import me.gharmazem.manager.LimitManager;
-import org.bukkit.enchantments.Enchantment;
+import me.gharmazem.utils.ColorUtil;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,8 +17,10 @@ public class TierUpgradeListener implements Listener {
         val player = (Player) event.getWhoClicked();
         LimitManager limitManager = new LimitManager();
 
+        if(event.getCurrentItem() == null || event.getCurrentItem().getType().equals(Material.AIR)) return;
+
         if(event.getInventory().equals(ArmazemInventory.getInventory())
-        && event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.ARROW_KNOCKBACK)) {
+        && event.getCurrentItem().getItemMeta().getDisplayName().equals(ColorUtil.colored("&aGerenciador de Limites"))) {
 
             limitManager.updateTier(player);
         }

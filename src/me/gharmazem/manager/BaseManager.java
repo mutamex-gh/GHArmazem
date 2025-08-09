@@ -1,6 +1,7 @@
 package me.gharmazem.manager;
 
 import lombok.val;
+import lombok.var;
 import me.gharmazem.Main;
 import me.gharmazem.configuration.ConfigDBase;
 import me.gharmazem.configuration.ConfigValues;
@@ -39,50 +40,65 @@ public class BaseManager {
         ConfigDBase.saveDatabaseConfig();
     }
 
-    public static void store(Player player) {
-        val storeitens = config.getString("Messages.store-itens");
-        val noitenstostore = config.getString("Messages.no-itens-to-store");
-        val limitEnable = config.getBoolean("Limit.enable");
+    public void store(Player player) {
+        val storeItens = config.getString("Messages.store-itens");
+        val noItensToStore = config.getString("Messages.no-itens-to-store");
         val limitExceeded = config.getString("Messages.limit-exceeded");
 
         List<Material> allowed = ConfigValues.getAllowedItems();
         LimitManager limitManager = new LimitManager();
 
-        if (limitEnable && BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
-            ActionBarUtils.sendActionBar(
-                    player,
-                    ColorUtil.colored(limitExceeded)
-                            .replace("{amount}", UtilClass.formatNumber(BaseManager.getAllStored(player)))
-                            .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)))
-            );
-            UtilClass.sendSound(player, Sound.VILLAGER_NO);
+        int limit = limitManager.getLimit(player);
+        int stored = getAllStored(player);
+        int space = limit - stored;
+
+        if (space <= 0) {
+            player.sendMessage(ColorUtil.colored(limitExceeded)
+                    .replace("{amount}", UtilClass.formatNumber(stored))
+                    .replace("{limit}", UtilClass.formatNumber(limit)));
             return;
         }
 
         boolean hasStoredItems = false;
         for (Material material : allowed) {
-            int totalAmount = 0;
 
-            for (ItemStack item : player.getInventory().getContents()) {
-                if (item != null && item.getType() == material) {
-                    totalAmount += item.getAmount();
-                    player.getInventory().remove(item);
+            int itensToStore = 0;
+            for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
+                ItemStack item = player.getInventory().getItem(slot);
+
+                if (item != null && item.getType() == material && space > 0) {
+                    int toStore = Math.min(item.getAmount(), space);
+
+                    itensToStore += toStore;
+                    space -= toStore;
+
+                    int novaQuantidade = item.getAmount() - toStore;
+
+                    if (novaQuantidade > 0) {
+                        item.setAmount(novaQuantidade);
+                        player.getInventory().setItem(slot, item);
+                    } else {
+                        player.getInventory().setItem(slot, null);
+                    }
                 }
             }
-            if (totalAmount > 0) {
-                hasStoredItems = true;
-                ItemStack storedItem = new ItemStack(material, totalAmount);
-                BaseManager.save(player, storedItem);
+            if (itensToStore > 0) {
+                save(player, new ItemStack(material, itensToStore));
 
-                player.sendMessage(ColorUtil.colored(storeitens)
-                        .replace("{amount}", totalAmount + "")
+                player.sendMessage(ColorUtil.colored(storeItens)
+                        .replace("{amount}", UtilClass.formatNumber(itensToStore))
                         .replace("{item}", DropsNameManager.getName(material)));
+
+                hasStoredItems = true;
+            }
+            if (space <= 0) {
+                break;
             }
         }
         if (!hasStoredItems) {
-            player.sendMessage(ColorUtil.colored(noitenstostore));
-            return;
+            player.sendMessage(ColorUtil.colored(noItensToStore));
         }
+
         player.closeInventory();
     }
 
@@ -251,7 +267,7 @@ public class BaseManager {
         ArmazemItens.pessoalArmazemInfoItem(player);
         ArmazemItens.sellAllItem(player);
 
-        if(config.getBoolean("Limit.enable")) ArmazemInventory.getInventory().setItem(16, ArmazemItens.limitItem(player));
+        ArmazemInventory.getInventory().setItem(16, ArmazemItens.limitItem(player));
 
         ArmazemInventory.getInventory().setItem(slot, ArmazemItens.armazemItem());
         player.openInventory(ArmazemInventory.getInventory());

@@ -35,7 +35,6 @@ public class PSBlockBreak implements Listener {
         val isEnable = config.getBoolean("PlotSquaredSupport.enable");
         val replantEnable = config.getBoolean("PlotSquaredSupport.replant");
         val toolToBreak = config.getStringList("PlotSquaredSupport.tool-to-break");
-        val limitEnable = config.getBoolean("Limit.enable");
         val limitExceeded = config.getString("Messages.limit-exceeded");
 
         if (!isEnable) return;
@@ -47,7 +46,7 @@ public class PSBlockBreak implements Listener {
         if (toolToBreak.contains(player.getItemInHand().getType().name())
                 && ConfigValues.getAllowedItems().contains(block.getType())) {
 
-            if (limitEnable && BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
+            if (BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
                 ActionBarUtils.sendActionBar(
                         player,
                         ColorUtil.colored(limitExceeded)

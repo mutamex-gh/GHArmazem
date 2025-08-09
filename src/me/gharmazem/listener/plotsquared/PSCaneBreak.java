@@ -30,7 +30,6 @@ public class PSCaneBreak implements Listener {
         val block = event.getBlock();
         val blockDropMapper = BlockDropMapper.getDrop(block.getType());
         val config = Main.getInstance().getConfig();
-        val limitEnable = config.getBoolean("Limit.enable");
         val limitExceeded = config.getString("Messages.limit-exceeded");
 
         LimitManager limitManager = new LimitManager();
@@ -44,7 +43,7 @@ public class PSCaneBreak implements Listener {
         val isFullyGrown = UtilClass.isFullyGrown(block);
         val dropsMultiplier = isFullyGrown ? 1 + UtilClass.getFortune(player) : 1;
 
-        if (limitEnable && BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
+        if (BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
             ActionBarUtils.sendActionBar(
                     player,
                     ColorUtil.colored(limitExceeded)

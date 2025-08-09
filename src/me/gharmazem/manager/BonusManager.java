@@ -17,6 +17,8 @@ public class BonusManager {
         val getPerm = loadBonusPermissions();
         val actionBarStore = Main.getInstance().getConfig().getString("Messages.actionbar-store");
 
+        LimitManager limitManager = new LimitManager();
+
         for (Map.Entry<String, Double> entry : getPerm.entrySet()) {
             String permission = entry.getKey();
             double bonus = entry.getValue();
@@ -34,6 +36,8 @@ public class BonusManager {
                                 .replace("{dropname}", DropsNameManager.getName(material) != null ? DropsNameManager.getName(material) : "Melancia")
                                 .replace("{fortune}", String.valueOf(UtilClass.itemFortune(player)))
                                 .replace("{multiplier}", String.valueOf(bonus))
+                                .replace("{stored}", UtilClass.formatNumber(BaseManager.getAllStored(player)))
+                                .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)))
                 );
             }
         }

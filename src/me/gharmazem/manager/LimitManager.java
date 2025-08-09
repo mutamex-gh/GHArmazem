@@ -100,6 +100,15 @@ public class LimitManager {
     public Integer getLimit(Player player) {
         ConfigurationSection itemSection = config.getConfigurationSection("Limit.tiers");
 
+        val limitBase = itemSection.getInt(getTier(player) + ".limit");
+        val limitAdditional = LimitCheckManager.getAdditionalLimit(player);
+
+        return limitBase + limitAdditional;
+    }
+
+    public Integer getBaseLimit(Player player) {
+        ConfigurationSection itemSection = config.getConfigurationSection("Limit.tiers");
+
         return itemSection.getInt(getTier(player) + ".limit");
     }
 
@@ -108,5 +117,14 @@ public class LimitManager {
         val actualTier = getTier(player);
 
         return itemSection.getString(actualTier + ".next");
+    }
+
+    public static void createSection() {
+        val limitSection = ConfigLimit.getLimitConfig().getConfigurationSection("limits");
+
+        if(limitSection == null) {
+            ConfigLimit.getLimitConfig().createSection("limits");
+            ConfigLimit.saveLimitConfig();
+        }
     }
 }

@@ -26,8 +26,6 @@ public class PSItemSpawn implements Listener {
         val config = Main.getInstance().getConfig();
         val isPSSupportEnable = config.getBoolean("PlotSquaredSupport.enable");
         val isCactusFarmEnable = config.getBoolean("PlotSquaredSupport.enable-cactus");
-        val limitEnable = config.getBoolean("Limit.enable");
-        val limitExceeded = config.getString("Messages.limit-exceeded");
 
         Item entity = event.getEntity();
         LimitManager limitManager = new LimitManager();
@@ -39,7 +37,7 @@ public class PSItemSpawn implements Listener {
             if (plotAPI == null) return;
             final OfflinePlayer player = Bukkit.getOfflinePlayer(plotAPI.getOwners().stream().findFirst().get());
 
-            if (limitEnable && BaseManager.getAllStored((Player) player) >= limitManager.getLimit((Player) player)) {
+            if (BaseManager.getAllStored((Player) player) >= limitManager.getLimit((Player) player)) {
                 event.getEntity().remove();
                 return;
             }

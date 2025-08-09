@@ -14,14 +14,11 @@ import me.gharmazem.utils.UtilClass;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.List;
 
 public class InventoriesListener implements Listener {
 
@@ -31,14 +28,15 @@ public class InventoriesListener implements Listener {
         FileConfiguration config = Main.getInstance().getConfig();
         String menuinvname = config.getString("Inventory.inventory-name");
         String armazeminvname = config.getString("StorageInventory.inventory-name");
-        String noitenstostore = config.getString("Messages.no-itens-to-store");
-        String storeitens = config.getString("Messages.store-itens");
+        String title = config.getString("StorageItem.title");
 
         Player player = (Player)event.getWhoClicked();
         if(event.getInventory().getTitle().equals(menuinvname)) {
             event.setCancelled(true);
 
-            if(event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.PROTECTION_PROJECTILE)) {
+            if(event.getCurrentItem() == null || event.getCurrentItem().getType().equals(Material.AIR)) return true;
+
+            if(event.getCurrentItem().getItemMeta().getDisplayName().equals(ColorUtil.colored(title))) {
                 player.openInventory(ArmazemSection.getArmazemInventory());
 
                 ArmazemSection.inventory.setItem(11, ArmazemItens.savedItens(player));
@@ -49,56 +47,27 @@ public class InventoriesListener implements Listener {
         if(event.getInventory().getTitle().equals(armazeminvname)) {
             event.setCancelled(true);
 
-            List<Material> allowed = ConfigValues.getAllowedItems();
             ItemStack currentItem = event.getCurrentItem();
+            LimitManager limitManager = new LimitManager();
+            BaseManager baseManager = new BaseManager();
 
-            if (currentItem == null || currentItem.getType() == Material.AIR) return true;
-            if (event.getClickedInventory() == null) return true;
+            if (currentItem == null || currentItem.getType() == Material.AIR || event.getClickedInventory() == null) return true;
 
-            val limitEnable = config.getBoolean("Limit.enable");
             val limitExceeded = config.getString("Messages.limit-exceeded");
 
-            LimitManager limitManager = new LimitManager();
-
-            if (limitEnable && BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
-                ActionBarUtils.sendActionBar(
-                        player,
-                        ColorUtil.colored(limitExceeded)
-                                .replace("{amount}", UtilClass.formatNumber(BaseManager.getAllStored(player)))
-                                .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)))
-                );
-                UtilClass.sendSound(player, Sound.VILLAGER_NO);
-                return false;
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(ColorUtil.colored("&aGuardar Drops"))) {
+                if (BaseManager.getAllStored(player) >= limitManager.getLimit(player)) {
+                    ActionBarUtils.sendActionBar(
+                            player,
+                            ColorUtil.colored(limitExceeded)
+                                    .replace("{amount}", UtilClass.formatNumber(BaseManager.getAllStored(player)))
+                                    .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)))
+                    );
+                    UtilClass.sendSound(player, Sound.VILLAGER_NO);
+                    return false;
+                }
+                baseManager.store(player);
             }
-
-            if (event.getCurrentItem().getItemMeta().hasEnchant(Enchantment.ARROW_DAMAGE)) {
-                boolean hasStoredItems = false;
-                for (Material material : allowed) {
-                    int totalAmount = 0;
-
-                    for (ItemStack item : player.getInventory().getContents()) {
-                        if (item != null && item.getType() == material) {
-                            totalAmount += item.getAmount();
-                            player.getInventory().remove(item);
-                        }
-                    }
-
-                    if (totalAmount > 0) {
-                        hasStoredItems = true;
-                        ItemStack storedItem = new ItemStack(material, totalAmount);
-                        BaseManager.save(player, storedItem);
-
-                        UtilClass.sendSound(player, Sound.LEVEL_UP);
-                        player.sendMessage(ColorUtil.colored(storeitens)
-                                .replace("{amount}", UtilClass.formatNumber(totalAmount))
-                                .replace("{item}", DropsNameManager.getName(material)));
-                    }
-                }
-                if (!hasStoredItems) {
-                    player.sendMessage(ColorUtil.colored(noitenstostore));
-                }
-                player.closeInventory();
-            }else if(event.getCurrentItem().getItemMeta() == null) return false;
         }
         return false;
     }

@@ -1,6 +1,6 @@
 ##############################################
 #                GHArmazem                   #
-#              version: 2.0.0                #
+#              version: 2.1.0                #
 ##############################################
 #
 # github.com/mutamex-gh/
@@ -25,6 +25,7 @@ Messages:
   limit-upgrade-fail: "&cVocê não tem {amount} coin(s) para dar upgrade em seu limite!"
   limit-exceeded: "&cVocê excedeu o limite do seu armazem! ({amount}/{limit})"
   last-limit-tier: "&cVocê já está no ultimo nivel de capacidade do armazém!"
+  activate-additional-limit: "&aVocê ativou {amount} limite(s) adicionais!"
 
 Inventory:
   inventory-name: "Seu armazém pessoal"
@@ -44,7 +45,10 @@ PessoalArmazemItem:
     - "&7Seu armazém:"
     - ""
     - "  &fArmazenados: &e{amount}"
-    - "  &fSeu limite: &c{limit}"   # Coloque apenas se estiver ativo em @Limit.enable
+    - "  &fSeu limite base: &c{baselimit}"   # Coloque apenas se estiver ativo em @Limit.enable
+    - "  &fSeu limite adicional: &c{adtlimit}"
+    - ""
+    - "&7Seu limite total: &c{limit}"
     - ""
 
 StorageItem:
@@ -78,7 +82,6 @@ SellAllItem:
 # deverá ser o próximo tier, e quando for o ultimo, o
 # next deverá ser "fim", da forma como está predefinida.
 Limit:
-  enable: true
   tiers:
     tier1:
       next: "tier2"

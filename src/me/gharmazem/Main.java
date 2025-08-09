@@ -11,6 +11,7 @@ import me.gharmazem.listener.plotsquared.PSBlockBreak;
 import me.gharmazem.listener.plotsquared.PSCaneBreak;
 import me.gharmazem.listener.plotsquared.PSItemSpawn;
 import me.gharmazem.manager.BonusManager;
+import me.gharmazem.manager.LimitManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
@@ -29,6 +30,7 @@ public class Main extends JavaPlugin {
             setupLimitFile();
 
             MetricsProvider.of(this).register();
+            LimitManager.createSection();
             ConfigRegistry.register();
             BonusManager.register();
             EconomyHook.register();
@@ -36,7 +38,6 @@ public class Main extends JavaPlugin {
             loadListener();
             loadCommands();
 
-            loadTime.stop();
             getLogger().info("-------------------------------------------------------------");
             getLogger().info("Database e configuracao inicializado com sucesso!");
             getLogger().info("Niveis e Limites carregados com sucesso!");
@@ -48,7 +49,7 @@ public class Main extends JavaPlugin {
             getLogger().info("@Discord: mutamex");
             getLogger().info("@Author: mutamex-gh");
             getLogger().info("@Github: github.com/mutamex-gh/GHArmazem");
-            getLogger().log(Level.INFO, "O plugin foi inicializado na Versao " + getDescription().getVersion() + " em ({0})", loadTime);
+            getLogger().log(Level.INFO, "O plugin foi inicializado na Versao " + getDescription().getVersion() + " em ({0})", loadTime.stop());
             getLogger().info("-------------------------------------------------------------");
         }catch (Throwable t) {
             getLogger().severe("Plugin nao inicializado devido a um erro!");
@@ -58,6 +59,7 @@ public class Main extends JavaPlugin {
 
     public void loadListener() {
         Bukkit.getPluginManager().registerEvents(new RegisterPlayerLimitListener(), Main.this);
+        Bukkit.getPluginManager().registerEvents(new ActivateCheckLimitListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new TierUpgradeListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new InventoriesListener(), Main.this);
         Bukkit.getPluginManager().registerEvents(new SellRecoverListener(), Main.this);

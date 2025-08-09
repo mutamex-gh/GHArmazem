@@ -4,6 +4,7 @@ import lombok.val;
 import me.gharmazem.Main;
 import me.gharmazem.hook.EconomyHook;
 import me.gharmazem.manager.BaseManager;
+import me.gharmazem.manager.LimitCheckManager;
 import me.gharmazem.manager.LimitManager;
 import me.gharmazem.utils.ColorUtil;
 import me.gharmazem.utils.ItemBuilderGB;
@@ -37,10 +38,12 @@ public class ArmazemItens {
             String updatedLine = ColorUtil.colored(line)
                             .replace("{coins}", UtilClass.formatNumber(balance))
                             .replace("{amount}", UtilClass.formatNumber(allStored))
+                            .replace("{baselimit}", UtilClass.formatNumber(limitManager.getBaseLimit(player)))
+                            .replace("{adtlimit}", UtilClass.formatNumber(LimitCheckManager.getAdditionalLimit(player)))
                             .replace("{limit}", UtilClass.formatNumber(limitManager.getLimit(player)));
             lore.add(updatedLine);
         }
-        if(limitEnable) lore.add(UtilClass.getStorageBar(BaseManager.getAllStored(player), limitManager.getLimit(player)));
+        lore.add(UtilClass.getStorageBar(BaseManager.getAllStored(player), limitManager.getLimit(player)));
 
         ItemStack PessoalArmazemInfo = new ItemBuilderGB(Material.SKULL_ITEM)
                 .name(ColorUtil.colored(title).replace("{player}", player.getName()))
@@ -60,7 +63,7 @@ public class ArmazemItens {
             lore = Arrays.asList(ColorUtil.colored(
                     "&7Clique para atualizar seu limite",
                     "",
-                    " &fLimite atual: &e" + UtilClass.formatNumber(limitManager.getLimit(player)),
+                    " &fLimite base atual: &e" + UtilClass.formatNumber(limitManager.getBaseLimit(player)),
                     "",
                     UtilClass.getStorageBar(BaseManager.getAllStored(player), limitManager.getLimit(player)),
                     "",
@@ -71,7 +74,7 @@ public class ArmazemItens {
             lore = Arrays.asList(ColorUtil.colored(
                     "&7Clique para atualizar seu limite",
                     "",
-                    " &fLimite atual: &e" + UtilClass.formatNumber(limitManager.getLimit(player)),
+                    " &fLimite base atual: &e" + UtilClass.formatNumber(limitManager.getBaseLimit(player)),
                     "",
                     " &7Preço para upgrade: &a" + UtilClass.formatNumber(limitManager.getNextTierPrice(player)) + " &2Coin(s)",
                     " &7Próximo limite: &c" + UtilClass.formatNumber(limitManager.getNextTierLimit(player)),
@@ -88,8 +91,6 @@ public class ArmazemItens {
                 .lore(ColorUtil.colored(lore))
                 .durability((short) 3)
                 .skullTexture("76a5734eaed02907408dff3e3f2c6efcd35a546c8f0af6c5e952d8cb8a516e82")
-                .enchantment(Enchantment.ARROW_KNOCKBACK, 1)
-                .hideEnchantments()
                 .build();
     }
 
@@ -104,8 +105,6 @@ public class ArmazemItens {
                 .lore(ColorUtil.colored(lore))
                 .durability((short) 3)
                 .skullTexture("275bcff2e74deed37a319a1f404e70d06a5f360cacee99c71346f38560cbd72a")
-                .enchantment(Enchantment.PROTECTION_PROJECTILE, 1)
-                .hideEnchantments()
                 .build();
     }
 
@@ -120,8 +119,6 @@ public class ArmazemItens {
                         ""
                      ))
                 .durability((short)3)
-                .enchantment(Enchantment.ARROW_DAMAGE, 1)
-                .hideEnchantments()
                 .skullTexture("bb141f56cc5147fe410348e94345d148e7c679b3212335cb3e88fd9d6f840806")
                 .build();
     }

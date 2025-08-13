@@ -45,7 +45,7 @@ PessoalArmazemItem:
     - "&7Seu armazém:"
     - ""
     - "  &fArmazenados: &e{amount}"
-    - "  &fSeu limite base: &c{baselimit}"   # Coloque apenas se estiver ativo em @Limit.enable
+    - "  &fSeu limite base: &c{baselimit}"
     - "  &fSeu limite adicional: &c{adtlimit}"
     - ""
     - "&7Seu limite total: &c{limit}"
@@ -74,9 +74,6 @@ SellAllItem:
 ##############################################
 #                  LIMITE                    #
 ##############################################
-#
-# O Limite limitará os itens que serão armazenados,
-# se desativado, poderão ser armazenados infinitamente.
 #
 # Siga o padrão, tier1, tier2, tier3.... o next sempre
 # deverá ser o próximo tier, e quando for o ultimo, o

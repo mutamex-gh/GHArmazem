@@ -61,13 +61,6 @@ public class Commands implements CommandExecutor {
                 for (String linha : ajuda) {
                     player.sendMessage(ColorUtil.colored(linha));
                 }
-
-                //////TESTE TESTE TESTE TESTE TESTE TESTE
-
-                player.sendMessage(LimitCheckManager.getAdditionalLimit(player) + "");
-
-
-                ///// fimf fimf imfim fifmifmfimf
                 break;
 
             case "vender":
